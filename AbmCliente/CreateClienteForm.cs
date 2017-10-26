@@ -66,7 +66,8 @@ namespace PagoAgilFrba.AbmCliente
             //Valido que esten todos los datos y que el tipo de dato sea correcto
             var errores = this.validarCamposCreateOrEdit();
             if (errores.Count == 0)
-            {   try 
+            { 
+                try 
 	            {	        
 		            conn.Open();
                     string query = "insert into dbo.Clientes values (@dni,@nombre,@apellido,@fechaNacimiento,@mail,@direccion,@codigoPostal,@telefono,1)";
@@ -102,13 +103,28 @@ namespace PagoAgilFrba.AbmCliente
             }
 
         }
-
+        private void validarCamposNoUnicos(List<string> errores) 
+        {
+            //Valido el DNI
+            if (txtDNI.Text == "" || !Regex.IsMatch(txtDNI.Text, regexSoloNumeros))
+                errores.Add("Ingrese un DNI valido");      
+            if (txtNombre.Text == "" || !Regex.IsMatch(txtNombre.Text, regexSoloLetras))
+                errores.Add("Ingrese un nombre válido");
+            if (txtApellido.Text == "" || !Regex.IsMatch(txtApellido.Text, regexSoloLetras))
+                errores.Add("Ingrese un apellido válido");
+            if (txtDireccion.Text == "")
+                errores.Add("Ingrese una direccion valida");
+            if (txtTelefono.Text == "" || !Regex.IsMatch(txtTelefono.Text, regexSoloNumeros))
+                errores.Add("Ingrese un teléfono valido");
+            if (txtCodigoPostal.Text == "" || !Regex.IsMatch(txtCodigoPostal.Text, regexSoloNumeros))
+                errores.Add("Ingrese un codigo postal valido");
+            if (txtFecha.Text == "" || txtFecha.Value >= DateTime.Now)
+                errores.Add("Ingrese una fecha de nacimiento válida");
+        }
         private List<string> validarCamposCreateOrEdit()
         {
             List<string> errores = new List<string>();
-            //Valido el DNI
-            if (txtDNI.Text == "" || !Regex.IsMatch(txtDNI.Text, regexSoloNumeros))
-                errores.Add("Ingrese un DNI valido");            
+                  
 
             //Valido el mail
             if (txtMail.Text == "" || !txtMail.Text.Contains("@"))
@@ -124,19 +140,13 @@ namespace PagoAgilFrba.AbmCliente
                 if (cantMailsIguales > 0)
                     errores.Add("Ya existe un cliente con ese mail");
             }
-            if (txtNombre.Text == "" || !Regex.IsMatch(txtNombre.Text, regexSoloLetras))
-                errores.Add("Ingrese un nombre válido");
-            if (txtApellido.Text == "" || !Regex.IsMatch(txtApellido.Text, regexSoloLetras))
-                errores.Add("Ingrese un apellido válido");
-            if (txtDireccion.Text == "")
-                errores.Add("Ingrese una direccion valida");
-            if(txtTelefono.Text == "" || !Regex.IsMatch(txtTelefono.Text,regexSoloNumeros))
-                errores.Add("Ingrese un teléfono valido");
-            if(txtCodigoPostal.Text == "" || !Regex.IsMatch(txtCodigoPostal.Text,regexSoloNumeros))
-                errores.Add("Ingrese un codigo postal valido");
-            if (txtFecha.Text == "" || txtFecha.Value >= DateTime.Now)
-                errores.Add("Ingrese una fecha de nacimiento válida");
+            this.validarCamposNoUnicos(errores);
             return errores;
+        }
+
+        private void CreateClienteForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

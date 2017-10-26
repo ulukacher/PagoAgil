@@ -14,3 +14,4 @@ C:\Users\uri_a\Desktop\UTN\2017\Gestion de datos\TP\Aplicacion Desktop\PagoAgilF
 C:\Users\uri_a\Desktop\UTN\2017\Gestion de datos\TP\Aplicacion Desktop\PagoAgilFrba\obj\Debug\PagoAgilFrba.AbmRol.Form1.resources
 C:\Users\uri_a\Desktop\UTN\2017\Gestion de datos\TP\Aplicacion Desktop\PagoAgilFrba\obj\Debug\PagoAgilFrba.AbmEmpresa.CreateEmpresaForm.resources
 C:\Users\uri_a\Desktop\UTN\2017\Gestion de datos\TP\Aplicacion Desktop\PagoAgilFrba\obj\Debug\PagoAgilFrba.AbmEmpresa.IndexEmpresasForm.resources
+C:\Users\uri_a\Desktop\UTN\2017\Gestion de datos\TP\Aplicacion Desktop\PagoAgilFrba\obj\Debug\PagoAgilFrba.AbmCliente.EditClienteForm.resources

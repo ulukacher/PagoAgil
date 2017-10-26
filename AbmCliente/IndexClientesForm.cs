@@ -10,6 +10,7 @@ using System;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using PagoAgilFrba.Classes;
 
 namespace PagoAgilFrba.AbmCliente
 {
@@ -41,7 +42,8 @@ namespace PagoAgilFrba.AbmCliente
                 {
 
                     int index = dataGridView1.Rows.Add(reader["clie_nombre"], reader["clie_apellido"], reader["clie_dni"], reader["clie_fechaNacimiento"], reader["clie_mail"], reader["clie_direccion"], reader["clie_codigoPostal"], reader["clie_telefono"], reader["clie_activo"]);
-                    dataGridView1.Rows[index].Cells[9].Value = "Eliminar";
+                    dataGridView1.Rows[index].Cells[9].Value = "Editar";
+                    dataGridView1.Rows[index].Cells[10].Value = "Eliminar";
                 }
 
             }
@@ -53,8 +55,36 @@ namespace PagoAgilFrba.AbmCliente
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            //Eliminar
+            //Editar
             if (e.ColumnIndex == 9)
+            {
+                conn.Open();
+                decimal dniAEditar = (decimal)dataGridView1.Rows[e.RowIndex].Cells[2].Value;
+                string query = "select * from dbo.clientes where clie_dni = @dni";
+                SqlCommand command = new SqlCommand(query, conn);
+                command.Parameters.AddWithValue("@dni", dniAEditar);
+                SqlDataReader reader =  command.ExecuteReader();
+                if (reader.Read()) 
+                {
+                    Cliente cliente = new Cliente();
+                    cliente.Nombre = (string)reader["clie_nombre"];
+                    cliente.Apellido = (string)reader["clie_apellido"];
+                    cliente.DNI = (decimal)reader["clie_dni"];
+                    cliente.Direccion = (string)reader["clie_direccion"];
+                    cliente.Mail = (string)reader["clie_mail"];
+                    cliente.FechaNacimiento = (DateTime)reader["clie_fechaNacimiento"];
+                    cliente.CodigoPostal = (string)reader["clie_codigoPostal"];
+                    cliente.Telefono = (string)reader["clie_telefono"];
+
+                    cliente.Activo = (bool)reader["clie_activo"];
+                    EditClienteForm editForm = new EditClienteForm(cliente);
+                    this.Hide();
+                    editForm.Show();
+                }
+
+            }
+            //Eliminar
+            if (e.ColumnIndex == 10)
             {
                 decimal dniAInhabilitar = (decimal)dataGridView1.Rows[e.RowIndex].Cells[2].Value;
                 conn.Open();
@@ -64,7 +94,6 @@ namespace PagoAgilFrba.AbmCliente
                 command.ExecuteNonQuery();
                 MessageBox.Show("El cliente ha sido marcado como inactivo");
                 conn.Close();
-
             }
         }
 

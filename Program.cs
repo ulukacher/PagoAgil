@@ -8,6 +8,19 @@ namespace PagoAgilFrba
 {
     static class Program
     {
+        public static string regexSoloLetras
+        {
+            get
+            {
+                return "^[a-zA-Z]+$";
+            }
+        }
+        public static string regexSoloNumeros
+        {
+            get {
+            return @"^\d+$";
+        }
+        } 
         /// <summary>
         /// Punto de entrada principal para la aplicación.
         /// </summary>
