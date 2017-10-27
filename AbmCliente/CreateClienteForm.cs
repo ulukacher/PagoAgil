@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PagoAgilFrba.Classes;
+using PagoAgilFrba.Repositories;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -67,23 +69,19 @@ namespace PagoAgilFrba.AbmCliente
             var errores = this.validarCamposCreateOrEdit();
             if (errores.Count == 0)
             { 
-                try 
-	            {	        
-		            conn.Open();
-                    string query = "insert into dbo.Clientes values (@dni,@nombre,@apellido,@fechaNacimiento,@mail,@direccion,@codigoPostal,@telefono,1)";
-                    SqlCommand command = new SqlCommand(query, conn);
-                    command.Parameters.AddWithValue("@nombre", txtNombre.Text);
-                    command.Parameters.AddWithValue("@apellido", txtApellido.Text);
-                    command.Parameters.AddWithValue("@dni", txtDNI.Text);
-                    command.Parameters.AddWithValue("@mail", txtMail.Text);
-                    command.Parameters.AddWithValue("@telefono", txtTelefono.Text);
-                    command.Parameters.AddWithValue("@direccion", txtDireccion.Text);
-                    command.Parameters.AddWithValue("@codigoPostal", txtCodigoPostal.Text);
-                    command.Parameters.AddWithValue("@fechaNacimiento", txtFecha.Value);
-
-                    command.ExecuteNonQuery();
+                try
+                {
+                    Cliente cliente = new Cliente();
+                    cliente.Nombre = txtNombre.Text;
+                    cliente.Apellido = txtApellido.Text;
+                    cliente.DNI = decimal.Parse(txtDNI.Text);
+                    cliente.FechaNacimiento = txtFecha.Value;
+                    cliente.Direccion = txtDireccion.Text;
+                    cliente.CodigoPostal = txtCodigoPostal.Text;
+                    cliente.Telefono = txtTelefono.Text;
+                    cliente.Mail = txtMail.Text;
+                    ClientesRepository.AgregarCliente(cliente);		     
                     MessageBox.Show("El cliente ha sido agregado correctamente");
-                    conn.Close();
                     this.Hide();
                     var indexForm = new IndexClientesForm();
                     indexForm.Show();
@@ -93,6 +91,7 @@ namespace PagoAgilFrba.AbmCliente
 				   //Violacion de primary key
                    if(sqlexc.Number == 2627)
                        MessageBox.Show("Ya existe un cliente con ese DNI");
+                   conn.Close();
 	            }
                
             }
@@ -108,9 +107,9 @@ namespace PagoAgilFrba.AbmCliente
             //Valido el DNI
             if (txtDNI.Text == "" || !Regex.IsMatch(txtDNI.Text, regexSoloNumeros))
                 errores.Add("Ingrese un DNI valido");      
-            if (txtNombre.Text == "" || !Regex.IsMatch(txtNombre.Text, regexSoloLetras))
+            if (txtNombre.Text == "")
                 errores.Add("Ingrese un nombre válido");
-            if (txtApellido.Text == "" || !Regex.IsMatch(txtApellido.Text, regexSoloLetras))
+            if (txtApellido.Text == "")
                 errores.Add("Ingrese un apellido válido");
             if (txtDireccion.Text == "")
                 errores.Add("Ingrese una direccion valida");
@@ -131,12 +130,7 @@ namespace PagoAgilFrba.AbmCliente
                 errores.Add("Ingrese un email valido");
             else
             {
-                conn.Open();
-                var queryMailUnico = "select count(*) from dbo.Clientes where clie_mail = @mailIngresado";
-                SqlCommand command = new SqlCommand(queryMailUnico, conn);
-                command.Parameters.AddWithValue("@mailIngresado", txtMail.Text);
-                int cantMailsIguales = (int)command.ExecuteScalar();
-                conn.Close();
+                int cantMailsIguales = ClientesRepository.GetCantidadClientesConEseMail(txtMail.Text);
                 if (cantMailsIguales > 0)
                     errores.Add("Ya existe un cliente con ese mail");
             }

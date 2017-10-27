@@ -127,6 +127,7 @@
     <Compile Include="Rendicion\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Repositories\ClientesRepository.cs" />
     <EmbeddedResource Include="AbmCliente\CreateClienteForm.resx">
       <DependentUpon>CreateClienteForm.cs</DependentUpon>
     </EmbeddedResource>
