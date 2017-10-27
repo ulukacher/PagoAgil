@@ -1,4 +1,5 @@
 ﻿using PagoAgilFrba.AbmCliente;
+using PagoAgilFrba.AbmEmpresa;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,6 +24,13 @@ namespace PagoAgilFrba
             var indexClientes = new IndexClientesForm();
             this.Hide();
             indexClientes.Show();
+        }
+
+        private void empresasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var indexEmpresas = new IndexEmpresasForm();
+            this.Hide();
+            indexEmpresas.Show();
         }
     }
 }

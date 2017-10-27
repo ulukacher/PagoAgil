@@ -69,6 +69,12 @@
     <Compile Include="AbmEmpresa\CreateEmpresaForm.Designer.cs">
       <DependentUpon>CreateEmpresaForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmEmpresa\EditEmpresaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmEmpresa\EditEmpresaForm.Designer.cs">
+      <DependentUpon>EditEmpresaForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AbmEmpresa\IndexEmpresasForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +100,8 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\Cliente.cs" />
+    <Compile Include="Classes\ComboboxItem.cs" />
+    <Compile Include="Classes\Empresa.cs" />
     <Compile Include="Classes\Rubro.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -128,6 +136,8 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Repositories\ClientesRepository.cs" />
+    <Compile Include="Repositories\EmpresasRepository.cs" />
+    <Compile Include="Repositories\RubrosRepository.cs" />
     <EmbeddedResource Include="AbmCliente\CreateClienteForm.resx">
       <DependentUpon>CreateClienteForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -139,6 +149,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AbmEmpresa\CreateEmpresaForm.resx">
       <DependentUpon>CreateEmpresaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmEmpresa\EditEmpresaForm.resx">
+      <DependentUpon>EditEmpresaForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmEmpresa\IndexEmpresasForm.resx">
       <DependentUpon>IndexEmpresasForm.cs</DependentUpon>

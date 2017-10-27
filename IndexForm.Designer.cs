@@ -87,6 +87,7 @@
             this.empresasToolStripMenuItem.Name = "empresasToolStripMenuItem";
             this.empresasToolStripMenuItem.Size = new System.Drawing.Size(84, 24);
             this.empresasToolStripMenuItem.Text = "Empresas";
+            this.empresasToolStripMenuItem.Click += new System.EventHandler(this.empresasToolStripMenuItem_Click);
             // 
             // facturasToolStripMenuItem
             // 
