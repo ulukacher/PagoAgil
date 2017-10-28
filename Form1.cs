@@ -1,4 +1,5 @@
 ﻿using PagoAgilFrba.AbmCliente;
+using PagoAgilFrba.Repositories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -42,14 +43,45 @@ namespace PagoAgilFrba
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var indexForm = new IndexForm();
-            this.Hide();
-            indexForm.Show();
+            string userName = txtUsuario.Text;
+            string password = txtContrasena.Text;
+            if (UsuariosRepository.ExisteUsuarioConEseUsername(userName))
+            {
+                bool successLogin = UsuariosRepository.Login(userName, password);
+                //MessageBox.Show("Existe un usuario con ese username");
+                if (successLogin)
+                {
+                    var indexForm = new IndexForm();
+                    this.Hide();
+                    indexForm.Show();
+                }
+                else 
+                {
+                    MessageBox.Show("Ha ingresado una contraseña incorrecta");
+                    txtContrasena.Clear();
+                    txtUsuario.Clear();
+                    txtUsuario.Focus();
+                }
+                
+            }
+            else
+            {
+                MessageBox.Show("No existe un usuario con ese username");
+                txtContrasena.Clear();
+                txtUsuario.Clear();
+                txtUsuario.Focus();
+            }
+           
         }
 
         private void label1_Click_1(object sender, EventArgs e)
         {
             
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
