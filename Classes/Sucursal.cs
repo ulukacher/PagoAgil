@@ -10,7 +10,7 @@ namespace PagoAgilFrba.Classes
     {
         public string Nombre { get; set; }
         public string Direccion { get; set; }
-        public int CodigoPostal{ get; set; }
+        public int CodigoPostal { get; set; }
         public bool Activa { get; set; }
     }
 }

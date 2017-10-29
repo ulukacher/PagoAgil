@@ -1,6 +1,7 @@
 ﻿using PagoAgilFrba.AbmCliente;
 using PagoAgilFrba.AbmEmpresa;
 using PagoAgilFrba.AbmSucursal;
+using PagoAgilFrba.AbmFactura;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,9 +37,16 @@ namespace PagoAgilFrba
 
         private void sucursalesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var indexSucursales= new IndexSucursalesForm();
+            var indexSucursales = new IndexSucursalesForm();
             this.Hide();
             indexSucursales.Show();
+        }
+
+        private void facturasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var indexFacturas = new CreateFacturaForm();
+            this.Hide();
+            indexFacturas.Show();
         }
     }
 }

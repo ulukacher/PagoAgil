@@ -29,7 +29,7 @@ namespace PagoAgilFrba.Repositories
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
             conn.Open();
-            string query = "insert into dbo.Sucursales values (@nombre,@direccion,@codigopostal,@activa)";
+            string query = "insert into dbo.Sucursales values (@codigopostal,@nombre,@direccion,@activa)";
             SqlCommand command = new SqlCommand(query, conn);
             command.Parameters.AddWithValue("@nombre", sucursal.Nombre);
             command.Parameters.AddWithValue("@direccion", sucursal.Direccion);

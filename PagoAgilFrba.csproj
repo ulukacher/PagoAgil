@@ -81,11 +81,23 @@
     <Compile Include="AbmEmpresa\IndexEmpresasForm.Designer.cs">
       <DependentUpon>IndexEmpresasForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmFactura\Form1.cs">
+    <Compile Include="AbmFactura\CreateFacturaForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmFactura\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="AbmFactura\CreateFacturaForm.Designer.cs">
+      <DependentUpon>CreateFacturaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmFactura\EditFacturaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmFactura\EditFacturaForm.Designer.cs">
+      <DependentUpon>EditFacturaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmFactura\IndexFacturasForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmFactura\IndexFacturasForm.Designer.cs">
+      <DependentUpon>IndexFacturasForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmRol\Form1.cs">
       <SubType>Form</SubType>
@@ -113,6 +125,9 @@
     </Compile>
     <Compile Include="Classes\Cliente.cs" />
     <Compile Include="Classes\ComboboxItem.cs" />
+    <Compile Include="Classes\ComboBoxItemStringValue.cs" />
+    <Compile Include="Classes\Factura.cs" />
+    <Compile Include="Classes\ItemFactura.cs" />
     <Compile Include="Classes\Sucursal.cs" />
     <Compile Include="Classes\Empresa.cs" />
     <Compile Include="Classes\Rubro.cs" />
@@ -151,6 +166,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Repositories\ClientesRepository.cs" />
+    <Compile Include="Repositories\FacturasRepository.cs" />
     <Compile Include="Repositories\SucursalesRepository.cs" />
     <Compile Include="Repositories\EmpresasRepository.cs" />
     <Compile Include="Repositories\RubrosRepository.cs" />
@@ -172,6 +188,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AbmEmpresa\IndexEmpresasForm.resx">
       <DependentUpon>IndexEmpresasForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmFactura\CreateFacturaForm.resx">
+      <DependentUpon>CreateFacturaForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmRol\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
