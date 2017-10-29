@@ -116,12 +116,14 @@
     <Compile Include="Classes\Sucursal.cs" />
     <Compile Include="Classes\Empresa.cs" />
     <Compile Include="Classes\Rubro.cs" />
+    <Compile Include="Classes\Usuario.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\EncryptHelper.cs" />
     <Compile Include="IndexForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,6 +154,7 @@
     <Compile Include="Repositories\SucursalesRepository.cs" />
     <Compile Include="Repositories\EmpresasRepository.cs" />
     <Compile Include="Repositories\RubrosRepository.cs" />
+    <Compile Include="Repositories\UsuariosRepository.cs" />
     <EmbeddedResource Include="AbmCliente\CreateClienteForm.resx">
       <DependentUpon>CreateClienteForm.cs</DependentUpon>
     </EmbeddedResource>
