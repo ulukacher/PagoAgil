@@ -89,7 +89,7 @@ namespace PagoAgilFrba.Repositories
             conn.Close();
             return empresas;
         }
-        public static List<Empresa> GetEmpresasByNombreDireccionCuitRubro(string _nombre, string _direccion, string _cuit, int _rubroId)
+        public static List<Empresa> GetEmpresasByNombreDireccionCuitRubro(string _nombre, string _cuit, int _rubroId)
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
             conn.Open();
@@ -102,16 +102,11 @@ namespace PagoAgilFrba.Repositories
                                 "from dbo.Empresas E " +
                                 "inner join dbo.Rubros R " +
                                 "on E.empr_rubro_id = R.rubr_id " +
-                                "where empr_nombre like @nombre and " +
-                                "empr_direccion like @direccion";
+                                "where empr_nombre like @nombre";
 
             SqlParameter nombre = new SqlParameter("@nombre", DbType.String);
             nombre.Value = "%" + _nombre + "%";
             command.Parameters.Add(nombre);
-
-            SqlParameter direccion = new SqlParameter("@direccion", DbType.String);
-            direccion.Value = "%" + _direccion + "%";
-            command.Parameters.Add(direccion);
 
             if (_rubroId != 0)
             {

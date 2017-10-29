@@ -43,10 +43,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
-            this.txtFiltroDireccion = new System.Windows.Forms.TextBox();
             this.txtFiltroCuit = new System.Windows.Forms.TextBox();
             this.txtFiltroNombre = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -144,15 +142,13 @@
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.btnBuscar);
             this.groupBox1.Controls.Add(this.btnLimpiar);
-            this.groupBox1.Controls.Add(this.txtFiltroDireccion);
             this.groupBox1.Controls.Add(this.txtFiltroCuit);
             this.groupBox1.Controls.Add(this.txtFiltroNombre);
-            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(763, 151);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(224, 237);
+            this.groupBox1.Size = new System.Drawing.Size(224, 195);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtros";
@@ -162,23 +158,25 @@
             // 
             this.cboFiltroRubro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboFiltroRubro.FormattingEnabled = true;
-            this.cboFiltroRubro.Location = new System.Drawing.Point(101, 159);
+            this.cboFiltroRubro.Location = new System.Drawing.Point(101, 114);
             this.cboFiltroRubro.Name = "cboFiltroRubro";
             this.cboFiltroRubro.Size = new System.Drawing.Size(103, 24);
             this.cboFiltroRubro.TabIndex = 9;
+            this.cboFiltroRubro.SelectedIndexChanged += new System.EventHandler(this.cboFiltroRubro_SelectedIndexChanged);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(10, 159);
+            this.label5.Location = new System.Drawing.Point(10, 114);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(47, 17);
             this.label5.TabIndex = 8;
             this.label5.Text = "Rubro";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(115, 192);
+            this.btnBuscar.Location = new System.Drawing.Point(115, 151);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(86, 28);
             this.btnBuscar.TabIndex = 7;
@@ -188,20 +186,13 @@
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(10, 191);
+            this.btnLimpiar.Location = new System.Drawing.Point(10, 151);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(86, 28);
             this.btnLimpiar.TabIndex = 6;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
-            // 
-            // txtFiltroDireccion
-            // 
-            this.txtFiltroDireccion.Location = new System.Drawing.Point(101, 116);
-            this.txtFiltroDireccion.Name = "txtFiltroDireccion";
-            this.txtFiltroDireccion.Size = new System.Drawing.Size(100, 22);
-            this.txtFiltroDireccion.TabIndex = 5;
             // 
             // txtFiltroCuit
             // 
@@ -217,23 +208,14 @@
             this.txtFiltroNombre.Size = new System.Drawing.Size(100, 22);
             this.txtFiltroNombre.TabIndex = 3;
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(10, 116);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(67, 17);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Dirección";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(10, 76);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(32, 17);
+            this.label3.Size = new System.Drawing.Size(39, 17);
             this.label3.TabIndex = 1;
-            this.label3.Text = "Cuit";
+            this.label3.Text = "CUIT";
             // 
             // label2
             // 
@@ -273,10 +255,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnLimpiar;
-        private System.Windows.Forms.TextBox txtFiltroDireccion;
         private System.Windows.Forms.TextBox txtFiltroCuit;
         private System.Windows.Forms.TextBox txtFiltroNombre;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cboFiltroRubro;

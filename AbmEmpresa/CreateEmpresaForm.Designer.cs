@@ -143,6 +143,7 @@
             this.Controls.Add(this.label1);
             this.Name = "CreateEmpresaForm";
             this.Text = "CreateEmpresaForm";
+            this.Load += new System.EventHandler(this.CreateEmpresaForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

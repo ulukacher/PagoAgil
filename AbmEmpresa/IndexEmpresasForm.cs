@@ -35,7 +35,6 @@ namespace PagoAgilFrba.AbmEmpresa
         {
             txtFiltroNombre.Text = "";
             txtFiltroCuit.Text = "";
-            txtFiltroDireccion.Text = "";
             cboFiltroRubro.SelectedIndex = 0;
         }
 
@@ -46,7 +45,7 @@ namespace PagoAgilFrba.AbmEmpresa
             {
                 dataGridView1.Rows.Clear();
                 dataGridView1.Refresh();
-                var empresas = EmpresasRepository.GetEmpresasByNombreDireccionCuitRubro(txtFiltroNombre.Text, txtFiltroDireccion.Text, txtFiltroCuit.Text, ((ComboboxItem)cboFiltroRubro.SelectedItem).Value);
+                var empresas = EmpresasRepository.GetEmpresasByNombreDireccionCuitRubro(txtFiltroNombre.Text, txtFiltroCuit.Text, ((ComboboxItem)cboFiltroRubro.SelectedItem).Value);
                 foreach (var item in empresas)
                 {
                     int index = dataGridView1.Rows.Add(item.Cuit, item.Nombre, item.Direccion, item.Rubro, item.Activa);
@@ -129,6 +128,16 @@ namespace PagoAgilFrba.AbmEmpresa
 
                 }
             }
+        }
+
+        private void cboFiltroRubro_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

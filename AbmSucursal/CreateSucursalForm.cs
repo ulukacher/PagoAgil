@@ -3,7 +3,6 @@ using PagoAgilFrba.Repositories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -13,17 +12,16 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PagoAgilFrba.AbmEmpresa
+namespace PagoAgilFrba.AbmSucursal
 {
-    public partial class CreateEmpresaForm : Form
+    public partial class CreateSucursalForm : Form
     {
-        const string regexCuit = @"^\d{2}\-\d{8}\-\d{1}$";
+        const string regexSoloNumeros = @"^\d+$";
         const string regexLetrasEspaciosONumeros = @"^[a-zA-Z\s\d]+$";
 
-        public CreateEmpresaForm()
+        public CreateSucursalForm()
         {
-            InitializeComponent(); 
-            CargarCombo();
+            InitializeComponent();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -34,22 +32,21 @@ namespace PagoAgilFrba.AbmEmpresa
             {
                 try
                 {
-                    Empresa empresa = new Empresa();
-                    empresa.Nombre = txtNombre.Text;
-                    empresa.Direccion = txtDireccion.Text;
-                    empresa.Cuit= txtCuit.Text;
-                    empresa.RubroId = ((ComboboxItem)cboRubro.SelectedItem).Value;
-                    EmpresasRepository.AgregarEmpresa(empresa);
-                    MessageBox.Show("La empresa ha sido agregada correctamente");
+                    Sucursal sucursal = new Sucursal();
+                    sucursal.Nombre = txtNombre.Text;
+                    sucursal.Direccion = txtDireccion.Text;
+                    sucursal.CodigoPostal = int.Parse(txtCodigoPostal.Text);
+                    SucursalesRepository.AgregarSucursal(sucursal);
+                    MessageBox.Show("La sucursal ha sido agregada correctamente");
                     this.Hide();
-                    var indexForm = new IndexEmpresasForm();
+                    var indexForm = new IndexSucursalesForm();
                     indexForm.Show();
                 }
                 catch (SqlException sqlexc)
                 {
                     //Violacion de primary key
                     if (sqlexc.Number == 2627)
-                        MessageBox.Show("Ya existe una empresa con ese CUIT");
+                        MessageBox.Show("Ya existe una sucursal con ese código postal");
                 }
 
             }
@@ -62,9 +59,9 @@ namespace PagoAgilFrba.AbmEmpresa
 
         private void validarCamposNoUnicos(List<string> errores)
         {
-            //Valido el CUIT
-            if (txtCuit.Text == "" || !Regex.IsMatch(txtCuit.Text, regexCuit))
-                errores.Add("Ingrese un CUIT válido");
+            //Valido el Codigo Postal
+            if (txtCodigoPostal.Text == "" || !Regex.IsMatch(txtCodigoPostal.Text, regexSoloNumeros))
+                errores.Add("Ingrese un código postal válido");
             if (txtNombre.Text == "" || !Regex.IsMatch(txtNombre.Text, regexLetrasEspaciosONumeros))
                 errores.Add("Ingrese un nombre válido");
             if (txtDireccion.Text == "")
@@ -76,24 +73,6 @@ namespace PagoAgilFrba.AbmEmpresa
             List<string> errores = new List<string>();
             this.validarCamposNoUnicos(errores);
             return errores;
-        }
-
-        private void CargarCombo()
-        {
-            var rubros = RubrosRepository.GetAllRubros();
-            foreach (var item in rubros)
-            {
-                ComboboxItem cbItem = new ComboboxItem();
-                cbItem.Text = item.rubr_descripcion;
-                cbItem.Value = item.rubr_id;
-                cboRubro.Items.Add(cbItem);
-            }
-            cboRubro.SelectedIndex = 0;
-        }
-
-        private void CreateEmpresaForm_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

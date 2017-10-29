@@ -58,7 +58,7 @@ namespace PagoAgilFrba.AbmEmpresa
                      empresaAEditar.Activa = chkActiva.Checked;
 
                      EmpresasRepository.EditarEmpresa(empresaAEditar, empresa.Cuit);                   
-                     MessageBox.Show("El cliente ha sido modificado correctamente");
+                     MessageBox.Show("La empresa ha sido modificada correctamente");
                      this.Hide();
                      var indexForm = new IndexEmpresasForm();
                      indexForm.Show();
