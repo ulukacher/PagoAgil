@@ -16,25 +16,38 @@ namespace PagoAgilFrba.Repositories
         public static void DarDeBajaEmpresa(string cuit)
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
+            
             conn.Open();
+            
             string query = "update dbo.Empresas set empr_activa = 0 where empr_cuit = @cuit";
+            
             SqlCommand command = new SqlCommand(query, conn);
+            
             command.Parameters.AddWithValue("@cuit", cuit);
+            
             command.ExecuteNonQuery();
+
             conn.Close();
         }
+
         public static void AgregarEmpresa(Empresa empresa)
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
+            
             conn.Open();
+            
             string query = "insert into dbo.Empresas values (@cuit,@nombre,@direccion,@rubro,@activa)";
+            
             SqlCommand command = new SqlCommand(query, conn);
+            
             command.Parameters.AddWithValue("@cuit", empresa.Cuit);
             command.Parameters.AddWithValue("@nombre", empresa.Nombre);
             command.Parameters.AddWithValue("@direccion", empresa.Direccion);
             command.Parameters.AddWithValue("@rubro", empresa.RubroId);
             command.Parameters.AddWithValue("@activa", 1);
+            
             command.ExecuteNonQuery();
+            
             conn.Close();
         }
 
@@ -43,10 +56,14 @@ namespace PagoAgilFrba.Repositories
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
             conn.Open();
             string query = "Select E.*, R.rubr_descripcion empr_rubro from dbo.Empresas E INNER JOIN dbo.Rubros R ON E.empr_rubro_id = R.rubr_id where empr_cuit=@cuit";
+
             SqlCommand command = new SqlCommand(query, conn);
             command.Parameters.AddWithValue("@cuit", cuit);
+
             SqlDataReader reader = command.ExecuteReader();
+
             Empresa empresa = new Empresa();
+
             if (reader.Read())
             {
                 empresa.Nombre = (string)reader["empr_nombre"];
@@ -56,13 +73,18 @@ namespace PagoAgilFrba.Repositories
                 empresa.Rubro = (string) reader["empr_rubro"];
                 empresa.Activa = (bool)reader["empr_activa"];
             }
+
             conn.Close();
+
             return empresa;
         }
+
         public static List<Empresa> GetAllEmpresas()
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
+
             conn.Open();
+
             string query = "Select E.empr_nombre, " +
                                 "E.empr_cuit, " +
                                 "E.empr_direccion, " +
@@ -71,8 +93,11 @@ namespace PagoAgilFrba.Repositories
                                 "from dbo.Empresas E " +
                                 "inner join dbo.Rubros R " +
                                 "on E.empr_rubro_id = R.rubr_id";
+
             SqlCommand command = new SqlCommand(query, conn);
+
             List<Empresa> empresas = new List<Empresa>();
+
             using (SqlDataReader reader = command.ExecuteReader())
             {
                 while (reader.Read())
@@ -86,14 +111,20 @@ namespace PagoAgilFrba.Repositories
                     empresas.Add(empresa);
                 }
             }
+
             conn.Close();
+
             return empresas;
         }
-        public static List<Empresa> GetEmpresasByNombreDireccionCuitRubro(string _nombre, string _cuit, int _rubroId)
+
+        public static List<Empresa> GetEmpresasByNombreCuitRubro(string _nombre, string _cuit, int _rubroId)
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
+
             conn.Open();
+
             SqlCommand command = new SqlCommand();
+
             string query = "Select E.empr_nombre, " +
                                 "E.empr_cuit, " +
                                 "E.empr_direccion, " +
@@ -105,30 +136,40 @@ namespace PagoAgilFrba.Repositories
                                 "where empr_nombre like @nombre";
 
             SqlParameter nombre = new SqlParameter("@nombre", DbType.String);
+
             nombre.Value = "%" + _nombre + "%";
+
             command.Parameters.Add(nombre);
 
             if (_rubroId != 0)
             {
                 query += " and R.rubr_id = @rubro";
+
                 SqlParameter rubro = new SqlParameter("@rubro", DbType.Int32);
+
                 rubro.Value = _rubroId;
+
                 command.Parameters.Add(rubro);
             }
 
             if (_cuit != "")
             {
                 query += " and empr_cuit like @cuit";
+
                 SqlParameter cuit = new SqlParameter("@cuit", DbType.String);
+
                 if (!Regex.IsMatch(_cuit, @"^\d{2}\-\d{8}\-\d{1}$"))
                     throw new Exception("El CUIT a buscar debe seguir el formato XX-XXXXXXXX-X, siendo X un número.");
                 cuit.Value = _cuit;
+
                 command.Parameters.Add(cuit);
             }
 
             command.Connection = conn;
             command.CommandText = query;
+
             List<Empresa> empresas = new List<Empresa>();
+
             using (SqlDataReader reader = command.ExecuteReader())
             {
                 while (reader.Read())
@@ -142,9 +183,12 @@ namespace PagoAgilFrba.Repositories
                     empresas.Add(empresa);
                 }
             }
+
             conn.Close();
+
             return empresas;
         }
+
         public static void EditarEmpresa(Empresa empresaAEditar, string cuitOriginal)
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);

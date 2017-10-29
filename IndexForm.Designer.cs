@@ -42,13 +42,13 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(104, 39);
+            this.label1.Location = new System.Drawing.Point(160, 45);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(158, 168);
+            this.label1.Size = new System.Drawing.Size(163, 168);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Pago Ágil\r\n\r\nAlumnos:\r\n-Centurion, Lucas\r\n-Feldman, Alan\r\n-Janin,Tomas\r\n-Lukacher" +
-    ",Uri\r\n";
+            this.label1.Text = "Pago Ágil\r\n\r\nAlumnos:\r\n- Centurion, Lucas\r\n- Feldman, Alan\r\n- Janin,Tomas\r\n- Luka" +
+    "cher,Uri\r\n";
             // 
             // menuStrip1
             // 
@@ -106,7 +106,7 @@
             this.ClientSize = new System.Drawing.Size(494, 237);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "IndexForm";
             this.Text = "Index";
             this.menuStrip1.ResumeLayout(false);

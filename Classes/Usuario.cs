@@ -11,8 +11,7 @@ namespace PagoAgilFrba.Classes
         public string Username { get; set; }
         public string Password { get; set; }
         public int CantidadIntentosFallidos { get; set; }
-        public long? SucursalId { get; set; }
+        public long? SucursalCodigoPostal { get; set; }
         public bool Activo { get; set; }
-
     }
 }

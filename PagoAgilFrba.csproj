@@ -192,6 +192,12 @@
     <EmbeddedResource Include="AbmFactura\CreateFacturaForm.resx">
       <DependentUpon>CreateFacturaForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AbmFactura\EditFacturaForm.resx">
+      <DependentUpon>EditFacturaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmFactura\IndexFacturasForm.resx">
+      <DependentUpon>IndexFacturasForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AbmRol\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

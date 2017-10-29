@@ -44,7 +44,7 @@ namespace PagoAgilFrba
 
         private void facturasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var indexFacturas = new CreateFacturaForm();
+            var indexFacturas = new IndexFacturasForm();
             this.Hide();
             indexFacturas.Show();
         }

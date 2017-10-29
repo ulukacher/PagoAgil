@@ -72,18 +72,6 @@ namespace PagoAgilFrba.Repositories
             conn.Close();
         }
 
-        public static int GetCantidadClientesConEseMail(string mail)
-        {
-            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
-            conn.Open();
-            var queryMailUnico = "select count(*) from dbo.Clientes where clie_mail = @mailIngresado";
-            SqlCommand command = new SqlCommand(queryMailUnico, conn);
-            command.Parameters.AddWithValue("@mailIngresado", mail);
-            int cant = (int)command.ExecuteScalar();
-            conn.Close();
-            return cant;
-        }
-
         public static Factura GetFacturaByNro(decimal nroFactura)
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
@@ -97,57 +85,24 @@ namespace PagoAgilFrba.Repositories
 
             SqlDataReader reader = command.ExecuteReader();
 
-            Cliente cliente = new Cliente();
+            Factura factura = new Factura();
 
             if (reader.Read())
             {
-                cliente.Nombre = (string)reader["clie_nombre"];
-                cliente.Apellido = (string)reader["clie_apellido"];
-                cliente.DNI = (decimal)reader["clie_dni"];
-                cliente.Direccion = (string)reader["clie_direccion"];
-                cliente.Mail = (string)reader["clie_mail"];
-                cliente.FechaNacimiento = (DateTime)reader["clie_fechaNacimiento"];
-                cliente.CodigoPostal = (string)reader["clie_codigoPostal"];
-                cliente.Telefono = (string)reader["clie_telefono"];
-                cliente.Activo = (bool)reader["clie_activo"];
-            }
-
-            conn.Close();
-            Factura f = new Factura();
-            return f;
-        }
-
-        public static List<Cliente> GetAllClientes()
-        {
-            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
-            conn.Open();
-            string query = "select * from dbo.clientes";
-            SqlCommand command = new SqlCommand(query, conn);
-            List<Cliente> clientes = new List<Cliente>();
-            using (SqlDataReader reader = command.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                    Cliente cliente = new Cliente();
-                    cliente.Nombre = (string)reader["clie_nombre"];
-                    cliente.Apellido = (string)reader["clie_apellido"];
-                    cliente.DNI = (decimal)reader["clie_dni"];
-                    cliente.Direccion = (string)reader["clie_direccion"];
-                    cliente.Mail = (string)reader["clie_mail"];
-                    cliente.FechaNacimiento = (DateTime)reader["clie_fechaNacimiento"];
-                    cliente.CodigoPostal = (string)reader["clie_codigoPostal"];
-                    cliente.Telefono = (string)reader["clie_telefono"];
-                    cliente.Activo = (bool)reader["clie_activo"];
-                    clientes.Add(cliente);
-                }
+                factura.Nro = (decimal)reader["factura_nro"];
+                factura.EmpresaCuit = (string)reader["factura_empresaCuit"];
+                factura.ClienteDNI = (decimal)reader["factura_clienteDNI"];
+                factura.Fecha = (DateTime)reader["factura_fecha"];
+                factura.Estado = (int)reader["factura_estado"];
+                factura.FechaVencimiento = (DateTime)reader["factura_fechaVencimiento"];
             }
 
             conn.Close();
 
-            return clientes;
+            return factura;
         }
 
-        public static List<Factura> GetFacturasByFiltros(string _numero, string _empresaNombre, string _cliente, int _estado)
+        public static List<Factura> GetFacturasByFiltros(string _numero, string _empresaCuit, string _cliente, int _estado)
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
 
@@ -166,13 +121,13 @@ namespace PagoAgilFrba.Repositories
                 numero.Value = _numero;
                 command.Parameters.Add(numero);
 
-                if (_empresaNombre != "")
+                if (_empresaCuit != "")
                 {
-                    query += " AND empr_nombre = @empresaNombre";
+                    query += " AND empr_cuit = @empresaCuit";
 
-                    SqlParameter empresaNombre = new SqlParameter("@empresaNombre", DbType.String);
-                    empresaNombre.Value = _empresaNombre;
-                    command.Parameters.Add(empresaNombre);
+                    SqlParameter empresaCuit = new SqlParameter("@empresaCuit", DbType.String);
+                    empresaCuit.Value = _empresaCuit;
+                    command.Parameters.Add(empresaCuit);
                 }
 
                 if (_cliente != "")
@@ -211,13 +166,13 @@ namespace PagoAgilFrba.Repositories
                     command.Parameters.Add(fechaVencimiento);
                 }*/
             }
-            else if (_numero == "" && _empresaNombre != "")
+            else if (_numero == "" && _empresaCuit != "")
             {
-                query += " WHERE empr_nombre = @empresaNombre";
+                query += " WHERE empr_cuit = @empresaCuit";
 
-                SqlParameter empresaNombre = new SqlParameter("@empresaNombre", DbType.String);
-                empresaNombre.Value = _empresaNombre;
-                command.Parameters.Add(empresaNombre);
+                SqlParameter empresaCuit = new SqlParameter("@empresaCuit", DbType.String);
+                empresaCuit.Value = _empresaCuit;
+                command.Parameters.Add(empresaCuit);
 
                 if (_cliente != "")
                 {
@@ -255,7 +210,7 @@ namespace PagoAgilFrba.Repositories
                     command.Parameters.Add(fechaVencimiento);
                 }*/
             }
-            else if (_numero == "" && _empresaNombre == "" && _cliente != "")
+            else if (_numero == "" && _empresaCuit == "" && _cliente != "")
             {
                 query += " WHERE factura_clienteDNI = @cliente";
 
@@ -290,7 +245,7 @@ namespace PagoAgilFrba.Repositories
                     command.Parameters.Add(fechaVencimiento);
                 }*/
             }
-            else if (_numero == "" && _empresaNombre == "" && _cliente == "" /*&& _fecha != ""*/)
+            else if (_numero == "" && _empresaCuit == "" && _cliente == "" /*&& _fecha != ""*/)
             {
                 /*query += " WHERE factura_fecha = @fecha";
 
@@ -316,7 +271,7 @@ namespace PagoAgilFrba.Repositories
                     command.Parameters.Add(fechaVencimiento);
                 }*/
             }
-            else if (_numero == "" && _empresaNombre == "" && _cliente == "" /*&& _fecha == ""*/ && _estado != -1)
+            else if (_numero == "" && _empresaCuit == "" && _cliente == "" /*&& _fecha == ""*/ && _estado != -1)
             {
                 query += " AND factura_estado = " + _estado.ToString();
 
@@ -368,9 +323,10 @@ namespace PagoAgilFrba.Repositories
 
             return facturas;
         }
-        public static void EditarCliente(Cliente clienteAEditar, decimal dniOriginal)
+
+        public static void EditarFactura(Factura facturaAEditar, decimal dniOriginal)
         {
-            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
+            /*SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
             conn.Open();
             var query = "update dbo.clientes set clie_nombre=@nombre,clie_apellido = @apellido,clie_dni=@dni,"
                 + "clie_direccion=@direccion,clie_mail=@mail,clie_codigoPostal = @codigoPostal,"
@@ -387,20 +343,7 @@ namespace PagoAgilFrba.Repositories
             command.Parameters.AddWithValue("@fechaNacimiento", clienteAEditar.FechaNacimiento);
             command.Parameters.AddWithValue("@activo", clienteAEditar.Activo);
             command.ExecuteNonQuery();
-            conn.Close();
-        }
-
-        public static int GetCantClientesDistintosConEseMail(string mail, decimal dni)
-        {
-            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
-            conn.Open();
-            var queryMailUnico = "select count(*) from dbo.Clientes where clie_mail = @mailIngresado and clie_dni <> @dniOriginal";
-            SqlCommand command = new SqlCommand(queryMailUnico, conn);
-            command.Parameters.AddWithValue("@mailIngresado", mail);
-            command.Parameters.AddWithValue("@dniOriginal", dni);
-            int cantMailsIguales = (int)command.ExecuteScalar();
-            conn.Close();
-            return cantMailsIguales;
+            conn.Close();*/
         }
     }
 }

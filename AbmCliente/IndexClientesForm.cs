@@ -10,6 +10,11 @@ using System;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using PagoAgilFrba.AbmCliente;
+using PagoAgilFrba.AbmEmpresa;
+using PagoAgilFrba.AbmFactura;
+using PagoAgilFrba.AbmSucursal;
+using PagoAgilFrba.AbmRol;
 using PagoAgilFrba.Classes;
 using PagoAgilFrba.Repositories;
 
@@ -127,6 +132,39 @@ namespace PagoAgilFrba.AbmCliente
             txtFiltroNombre.Text = "";
             txtFiltroDni.Text = "";
 
+        }
+
+        private void clientesToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            var indexClientes = new IndexClientesForm();
+            this.Hide();
+            indexClientes.Show();
+        }
+
+        private void sucursalesToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            var indexSucursales = new IndexSucursalesForm();
+            this.Hide();
+            indexSucursales.Show();
+        }
+
+        private void rolesToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+
+        }
+
+        private void empresasToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            var indexEmpresas = new IndexEmpresasForm();
+            this.Hide();
+            indexEmpresas.Show();
+        }
+
+        private void facturasToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            var indexFacturas = new IndexFacturasForm();
+            this.Hide();
+            indexFacturas.Show();
         }
     }
 }

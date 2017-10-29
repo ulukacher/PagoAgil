@@ -47,8 +47,15 @@
             this.txtFiltroNombre = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.clientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sucursalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rolesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.empresasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.facturasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -64,11 +71,12 @@
             this.Activa,
             this.Editar,
             this.Eliminar});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 151);
+            this.dataGridView1.Location = new System.Drawing.Point(5, 109);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(745, 253);
+            this.dataGridView1.Size = new System.Drawing.Size(559, 206);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -120,17 +128,19 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(201, 23);
+            this.label1.Location = new System.Drawing.Point(321, 57);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(142, 32);
+            this.label1.Size = new System.Drawing.Size(111, 26);
             this.label1.TabIndex = 1;
             this.label1.Text = "Empresas";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(39, 87);
+            this.button1.Location = new System.Drawing.Point(25, 57);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(96, 39);
+            this.button1.Size = new System.Drawing.Size(72, 32);
             this.button1.TabIndex = 2;
             this.button1.Text = "Crear";
             this.button1.UseVisualStyleBackColor = true;
@@ -146,9 +156,11 @@
             this.groupBox1.Controls.Add(this.txtFiltroNombre);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(763, 151);
+            this.groupBox1.Location = new System.Drawing.Point(568, 102);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(224, 195);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Size = new System.Drawing.Size(168, 213);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtros";
@@ -158,27 +170,30 @@
             // 
             this.cboFiltroRubro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboFiltroRubro.FormattingEnabled = true;
-            this.cboFiltroRubro.Location = new System.Drawing.Point(101, 114);
+            this.cboFiltroRubro.Location = new System.Drawing.Point(78, 132);
+            this.cboFiltroRubro.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cboFiltroRubro.Name = "cboFiltroRubro";
-            this.cboFiltroRubro.Size = new System.Drawing.Size(103, 24);
+            this.cboFiltroRubro.Size = new System.Drawing.Size(78, 21);
             this.cboFiltroRubro.TabIndex = 9;
             this.cboFiltroRubro.SelectedIndexChanged += new System.EventHandler(this.cboFiltroRubro_SelectedIndexChanged);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(10, 114);
+            this.label5.Location = new System.Drawing.Point(10, 135);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(47, 17);
+            this.label5.Size = new System.Drawing.Size(36, 13);
             this.label5.TabIndex = 8;
             this.label5.Text = "Rubro";
             this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(115, 151);
+            this.btnBuscar.Location = new System.Drawing.Point(92, 175);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(86, 28);
+            this.btnBuscar.Size = new System.Drawing.Size(64, 23);
             this.btnBuscar.TabIndex = 7;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
@@ -186,9 +201,10 @@
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(10, 151);
+            this.btnLimpiar.Location = new System.Drawing.Point(13, 175);
+            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(86, 28);
+            this.btnLimpiar.Size = new System.Drawing.Size(64, 23);
             this.btnLimpiar.TabIndex = 6;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
@@ -196,51 +212,108 @@
             // 
             // txtFiltroCuit
             // 
-            this.txtFiltroCuit.Location = new System.Drawing.Point(101, 71);
+            this.txtFiltroCuit.Location = new System.Drawing.Point(78, 78);
+            this.txtFiltroCuit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtFiltroCuit.Name = "txtFiltroCuit";
-            this.txtFiltroCuit.Size = new System.Drawing.Size(100, 22);
+            this.txtFiltroCuit.Size = new System.Drawing.Size(76, 20);
             this.txtFiltroCuit.TabIndex = 4;
             // 
             // txtFiltroNombre
             // 
-            this.txtFiltroNombre.Location = new System.Drawing.Point(101, 33);
+            this.txtFiltroNombre.Location = new System.Drawing.Point(78, 24);
+            this.txtFiltroNombre.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtFiltroNombre.Name = "txtFiltroNombre";
-            this.txtFiltroNombre.Size = new System.Drawing.Size(100, 22);
+            this.txtFiltroNombre.Size = new System.Drawing.Size(78, 20);
             this.txtFiltroNombre.TabIndex = 3;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 76);
+            this.label3.Location = new System.Drawing.Point(10, 81);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(39, 17);
+            this.label3.Size = new System.Drawing.Size(32, 13);
             this.label3.TabIndex = 1;
             this.label3.Text = "CUIT";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 33);
+            this.label2.Location = new System.Drawing.Point(10, 27);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(58, 17);
+            this.label2.Size = new System.Drawing.Size(44, 13);
             this.label2.TabIndex = 0;
             this.label2.Text = "Nombre";
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.clientesToolStripMenuItem,
+            this.sucursalesToolStripMenuItem,
+            this.rolesToolStripMenuItem,
+            this.empresasToolStripMenuItem,
+            this.facturasToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(747, 24);
+            this.menuStrip1.TabIndex = 5;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // clientesToolStripMenuItem
+            // 
+            this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
+            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.clientesToolStripMenuItem.Text = "Clientes";
+            this.clientesToolStripMenuItem.Click += new System.EventHandler(this.clientesToolStripMenuItem_Click);
+            // 
+            // sucursalesToolStripMenuItem
+            // 
+            this.sucursalesToolStripMenuItem.Name = "sucursalesToolStripMenuItem";
+            this.sucursalesToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
+            this.sucursalesToolStripMenuItem.Text = "Sucursales";
+            this.sucursalesToolStripMenuItem.Click += new System.EventHandler(this.sucursalesToolStripMenuItem_Click);
+            // 
+            // rolesToolStripMenuItem
+            // 
+            this.rolesToolStripMenuItem.Name = "rolesToolStripMenuItem";
+            this.rolesToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
+            this.rolesToolStripMenuItem.Text = "Roles";
+            this.rolesToolStripMenuItem.Click += new System.EventHandler(this.rolesToolStripMenuItem_Click);
+            // 
+            // empresasToolStripMenuItem
+            // 
+            this.empresasToolStripMenuItem.Name = "empresasToolStripMenuItem";
+            this.empresasToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
+            this.empresasToolStripMenuItem.Text = "Empresas";
+            this.empresasToolStripMenuItem.Click += new System.EventHandler(this.empresasToolStripMenuItem_Click);
+            // 
+            // facturasToolStripMenuItem
+            // 
+            this.facturasToolStripMenuItem.Name = "facturasToolStripMenuItem";
+            this.facturasToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
+            this.facturasToolStripMenuItem.Text = "Facturas";
+            // 
             // IndexEmpresasForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(996, 428);
+            this.ClientSize = new System.Drawing.Size(747, 338);
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "IndexEmpresasForm";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.IndexEmpresasForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -267,5 +340,11 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn Activa;
         private System.Windows.Forms.DataGridViewButtonColumn Editar;
         private System.Windows.Forms.DataGridViewButtonColumn Eliminar;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem clientesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sucursalesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rolesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem empresasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem facturasToolStripMenuItem;
     }
 }

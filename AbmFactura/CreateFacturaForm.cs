@@ -193,14 +193,14 @@ namespace PagoAgilFrba.AbmFactura
             }
         }
 
-        private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void clientesToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             var indexClientes = new IndexClientesForm();
             this.Hide();
             indexClientes.Show();
         }
 
-        private void sucursalesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void sucursalesToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             var indexSucursales = new IndexSucursalesForm();
             this.Hide();
@@ -212,14 +212,14 @@ namespace PagoAgilFrba.AbmFactura
 
         }
 
-        private void empresasToolStripMenuItem_Click(object sender, EventArgs e)
+        private void empresasToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             var indexEmpresas = new IndexEmpresasForm();
             this.Hide();
             indexEmpresas.Show();
         }
 
-        private void facturasToolStripMenuItem_Click(object sender, EventArgs e)
+        private void facturasToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             var indexFacturas = new IndexFacturasForm();
             this.Hide();

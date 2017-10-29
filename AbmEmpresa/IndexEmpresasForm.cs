@@ -9,6 +9,11 @@ using System.Threading.Tasks;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using PagoAgilFrba.AbmCliente;
+using PagoAgilFrba.AbmEmpresa;
+using PagoAgilFrba.AbmFactura;
+using PagoAgilFrba.AbmSucursal;
+using PagoAgilFrba.AbmRol;
 using PagoAgilFrba.Classes;
 using System.Text.RegularExpressions;
 using PagoAgilFrba.Repositories;
@@ -45,13 +50,13 @@ namespace PagoAgilFrba.AbmEmpresa
             {
                 dataGridView1.Rows.Clear();
                 dataGridView1.Refresh();
-                var empresas = EmpresasRepository.GetEmpresasByNombreDireccionCuitRubro(txtFiltroNombre.Text, txtFiltroCuit.Text, ((ComboboxItem)cboFiltroRubro.SelectedItem).Value);
+                var empresas = EmpresasRepository.GetEmpresasByNombreCuitRubro(txtFiltroNombre.Text, txtFiltroCuit.Text, ((ComboboxItem)cboFiltroRubro.SelectedItem).Value);
                 foreach (var item in empresas)
                 {
                     int index = dataGridView1.Rows.Add(item.Cuit, item.Nombre, item.Direccion, item.Rubro, item.Activa);
                     dataGridView1.Rows[index].Cells[5].Value = "Editar";
                     dataGridView1.Rows[index].Cells[6].Value = "Eliminar";
-                } 
+                }
             }
             catch (Exception exc)
             {
@@ -138,6 +143,39 @@ namespace PagoAgilFrba.AbmEmpresa
         private void label5_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void clientesToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            var indexClientes = new IndexClientesForm();
+            this.Hide();
+            indexClientes.Show();
+        }
+
+        private void sucursalesToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            var indexSucursales = new IndexSucursalesForm();
+            this.Hide();
+            indexSucursales.Show();
+        }
+
+        private void rolesToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+
+        }
+
+        private void empresasToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            var indexEmpresas = new IndexEmpresasForm();
+            this.Hide();
+            indexEmpresas.Show();
+        }
+
+        private void facturasToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            var indexFacturas = new IndexFacturasForm();
+            this.Hide();
+            indexFacturas.Show();
         }
     }
 }
