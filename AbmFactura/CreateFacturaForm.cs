@@ -125,7 +125,7 @@ namespace PagoAgilFrba.AbmFactura
             if (txtFecha.Text == "" || txtFecha.Value >= DateTime.Now)
                 errores.Add("Ingrese una fecha válida");
 
-            if (txtFechaVencimiento.Text == "" || txtFechaVencimiento.Value >= DateTime.Now)
+            if (txtFechaVencimiento.Text == "" || txtFechaVencimiento.Value < txtFecha.Value)
                 errores.Add("Ingrese una fecha válida");
 
             if (listBox1.Items.Count == 0)

@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace PagoAgilFrba.Classes
 {
+    public enum EstadoFactura { 
+        PendienteDePago = 0,
+        Pagada = 1,
+        Rendida = 2
+    }
     public class Factura
     {
         public decimal Nro { get; set; }
@@ -14,5 +19,6 @@ namespace PagoAgilFrba.Classes
         public DateTime Fecha { get; set; }
         public int Estado { get; set; }
         public DateTime FechaVencimiento { get; set; }
+        public decimal Monto { get; set; }
     }
 }

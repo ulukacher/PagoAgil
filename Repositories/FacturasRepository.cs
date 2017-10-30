@@ -12,6 +12,43 @@ namespace PagoAgilFrba.Repositories
 {
     public class FacturasRepository
     {
+        public static List<Factura> GetFacturasPendientesDeRendicionByEmpresa(string cuitEmpresa)
+        {
+            //Traigo las facturas pendientes de rendicion para esta empresa, en el mes actual
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
+            conn.Open();
+            List<Factura> facturas = new List<Factura>();
+            string query = "select factura_nro,factura_empresaCuit,factura_clienteDNI,factura_fecha,factura_estado,factura_fechaVencimiento," +
+                "(select sum(itemFac_monto) from dbo.ItemsFacturas where itemFac_facturaNro = factura_nro) as monto" +
+                " from dbo.facturas " +
+                "where factura_empresaCuit = @cuit and factura_estado = @estado and year(factura_fecha) =@anio and month(factura_fecha) = @mes";
+
+            SqlCommand command = new SqlCommand(query, conn);
+            command.Parameters.AddWithValue("@cuit", cuitEmpresa);
+            command.Parameters.AddWithValue("@estado", EstadoFactura.Pagada);
+            command.Parameters.AddWithValue("@anio", DateTime.Now.Year);
+            command.Parameters.AddWithValue("@mes", DateTime.Now.Month);
+
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Factura factura = new Factura();
+                    factura.Nro = (decimal)reader["factura_nro"];
+                    factura.EmpresaCuit = (string)reader["factura_empresaCuit"];
+                    factura.ClienteDNI = (decimal)reader["factura_clienteDNI"];
+                    factura.Fecha = (DateTime)reader["factura_fecha"];
+                    factura.Estado = (int)reader["factura_estado"];
+                    factura.FechaVencimiento = (DateTime)reader["factura_fechaVencimiento"];
+                    factura.Monto = (decimal)reader["monto"];
+
+                    facturas.Add(factura);
+                }
+            }
+            conn.Close();
+            return facturas;
+
+        }
         public static void EliminarFactura(decimal numeroFactura)
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
@@ -345,5 +382,6 @@ namespace PagoAgilFrba.Repositories
             command.ExecuteNonQuery();
             conn.Close();*/
         }
+        
     }
 }

@@ -217,5 +217,20 @@ namespace PagoAgilFrba.AbmFactura
             this.Hide();
             indexFacturas.Show();
         }
+
+        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void IndexFacturasForm_Load(object sender, System.EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }
