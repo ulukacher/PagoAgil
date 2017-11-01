@@ -126,6 +126,7 @@
     <Compile Include="Classes\Cliente.cs" />
     <Compile Include="Classes\ComboboxItem.cs" />
     <Compile Include="Classes\ComboBoxItemStringValue.cs" />
+    <Compile Include="Classes\Estadisticas\ItemReporteMontosRendidosEmpresas.cs" />
     <Compile Include="Classes\Factura.cs" />
     <Compile Include="Classes\ItemFactura.cs" />
     <Compile Include="Classes\Rendicion.cs" />
@@ -174,6 +175,7 @@
       <DependentUpon>RendicionForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Repositories\ClientesRepository.cs" />
+    <Compile Include="Repositories\EstadisticasRepository.cs" />
     <Compile Include="Repositories\FacturasRepository.cs" />
     <Compile Include="Repositories\RendicionesRepository.cs" />
     <Compile Include="Repositories\SucursalesRepository.cs" />
