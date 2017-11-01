@@ -19,8 +19,8 @@ namespace PagoAgilFrba.Repositories
             conn.Open();
             List<Factura> facturas = new List<Factura>();
             string query = "select factura_nro,factura_empresaCuit,factura_clienteDNI,factura_fecha,factura_estado,factura_fechaVencimiento," +
-                "(select sum(itemFac_monto) from dbo.ItemsFacturas where itemFac_facturaNro = factura_nro) as monto" +
-                " from dbo.facturas " +
+                "(select sum(itemFac_monto) from LOS_MANTECOSOS.ItemsFacturas where itemFac_facturaNro = factura_nro) as monto" +
+                " from LOS_MANTECOSOS.facturas " +
                 "where factura_empresaCuit = @cuit and factura_estado = @estado and year(factura_fecha) =@anio and month(factura_fecha) = @mes";
 
             SqlCommand command = new SqlCommand(query, conn);
@@ -54,7 +54,7 @@ namespace PagoAgilFrba.Repositories
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
             conn.Open();
 
-            string query = "DELETE FROM dbo.Facturas WHERE factura_nro = @numeroFactura";
+            string query = "DELETE FROM LOS_MANTECOSOS.Facturas WHERE factura_nro = @numeroFactura";
             SqlCommand command = new SqlCommand(query, conn);
 
             command.Parameters.AddWithValue("@numeroFactura", numeroFactura);
@@ -69,7 +69,7 @@ namespace PagoAgilFrba.Repositories
 
             conn.Open();
 
-            string query = "INSERT INTO dbo.Facturas VALUES (@nro, @cuit, @dni, @fecha, @estado, @fechaVencimiento)";
+            string query = "INSERT INTO LOS_MANTECOSOS.Facturas VALUES (@nro, @cuit, @dni, @fecha, @estado, @fechaVencimiento)";
 
             SqlCommand command = new SqlCommand(query, conn);
 
@@ -93,7 +93,7 @@ namespace PagoAgilFrba.Repositories
 
             foreach (ItemFactura itemFactura in listaItems)
             {
-                string query = "INSERT INTO dbo.ItemsFacturas VALUES (@nroItem, @nroFactura, @monto, @cantidad, @detalle)";
+                string query = "INSERT INTO LOS_MANTECOSOS.ItemsFacturas VALUES (@nroItem, @nroFactura, @monto, @cantidad, @detalle)";
 
                 SqlCommand command = new SqlCommand(query, conn);
 
@@ -115,7 +115,7 @@ namespace PagoAgilFrba.Repositories
 
             conn.Open();
 
-            string query = "SELECT * FROM dbo.Facturas WHERE factura_nro = @nroFactura";
+            string query = "SELECT * FROM LOS_MANTECOSOS.Facturas WHERE factura_nro = @nroFactura";
 
             SqlCommand command = new SqlCommand(query, conn);
             command.Parameters.AddWithValue("@nroFactura", nroFactura);
@@ -148,7 +148,7 @@ namespace PagoAgilFrba.Repositories
             SqlCommand command = new SqlCommand();
 
             string query = "SELECT factura_nro, empr_cuit, factura_clienteDNI, factura_fecha, factura_estado, factura_fechaVencimiento"
-                         + " FROM dbo.Facturas INNER JOIN dbo.Empresas ON factura_empresaCuit = empr_cuit";
+                         + " FROM LOS_MANTECOSOS.Facturas INNER JOIN LOS_MANTECOSOS.Empresas ON factura_empresaCuit = empr_cuit";
 
             if (_numero != "")
             {
@@ -365,7 +365,7 @@ namespace PagoAgilFrba.Repositories
         {
             /*SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
             conn.Open();
-            var query = "update dbo.clientes set clie_nombre=@nombre,clie_apellido = @apellido,clie_dni=@dni,"
+            var query = "update LOS_MANTECOSOS.clientes set clie_nombre=@nombre,clie_apellido = @apellido,clie_dni=@dni,"
                 + "clie_direccion=@direccion,clie_mail=@mail,clie_codigoPostal = @codigoPostal,"
                 + "clie_telefono=@telefono,clie_fechaNacimiento=@fechaNacimiento,clie_activo=@activo where clie_dni = @dniOriginal";
             SqlCommand command = new SqlCommand(query, conn);

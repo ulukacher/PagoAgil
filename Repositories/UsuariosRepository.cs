@@ -16,7 +16,7 @@ namespace PagoAgilFrba.Repositories
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
             conn.Open();
-            string query = "select count(*) from dbo.usuarios where usuario_nombre = @username";
+            string query = "select count(*) from LOS_MANTECOSOS.usuarios where usuario_nombre = @username";
             SqlCommand command = new SqlCommand(query, conn);
             command.Parameters.AddWithValue("@username", username);
             int cantUsuarios = (int)command.ExecuteScalar();           
@@ -41,7 +41,7 @@ namespace PagoAgilFrba.Repositories
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
             conn.Open();
-            string query = "select count(*) from dbo.usuarios where usuario_nombre = @username and usuario_password = @password";
+            string query = "select count(*) from LOS_MANTECOSOS.usuarios where usuario_nombre = @username and usuario_password = @password";
             SqlCommand command = new SqlCommand(query, conn);
             command.Parameters.AddWithValue("@username", username);
             byte[] passwordHasheada = EncryptHelper.SHA256Encrypt(password);
@@ -53,11 +53,11 @@ namespace PagoAgilFrba.Repositories
             if (CantUsuariosConEseMailYContrasenia > 0)
             {
                 //Limpio los intentos fallidos del usuario
-                queryLimpioIntentos = "update dbo.usuarios set usuario_cantidadIntentosFallidos = 0 where usuario_nombre =@username";
+                queryLimpioIntentos = "update LOS_MANTECOSOS.usuarios set usuario_cantidadIntentosFallidos = 0 where usuario_nombre =@username";
             }
             else
             {
-                queryLimpioIntentos = "update dbo.usuarios set usuario_cantidadIntentosFallidos =  usuario_cantidadIntentosFallidos + 1 where usuario_nombre =@username";
+                queryLimpioIntentos = "update LOS_MANTECOSOS.usuarios set usuario_cantidadIntentosFallidos =  usuario_cantidadIntentosFallidos + 1 where usuario_nombre =@username";
 
             }
             SqlCommand comandoIntentos = new SqlCommand(queryLimpioIntentos, conn);

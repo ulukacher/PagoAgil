@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PagoAgilFrba.Rendiciones;
+using PagoAgilFrba.ListadoEstadistico;
 
 namespace PagoAgilFrba
 {
@@ -55,6 +56,13 @@ namespace PagoAgilFrba
             var rendicionForm = new RendicionForm();
             this.Hide();
             rendicionForm.Show();
+        }
+
+        private void estadisticasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var estadisticasForm = new EstadisticasForm();
+            this.Hide();
+            estadisticasForm.Show();
         }
     }
 }
