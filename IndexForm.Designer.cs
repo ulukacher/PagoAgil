@@ -38,6 +38,7 @@
             this.registroDePagosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rendicionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.estadisticasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -45,7 +46,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(213, 55);
+            this.label1.Location = new System.Drawing.Point(141, 57);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(206, 203);
             this.label1.TabIndex = 2;
@@ -62,11 +63,12 @@
             this.facturasToolStripMenuItem,
             this.registroDePagosToolStripMenuItem,
             this.rendicionToolStripMenuItem,
-            this.estadisticasToolStripMenuItem});
+            this.estadisticasToolStripMenuItem,
+            this.usuariosToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(801, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(950, 28);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -124,11 +126,18 @@
             this.estadisticasToolStripMenuItem.Text = "Estadisticas";
             this.estadisticasToolStripMenuItem.Click += new System.EventHandler(this.estadisticasToolStripMenuItem_Click);
             // 
+            // usuariosToolStripMenuItem
+            // 
+            this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
+            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(77, 24);
+            this.usuariosToolStripMenuItem.Text = "Usuarios";
+            this.usuariosToolStripMenuItem.Click += new System.EventHandler(this.usuariosToolStripMenuItem_Click);
+            // 
             // IndexForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(801, 292);
+            this.ClientSize = new System.Drawing.Size(950, 292);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -153,5 +162,6 @@
         private System.Windows.Forms.ToolStripMenuItem registroDePagosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rendicionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem estadisticasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem usuariosToolStripMenuItem;
     }
 }
