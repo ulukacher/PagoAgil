@@ -99,11 +99,11 @@
     <Compile Include="AbmFactura\IndexFacturasForm.Designer.cs">
       <DependentUpon>IndexFacturasForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmRol\Form1.cs">
+    <Compile Include="AbmRol\IndexRolesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmRol\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="AbmRol\IndexRolesForm.Designer.cs">
+      <DependentUpon>IndexRolesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmSucursal\CreateSucursalForm.cs">
       <SubType>Form</SubType>
@@ -169,6 +169,7 @@
     <Compile Include="Repositories\ClientesRepository.cs" />
     <Compile Include="Repositories\FacturasRepository.cs" />
     <Compile Include="Repositories\RendicionesRepository.cs" />
+    <Compile Include="Repositories\RolesRepository.cs" />
     <Compile Include="Repositories\SucursalesRepository.cs" />
     <Compile Include="Repositories\EmpresasRepository.cs" />
     <Compile Include="Repositories\RubrosRepository.cs" />
@@ -200,8 +201,8 @@
     <EmbeddedResource Include="AbmFactura\IndexFacturasForm.resx">
       <DependentUpon>IndexFacturasForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AbmRol\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="AbmRol\IndexRolesForm.resx">
+      <DependentUpon>IndexRolesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmSucursal\CreateSucursalForm.resx">
       <DependentUpon>CreateSucursalForm.cs</DependentUpon>
