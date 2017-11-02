@@ -18,7 +18,7 @@ namespace PagoAgilFrba.Repositories
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
             conn.Open();
-            string query = "update dbo.Sucursales set sucu_activa = 0 where sucu_codigoPostal = @codigoPostal";
+            string query = "update LOS_MANTECOSOS.Sucursales set sucu_activa = 0 where sucu_codigoPostal = @codigoPostal";
             SqlCommand command = new SqlCommand(query, conn);
             command.Parameters.AddWithValue("@codigoPostal", codPostal);
             command.ExecuteNonQuery();
@@ -29,7 +29,7 @@ namespace PagoAgilFrba.Repositories
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
             conn.Open();
-            string query = "insert into dbo.Sucursales values (@codigopostal,@nombre,@direccion,@activa)";
+            string query = "insert into LOS_MANTECOSOS.Sucursales values (@codigopostal,@nombre,@direccion,@activa)";
             SqlCommand command = new SqlCommand(query, conn);
             command.Parameters.AddWithValue("@nombre", sucursal.Nombre);
             command.Parameters.AddWithValue("@direccion", sucursal.Direccion);
@@ -43,7 +43,7 @@ namespace PagoAgilFrba.Repositories
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
             conn.Open();
-            string query = "Select * from dbo.Sucursales where sucu_codigoPostal=@codPostal";
+            string query = "Select * from LOS_MANTECOSOS.Sucursales where sucu_codigoPostal=@codPostal";
             SqlCommand command = new SqlCommand(query, conn);
             command.Parameters.AddWithValue("@codPostal", codPostal);
             SqlDataReader reader = command.ExecuteReader();
@@ -62,7 +62,7 @@ namespace PagoAgilFrba.Repositories
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
             conn.Open();
-            string query = "Select * from dbo.Sucursales";
+            string query = "Select * from LOS_MANTECOSOS.Sucursales";
             SqlCommand command = new SqlCommand(query, conn);
             List<Sucursal> sucursales= new List<Sucursal>();
             using (SqlDataReader reader = command.ExecuteReader())
@@ -86,7 +86,7 @@ namespace PagoAgilFrba.Repositories
             conn.Open();
             SqlCommand command = new SqlCommand();
             string query = "Select * "+
-                                "from dbo.Sucursales " +
+                                "from LOS_MANTECOSOS.Sucursales " +
                                 "where sucu_nombre like @nombre and "+
                                 "sucu_direccion like @direccion";
 
@@ -133,7 +133,7 @@ namespace PagoAgilFrba.Repositories
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
             conn.Open();
-            var query = "update dbo.Sucursales set sucu_nombre=@nombre,sucu_direccion=@direccion,sucu_codigoPostal=@codigoPostal,"
+            var query = "update LOS_MANTECOSOS.Sucursales set sucu_nombre=@nombre,sucu_direccion=@direccion,sucu_codigoPostal=@codigoPostal,"
                 + "sucu_activa=@activa where sucu_codigoPostal=@codigoPostalOriginal";
             SqlCommand command = new SqlCommand(query, conn);
             command.Parameters.AddWithValue("@codigoPostalOriginal", codigoPostalOriginal);

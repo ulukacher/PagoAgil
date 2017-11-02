@@ -16,7 +16,7 @@ namespace PagoAgilFrba.Repositories
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
             conn.Open();
-            string query = "update dbo.clientes set clie_activo = 0 where clie_dni = @dni";
+            string query = "update LOS_MANTECOSOS.clientes set clie_activo = 0 where clie_dni = @dni";
             SqlCommand command = new SqlCommand(query, conn);
             command.Parameters.AddWithValue("@dni", dni);
             command.ExecuteNonQuery();
@@ -26,7 +26,7 @@ namespace PagoAgilFrba.Repositories
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
             conn.Open();
-            string query = "insert into dbo.Clientes values (@dni,@nombre,@apellido,@fechaNacimiento,@mail,@direccion,@codigoPostal,@telefono,1)";
+            string query = "insert into LOS_MANTECOSOS.Clientes values (@dni,@nombre,@apellido,@fechaNacimiento,@mail,@direccion,@codigoPostal,@telefono,1)";
             SqlCommand command = new SqlCommand(query, conn);
             command.Parameters.AddWithValue("@nombre", cliente.Nombre);
             command.Parameters.AddWithValue("@apellido", cliente.Apellido);
@@ -43,7 +43,7 @@ namespace PagoAgilFrba.Repositories
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
             conn.Open();
-            var queryMailUnico = "select count(*) from dbo.Clientes where clie_mail = @mailIngresado";
+            var queryMailUnico = "select count(*) from LOS_MANTECOSOS.Clientes where clie_mail = @mailIngresado";
             SqlCommand command = new SqlCommand(queryMailUnico, conn);
             command.Parameters.AddWithValue("@mailIngresado", mail);
             int cant = (int)command.ExecuteScalar();
@@ -54,7 +54,7 @@ namespace PagoAgilFrba.Repositories
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
             conn.Open();
-            string query = "select * from dbo.clientes where clie_dni = @dni";
+            string query = "select * from LOS_MANTECOSOS.clientes where clie_dni = @dni";
             SqlCommand command = new SqlCommand(query, conn);
             command.Parameters.AddWithValue("@dni", dni);
             SqlDataReader reader = command.ExecuteReader();
@@ -78,7 +78,7 @@ namespace PagoAgilFrba.Repositories
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
             conn.Open();
-            string query = "select * from dbo.clientes";
+            string query = "select * from LOS_MANTECOSOS.clientes";
             SqlCommand command = new SqlCommand(query, conn);
             List<Cliente> clientes = new List<Cliente>();
             using (SqlDataReader reader = command.ExecuteReader()) 
@@ -105,7 +105,7 @@ namespace PagoAgilFrba.Repositories
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
             conn.Open();
             SqlCommand command = new SqlCommand();
-            string query = "Select * from dbo.Clientes where clie_nombre like @nombre and clie_apellido like @apellido";
+            string query = "Select * from LOS_MANTECOSOS.Clientes where clie_nombre like @nombre and clie_apellido like @apellido";
             SqlParameter nombre = new SqlParameter("@nombre", DbType.String);
             nombre.Value = "%" + _nombre + "%";
             command.Parameters.Add(nombre);
@@ -150,7 +150,7 @@ namespace PagoAgilFrba.Repositories
         public static void EditarCliente(Cliente clienteAEditar, decimal dniOriginal) {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
             conn.Open();
-            var query = "update dbo.clientes set clie_nombre=@nombre,clie_apellido = @apellido,clie_dni=@dni,"
+            var query = "update LOS_MANTECOSOS.clientes set clie_nombre=@nombre,clie_apellido = @apellido,clie_dni=@dni,"
                 + "clie_direccion=@direccion,clie_mail=@mail,clie_codigoPostal = @codigoPostal,"
                 + "clie_telefono=@telefono,clie_fechaNacimiento=@fechaNacimiento,clie_activo=@activo where clie_dni = @dniOriginal";
             SqlCommand command = new SqlCommand(query, conn);
@@ -172,7 +172,7 @@ namespace PagoAgilFrba.Repositories
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
             conn.Open();
-            var queryMailUnico = "select count(*) from dbo.Clientes where clie_mail = @mailIngresado and clie_dni <> @dniOriginal";
+            var queryMailUnico = "select count(*) from LOS_MANTECOSOS.Clientes where clie_mail = @mailIngresado and clie_dni <> @dniOriginal";
             SqlCommand command = new SqlCommand(queryMailUnico, conn);
             command.Parameters.AddWithValue("@mailIngresado", mail);
             command.Parameters.AddWithValue("@dniOriginal", dni);

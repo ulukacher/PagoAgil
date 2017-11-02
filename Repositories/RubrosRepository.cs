@@ -17,7 +17,7 @@ namespace PagoAgilFrba.Repositories
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
             conn.Open();
-            string query = "Select * from dbo.Rubros";
+            string query = "Select * from LOS_MANTECOSOS.Rubros";
             SqlCommand command = new SqlCommand(query, conn);
             List<Rubro> rubros = new List<Rubro>();
             using (SqlDataReader reader = command.ExecuteReader())

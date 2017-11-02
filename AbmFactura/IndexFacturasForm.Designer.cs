@@ -45,13 +45,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.clientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sucursalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.rolesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.empresasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.facturasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.NumeroFactura = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DniCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Empresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,6 +53,13 @@
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Editar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btnEliminar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.clientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sucursalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rolesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.empresasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.facturasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -68,7 +68,7 @@
             // btnBuscar
             // 
             this.btnBuscar.Location = new System.Drawing.Point(764, 93);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(64, 23);
             this.btnBuscar.TabIndex = 7;
@@ -79,7 +79,7 @@
             // btnLimpiar
             // 
             this.btnLimpiar.Location = new System.Drawing.Point(677, 93);
-            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(64, 23);
             this.btnLimpiar.TabIndex = 6;
@@ -90,7 +90,7 @@
             // txtFiltroNumero
             // 
             this.txtFiltroNumero.Location = new System.Drawing.Point(118, 17);
-            this.txtFiltroNumero.Margin = new System.Windows.Forms.Padding(2);
+            this.txtFiltroNumero.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtFiltroNumero.Name = "txtFiltroNumero";
             this.txtFiltroNumero.Size = new System.Drawing.Size(92, 20);
             this.txtFiltroNumero.TabIndex = 3;
@@ -98,7 +98,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(260, 20);
+            this.label4.Location = new System.Drawing.Point(275, 20);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(76, 13);
@@ -132,29 +132,30 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(37, 122);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox1.Size = new System.Drawing.Size(840, 127);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtros";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // cboFiltroEstado
             // 
             this.cboFiltroEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboFiltroEstado.FormattingEnabled = true;
-            this.cboFiltroEstado.Location = new System.Drawing.Point(717, 54);
+            this.cboFiltroEstado.Location = new System.Drawing.Point(734, 53);
             this.cboFiltroEstado.Margin = new System.Windows.Forms.Padding(2);
             this.cboFiltroEstado.Name = "cboFiltroEstado";
-            this.cboFiltroEstado.Size = new System.Drawing.Size(111, 21);
+            this.cboFiltroEstado.Size = new System.Drawing.Size(94, 21);
             this.cboFiltroEstado.TabIndex = 27;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label7.Location = new System.Drawing.Point(651, 58);
+            this.label7.Location = new System.Drawing.Point(651, 56);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(40, 13);
@@ -163,7 +164,7 @@
             // 
             // txtFiltroCliente
             // 
-            this.txtFiltroCliente.Location = new System.Drawing.Point(118, 51);
+            this.txtFiltroCliente.Location = new System.Drawing.Point(118, 47);
             this.txtFiltroCliente.Margin = new System.Windows.Forms.Padding(2);
             this.txtFiltroCliente.Name = "txtFiltroCliente";
             this.txtFiltroCliente.Size = new System.Drawing.Size(92, 20);
@@ -172,7 +173,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(11, 53);
+            this.label6.Location = new System.Drawing.Point(11, 50);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(61, 13);
@@ -183,32 +184,32 @@
             // 
             this.cboFiltroEmpresa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboFiltroEmpresa.FormattingEnabled = true;
-            this.cboFiltroEmpresa.Location = new System.Drawing.Point(717, 16);
+            this.cboFiltroEmpresa.Location = new System.Drawing.Point(734, 20);
             this.cboFiltroEmpresa.Margin = new System.Windows.Forms.Padding(2);
             this.cboFiltroEmpresa.Name = "cboFiltroEmpresa";
-            this.cboFiltroEmpresa.Size = new System.Drawing.Size(111, 21);
+            this.cboFiltroEmpresa.Size = new System.Drawing.Size(94, 21);
             this.cboFiltroEmpresa.TabIndex = 23;
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(373, 51);
+            this.dateTimePicker1.Location = new System.Drawing.Point(393, 47);
             this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(233, 20);
+            this.dateTimePicker1.Size = new System.Drawing.Size(176, 20);
             this.dateTimePicker1.TabIndex = 22;
             // 
             // txtFecha
             // 
-            this.txtFecha.Location = new System.Drawing.Point(373, 16);
+            this.txtFecha.Location = new System.Drawing.Point(393, 17);
             this.txtFecha.Margin = new System.Windows.Forms.Padding(2);
             this.txtFecha.Name = "txtFecha";
-            this.txtFecha.Size = new System.Drawing.Size(233, 20);
+            this.txtFecha.Size = new System.Drawing.Size(176, 20);
             this.txtFecha.TabIndex = 21;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(260, 55);
+            this.label5.Location = new System.Drawing.Point(275, 50);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(98, 13);
@@ -218,7 +219,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(651, 20);
+            this.label3.Location = new System.Drawing.Point(651, 23);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(48, 13);
@@ -228,7 +229,7 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(37, 63);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(74, 28);
             this.button1.TabIndex = 6;
@@ -251,13 +252,63 @@
             this.Editar,
             this.btnEliminar});
             this.dataGridView1.Location = new System.Drawing.Point(37, 266);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(840, 224);
             this.dataGridView1.TabIndex = 5;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick_1);
+            // 
+            // NumeroFactura
+            // 
+            this.NumeroFactura.HeaderText = "Numero Factura";
+            this.NumeroFactura.Name = "NumeroFactura";
+            this.NumeroFactura.ReadOnly = true;
+            // 
+            // DniCliente
+            // 
+            this.DniCliente.HeaderText = "DNI Cliente";
+            this.DniCliente.Name = "DniCliente";
+            this.DniCliente.ReadOnly = true;
+            // 
+            // Empresa
+            // 
+            this.Empresa.HeaderText = "Empresa";
+            this.Empresa.Name = "Empresa";
+            this.Empresa.ReadOnly = true;
+            // 
+            // FechaFactura
+            // 
+            this.FechaFactura.HeaderText = "Fecha Factura";
+            this.FechaFactura.Name = "FechaFactura";
+            this.FechaFactura.ReadOnly = true;
+            // 
+            // FechaVencimiento
+            // 
+            this.FechaVencimiento.HeaderText = "Fecha Vencimiento";
+            this.FechaVencimiento.Name = "FechaVencimiento";
+            this.FechaVencimiento.ReadOnly = true;
+            // 
+            // Estado
+            // 
+            this.Estado.HeaderText = "Estado";
+            this.Estado.Name = "Estado";
+            this.Estado.ReadOnly = true;
+            // 
+            // Editar
+            // 
+            this.Editar.HeaderText = "Editar";
+            this.Editar.Name = "Editar";
+            this.Editar.ReadOnly = true;
+            this.Editar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.HeaderText = "Eliminar";
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.ReadOnly = true;
+            this.btnEliminar.Text = "Eliminar";
             // 
             // label1
             // 
@@ -320,56 +371,6 @@
             this.facturasToolStripMenuItem.Text = "Facturas";
             this.facturasToolStripMenuItem.Click += new System.EventHandler(this.facturasToolStripMenuItem_Click_1);
             // 
-            // NumeroFactura
-            // 
-            this.NumeroFactura.HeaderText = "Numero Factura";
-            this.NumeroFactura.Name = "NumeroFactura";
-            this.NumeroFactura.ReadOnly = true;
-            // 
-            // DniCliente
-            // 
-            this.DniCliente.HeaderText = "DNI Cliente";
-            this.DniCliente.Name = "DniCliente";
-            this.DniCliente.ReadOnly = true;
-            // 
-            // Empresa
-            // 
-            this.Empresa.HeaderText = "Empresa";
-            this.Empresa.Name = "Empresa";
-            this.Empresa.ReadOnly = true;
-            // 
-            // FechaFactura
-            // 
-            this.FechaFactura.HeaderText = "Fecha Factura";
-            this.FechaFactura.Name = "FechaFactura";
-            this.FechaFactura.ReadOnly = true;
-            // 
-            // FechaVencimiento
-            // 
-            this.FechaVencimiento.HeaderText = "Fecha Vencimiento";
-            this.FechaVencimiento.Name = "FechaVencimiento";
-            this.FechaVencimiento.ReadOnly = true;
-            // 
-            // Estado
-            // 
-            this.Estado.HeaderText = "Estado";
-            this.Estado.Name = "Estado";
-            this.Estado.ReadOnly = true;
-            // 
-            // Editar
-            // 
-            this.Editar.HeaderText = "Editar";
-            this.Editar.Name = "Editar";
-            this.Editar.ReadOnly = true;
-            this.Editar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // btnEliminar
-            // 
-            this.btnEliminar.HeaderText = "Eliminar";
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.ReadOnly = true;
-            this.btnEliminar.Text = "Eliminar";
-            // 
             // IndexFacturasForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -382,6 +383,7 @@
             this.Controls.Add(this.label1);
             this.Name = "IndexFacturasForm";
             this.Text = "IndexFacturasForm";
+            this.Load += new System.EventHandler(this.IndexFacturasForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
