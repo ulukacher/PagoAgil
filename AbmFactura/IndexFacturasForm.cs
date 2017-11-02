@@ -79,7 +79,7 @@ namespace PagoAgilFrba.AbmFactura
             cboFiltroEstado.SelectedIndex = 0;
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
             //Editar
             if (e.ColumnIndex == 6)
@@ -88,26 +88,41 @@ namespace PagoAgilFrba.AbmFactura
 
                 Factura factura = FacturasRepository.GetFacturaByNro(nroFacturaAEditar);
 
-                EditFacturaForm editForm = new EditFacturaForm(factura);
-                this.Hide();
-                editForm.Show();
-
+                if (factura.Estado == 0)
+                {
+                    EditFacturaForm editForm = new EditFacturaForm(factura);
+                    this.Hide();
+                    editForm.Show();
+                }
+                else
+                {
+                    MessageBox.Show("No se puede editar una factura que ya fue pagada o rendida");
+                }
             }
             //Eliminar
             if (e.ColumnIndex == 7)
             {
                 decimal nroFacturaAEliminar = (decimal)dataGridView1.Rows[e.RowIndex].Cells[0].Value;
 
-                try
-                {
-                    FacturasRepository.EliminarFactura(nroFacturaAEliminar);
+                Factura factura = FacturasRepository.GetFacturaByNro(nroFacturaAEliminar);
 
-                    MessageBox.Show("El cliente ha sido marcado como inactivo");
+                if (factura.Estado == 0)
+                {
+                    try
+                    {
+                        FacturasRepository.EliminarFactura(nroFacturaAEliminar);
+
+                        MessageBox.Show("La factura fue eliminada");
+                    }
+                    catch (Exception exc)
+                    {
+                        MessageBox.Show("Hubo un error al eliminar la factura");
+
+                    }
                 }
-                catch (Exception exc)
+                else
                 {
-                    MessageBox.Show("Hubo un error al dar de baja al cliente");
-
+                    MessageBox.Show("No se puede eliminar una factura que ya fue pagada o rendida");
                 }
             }
         }
@@ -216,11 +231,6 @@ namespace PagoAgilFrba.AbmFactura
             var indexFacturas = new IndexFacturasForm();
             this.Hide();
             indexFacturas.Show();
-        }
-
-        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void IndexFacturasForm_Load(object sender, System.EventArgs e)
