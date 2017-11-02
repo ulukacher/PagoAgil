@@ -32,6 +32,8 @@ namespace PagoAgilFrba.AbmCliente
 
             InitializeComponent();     
             this.LlenarGrillaClientes();
+
+            clientesToolStripMenuItem.Enabled = false;
         }
         private void LlenarGrillaClientes()
         {

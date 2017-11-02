@@ -26,6 +26,8 @@ namespace PagoAgilFrba.AbmFactura
         {
             InitializeComponent();
             CargarCombo();
+
+            facturasToolStripMenuItem.Enabled = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
