@@ -79,7 +79,7 @@ namespace PagoAgilFrba.AbmFactura
             cboFiltroEstado.SelectedIndex = 0;
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
             //Editar
             if (e.ColumnIndex == 6)
