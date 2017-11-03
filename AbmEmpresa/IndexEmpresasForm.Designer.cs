@@ -72,7 +72,7 @@
             this.Editar,
             this.Eliminar});
             this.dataGridView1.Location = new System.Drawing.Point(5, 109);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 24;
@@ -138,7 +138,7 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(25, 57);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(72, 32);
             this.button1.TabIndex = 2;
@@ -157,9 +157,9 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(568, 102);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(168, 213);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
@@ -171,7 +171,7 @@
             this.cboFiltroRubro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboFiltroRubro.FormattingEnabled = true;
             this.cboFiltroRubro.Location = new System.Drawing.Point(78, 132);
-            this.cboFiltroRubro.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboFiltroRubro.Margin = new System.Windows.Forms.Padding(2);
             this.cboFiltroRubro.Name = "cboFiltroRubro";
             this.cboFiltroRubro.Size = new System.Drawing.Size(78, 21);
             this.cboFiltroRubro.TabIndex = 9;
@@ -191,7 +191,7 @@
             // btnBuscar
             // 
             this.btnBuscar.Location = new System.Drawing.Point(92, 175);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(64, 23);
             this.btnBuscar.TabIndex = 7;
@@ -202,7 +202,7 @@
             // btnLimpiar
             // 
             this.btnLimpiar.Location = new System.Drawing.Point(13, 175);
-            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(2);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(64, 23);
             this.btnLimpiar.TabIndex = 6;
@@ -213,7 +213,7 @@
             // txtFiltroCuit
             // 
             this.txtFiltroCuit.Location = new System.Drawing.Point(78, 78);
-            this.txtFiltroCuit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtFiltroCuit.Margin = new System.Windows.Forms.Padding(2);
             this.txtFiltroCuit.Name = "txtFiltroCuit";
             this.txtFiltroCuit.Size = new System.Drawing.Size(76, 20);
             this.txtFiltroCuit.TabIndex = 4;
@@ -221,7 +221,7 @@
             // txtFiltroNombre
             // 
             this.txtFiltroNombre.Location = new System.Drawing.Point(78, 24);
-            this.txtFiltroNombre.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtFiltroNombre.Margin = new System.Windows.Forms.Padding(2);
             this.txtFiltroNombre.Name = "txtFiltroNombre";
             this.txtFiltroNombre.Size = new System.Drawing.Size(78, 20);
             this.txtFiltroNombre.TabIndex = 3;
@@ -294,6 +294,7 @@
             this.facturasToolStripMenuItem.Name = "facturasToolStripMenuItem";
             this.facturasToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
             this.facturasToolStripMenuItem.Text = "Facturas";
+            this.facturasToolStripMenuItem.Click += new System.EventHandler(this.facturasToolStripMenuItem_Click_1);
             // 
             // IndexEmpresasForm
             // 
@@ -305,7 +306,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "IndexEmpresasForm";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.IndexEmpresasForm_Load);
