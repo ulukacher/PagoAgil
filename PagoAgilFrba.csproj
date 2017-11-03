@@ -132,10 +132,13 @@
     <Compile Include="Classes\Cliente.cs" />
     <Compile Include="Classes\ComboboxItem.cs" />
     <Compile Include="Classes\ComboBoxItemStringValue.cs" />
+    <Compile Include="Classes\Estadisticas\ItemReporteClientesConMasPagos.cs" />
     <Compile Include="Classes\Estadisticas\ItemReporteMontosRendidosEmpresas.cs" />
     <Compile Include="Classes\Factura.cs" />
     <Compile Include="Classes\Funcionalidad.cs" />
+    <Compile Include="Classes\FormaDePago.cs" />
     <Compile Include="Classes\ItemFactura.cs" />
+    <Compile Include="Classes\Pago.cs" />
     <Compile Include="Classes\Rendicion.cs" />
     <Compile Include="Classes\Rol.cs" />
     <Compile Include="Classes\Sucursal.cs" />
@@ -162,6 +165,12 @@
     <Compile Include="ListadoEstadistico\EstadisticasForm.Designer.cs">
       <DependentUpon>EstadisticasForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ListadoEstadistico\ListadoClientesConMasPagosForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListadoEstadistico\ListadoClientesConMasPagosForm.Designer.cs">
+      <DependentUpon>ListadoClientesConMasPagosForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListadoEstadistico\ListadoEmpresasMontoRendidoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,11 +179,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegistroPago\Form1.cs">
+    <Compile Include="RegistroPago\PagoForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RegistroPago\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="RegistroPago\PagoForm.Designer.cs">
+      <DependentUpon>PagoForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Rendiciones\RendicionForm.cs">
       <SubType>Form</SubType>
@@ -185,12 +194,20 @@
     <Compile Include="Repositories\ClientesRepository.cs" />
     <Compile Include="Repositories\EstadisticasRepository.cs" />
     <Compile Include="Repositories\FacturasRepository.cs" />
+    <Compile Include="Repositories\FormasDePagoRepository.cs" />
+    <Compile Include="Repositories\PagosRepository.cs" />
     <Compile Include="Repositories\RendicionesRepository.cs" />
     <Compile Include="Repositories\RolesRepository.cs" />
     <Compile Include="Repositories\SucursalesRepository.cs" />
     <Compile Include="Repositories\EmpresasRepository.cs" />
     <Compile Include="Repositories\RubrosRepository.cs" />
     <Compile Include="Repositories\UsuariosRepository.cs" />
+    <Compile Include="Usuarios\IndexUsuariosForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Usuarios\IndexUsuariosForm.Designer.cs">
+      <DependentUpon>IndexUsuariosForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AbmCliente\CreateClienteForm.resx">
       <DependentUpon>CreateClienteForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -242,6 +259,9 @@
     <EmbeddedResource Include="ListadoEstadistico\EstadisticasForm.resx">
       <DependentUpon>EstadisticasForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ListadoEstadistico\ListadoClientesConMasPagosForm.resx">
+      <DependentUpon>ListadoClientesConMasPagosForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ListadoEstadistico\ListadoEmpresasMontoRendidoForm.resx">
       <DependentUpon>ListadoEmpresasMontoRendidoForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -254,8 +274,14 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="RegistroPago\PagoForm.resx">
+      <DependentUpon>PagoForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Rendiciones\RendicionForm.resx">
       <DependentUpon>RendicionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Usuarios\IndexUsuariosForm.resx">
+      <DependentUpon>IndexUsuariosForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

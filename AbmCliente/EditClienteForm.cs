@@ -17,6 +17,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net.Mail;
 
 namespace PagoAgilFrba.AbmCliente
 {
@@ -104,11 +105,23 @@ namespace PagoAgilFrba.AbmCliente
              }
                
         }
+        private bool ValidarMail(string mail)
+        {
+            try
+            {
+                MailAddress mailAdress = new MailAddress(txtMail.Text);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
         private List<string> validarCamposCreateOrEdit()
         {
             List<string> errores = new List<string>();
             //Valido el mail
-            if (txtMail.Text == "" || !txtMail.Text.Contains("@"))
+            if (txtMail.Text == "" || !this.ValidarMail(txtMail.Text))
                 errores.Add("Ingrese un email valido");
             else
             {

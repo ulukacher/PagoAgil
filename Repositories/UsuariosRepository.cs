@@ -1,4 +1,5 @@
-﻿using PagoAgilFrba.Helpers;
+﻿using PagoAgilFrba.Classes;
+using PagoAgilFrba.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -12,6 +13,38 @@ namespace PagoAgilFrba.Repositories
 {
     public class UsuariosRepository
     {
+        public static void CambiarHabilitacion(string username)
+        {
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
+            conn.Open();
+            string query = "UPDATE LOS_MANTECOSOS.usuarios set usuario_activo = (CASE usuario_activo WHEN 1 THEN 0 ELSE 1 END) "
+                +" where usuario_nombre = @nombre";
+            SqlCommand command = new SqlCommand(query, conn);
+            command.Parameters.AddWithValue("@nombre", username);
+            command.ExecuteNonQuery();
+            conn.Close();
+            
+        }
+        public static List<Usuario> GetAll()
+        {
+            List<Usuario> usuarios = new List<Usuario>();
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
+            conn.Open();
+            string query = "select * from LOS_MANTECOSOS.usuarios";
+            SqlCommand command = new SqlCommand(query, conn);
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Usuario us = new Usuario();
+                    us.Activo = (bool)reader["usuario_activo"];
+                    us.Username = (string)reader["usuario_nombre"];
+                    usuarios.Add(us);
+                }
+            }
+            conn.Close();
+            return usuarios;
+        }
         public static bool ExisteUsuarioConEseUsername(string username) 
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);

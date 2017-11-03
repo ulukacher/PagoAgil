@@ -14,6 +14,8 @@ using System.Windows.Forms;
 using PagoAgilFrba.Rendiciones;
 using PagoAgilFrba.ListadoEstadistico;
 using PagoAgilFrba.AbmRol;
+using PagoAgilFrba.RegistroPago;
+using PagoAgilFrba.Usuarios;
 
 namespace PagoAgilFrba
 {
@@ -65,12 +67,23 @@ namespace PagoAgilFrba
             this.Hide();
             estadisticasForm.Show();
         }
-
         private void rolesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var indexRoles = new IndexRolesForm();
             this.Hide();
             indexRoles.Show();
+        }
+        private void registroDePagosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var pagoForm = new PagoForm();
+            this.Hide();
+            pagoForm.Show();
+        }
+        private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var indexUsuariosForm = new IndexUsuariosForm();
+            this.Hide();
+            indexUsuariosForm.Show();
         }
     }
 }
