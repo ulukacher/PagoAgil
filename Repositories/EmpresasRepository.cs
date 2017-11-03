@@ -19,7 +19,7 @@ namespace PagoAgilFrba.Repositories
             
             conn.Open();
             
-            string query = "update dbo.Empresas set empr_activa = 0 where empr_cuit = @cuit";
+            string query = "update LOS_MANTECOSOS.Empresas set empr_activa = 0 where empr_cuit = @cuit";
             
             SqlCommand command = new SqlCommand(query, conn);
             
@@ -36,7 +36,7 @@ namespace PagoAgilFrba.Repositories
             
             conn.Open();
             
-            string query = "insert into dbo.Empresas values (@cuit,@nombre,@direccion,@rubro,@activa)";
+            string query = "insert into LOS_MANTECOSOS.Empresas values (@cuit,@nombre,@direccion,@rubro,@activa)";
             
             SqlCommand command = new SqlCommand(query, conn);
             
@@ -55,7 +55,7 @@ namespace PagoAgilFrba.Repositories
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
             conn.Open();
-            string query = "Select E.*, R.rubr_descripcion empr_rubro from dbo.Empresas E INNER JOIN dbo.Rubros R ON E.empr_rubro_id = R.rubr_id where empr_cuit=@cuit";
+            string query = "Select E.*, R.rubr_descripcion empr_rubro from LOS_MANTECOSOS.Empresas E INNER JOIN LOS_MANTECOSOS.Rubros R ON E.empr_rubro_id = R.rubr_id where empr_cuit=@cuit";
 
             SqlCommand command = new SqlCommand(query, conn);
             command.Parameters.AddWithValue("@cuit", cuit);
@@ -90,8 +90,8 @@ namespace PagoAgilFrba.Repositories
                                 "E.empr_direccion, " +
                                 "E.empr_activa, " +
                                 "R.rubr_descripcion empr_rubro " +
-                                "from dbo.Empresas E " +
-                                "inner join dbo.Rubros R " +
+                                "from LOS_MANTECOSOS.Empresas E " +
+                                "inner join LOS_MANTECOSOS.Rubros R " +
                                 "on E.empr_rubro_id = R.rubr_id";
 
             SqlCommand command = new SqlCommand(query, conn);
@@ -130,8 +130,8 @@ namespace PagoAgilFrba.Repositories
                                 "E.empr_direccion, " +
                                 "E.empr_activa, " +
                                 "R.rubr_descripcion empr_rubro " +
-                                "from dbo.Empresas E " +
-                                "inner join dbo.Rubros R " +
+                                "from LOS_MANTECOSOS.Empresas E " +
+                                "inner join LOS_MANTECOSOS.Rubros R " +
                                 "on E.empr_rubro_id = R.rubr_id " +
                                 "where empr_nombre like @nombre";
 
@@ -193,7 +193,7 @@ namespace PagoAgilFrba.Repositories
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
             conn.Open();
-            var query = "update dbo.Empresas set empr_nombre=@nombre,empr_direccion=@direccion,empr_cuit=@cuit,"
+            var query = "update LOS_MANTECOSOS.Empresas set empr_nombre=@nombre,empr_direccion=@direccion,empr_cuit=@cuit,"
                 + "empr_rubro_id=@rubro,empr_activa=@activa where empr_cuit=@cuitOriginal";
             SqlCommand command = new SqlCommand(query, conn);
             command.Parameters.AddWithValue("@cuitOriginal", cuitOriginal);

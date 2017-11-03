@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PagoAgilFrba.Repositories;
+using PagoAgilFrba.Classes;
 
 namespace PagoAgilFrba.AbmRol
 {
@@ -32,13 +33,31 @@ namespace PagoAgilFrba.AbmRol
             {
                 dataGridView1.Rows.Clear();
                 dataGridView1.Refresh();
-                var roles = RolesRepository.GetEmpresasByNombreCuitRubro(txtFiltroNombre.Text, txtFiltroCuit.Text, ((ComboboxItem)cboFiltroRubro.SelectedItem).Value);
-                foreach (var item in roles)
+                int Id;
+                bool activo;
+                if(cboFiltroActivo.SelectedItem=="Si")
                 {
-                    int index = dataGridView1.Rows.Add(item.Cuit, item.Nombre, item.Direccion, item.Rubro, item.Activa);
-                    dataGridView1.Rows[index].Cells[5].Value = "Editar";
-                    dataGridView1.Rows[index].Cells[6].Value = "Eliminar";
+                    activo=true;
                 }
+                else
+                {
+                    activo=false;
+                }
+                if(Int32.TryParse(txtFiltroId.Text, out Id))
+                {
+                    var roles = RolesRepository.GetRolesByNombreIdActivo(txtFiltroNombre.Text, Id, activo);
+                    foreach (var item in roles)
+                    {
+                        int index = dataGridView1.Rows.Add(item.Cuit, item.Nombre, item.Direccion, item.Rubro, item.Activa);
+                        dataGridView1.Rows[index].Cells[5].Value = "Editar";
+                        dataGridView1.Rows[index].Cells[6].Value = "Eliminar";
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Error, el id debe ser un numero");
+                }
+
             }
             catch (Exception exc)
             {

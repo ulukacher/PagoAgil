@@ -34,6 +34,7 @@ namespace PagoAgilFrba.AbmFactura
         {
             InitializeComponent();
             CargarCombo();
+
             this.ActiveControl = txtNroFactura;
         }
 
@@ -83,9 +84,7 @@ namespace PagoAgilFrba.AbmFactura
                         i++;
                     }
 
-                    FacturasRepository.AgregarFactura(factura);
-
-                    FacturasRepository.AgregarItemsFactura(listaItems);
+                    FacturasRepository.AgregarFactura(factura, listaItems);
 
                     MessageBox.Show("La factura fue creada correctamente");
 

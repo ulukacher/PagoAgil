@@ -37,6 +37,7 @@
             this.facturasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.registroDePagosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rendicionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.estadisticasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,7 +61,8 @@
             this.empresasToolStripMenuItem,
             this.facturasToolStripMenuItem,
             this.registroDePagosToolStripMenuItem,
-            this.rendicionToolStripMenuItem});
+            this.rendicionToolStripMenuItem,
+            this.estadisticasToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
@@ -115,6 +117,13 @@
             this.rendicionToolStripMenuItem.Text = "Rendicion";
             this.rendicionToolStripMenuItem.Click += new System.EventHandler(this.rendicionToolStripMenuItem_Click);
             // 
+            // estadisticasToolStripMenuItem
+            // 
+            this.estadisticasToolStripMenuItem.Name = "estadisticasToolStripMenuItem";
+            this.estadisticasToolStripMenuItem.Size = new System.Drawing.Size(97, 24);
+            this.estadisticasToolStripMenuItem.Text = "Estadisticas";
+            this.estadisticasToolStripMenuItem.Click += new System.EventHandler(this.estadisticasToolStripMenuItem_Click);
+            // 
             // IndexForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -143,5 +152,6 @@
         private System.Windows.Forms.ToolStripMenuItem facturasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem registroDePagosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rendicionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem estadisticasToolStripMenuItem;
     }
 }
