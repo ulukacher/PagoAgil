@@ -22,5 +22,10 @@ namespace PagoAgilFrba.Classes
         public int Estado { get; set; }
         public DateTime FechaVencimiento { get; set; }
         public decimal Monto { get; set; }
+
+        public override string ToString()
+        {
+            return Nro.ToString();
+        }
     }
 }
