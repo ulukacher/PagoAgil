@@ -23,6 +23,8 @@ namespace PagoAgilFrba.AbmSucursal
         {
             InitializeComponent();
             LlenarGrillaSucursales();
+
+            sucursalesToolStripMenuItem.Enabled = false;
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -119,7 +121,9 @@ namespace PagoAgilFrba.AbmSucursal
 
         private void rolesToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
-
+            var indexRoles = new IndexRolesForm();
+            this.Hide();
+            indexRoles.Show();
         }
 
         private void empresasToolStripMenuItem_Click(object sender, System.EventArgs e)

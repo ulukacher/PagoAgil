@@ -32,6 +32,8 @@ namespace PagoAgilFrba.AbmCliente
 
             InitializeComponent();     
             this.LlenarGrillaClientes();
+
+            clientesToolStripMenuItem.Enabled = false;
         }
         private void LlenarGrillaClientes()
         {
@@ -150,7 +152,9 @@ namespace PagoAgilFrba.AbmCliente
 
         private void rolesToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
-
+            var indexRoles = new IndexRolesForm();
+            this.Hide();
+            indexRoles.Show();
         }
 
         private void empresasToolStripMenuItem_Click(object sender, System.EventArgs e)
