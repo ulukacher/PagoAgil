@@ -59,7 +59,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(52, 243);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(317, 209);
+            this.dataGridView1.Size = new System.Drawing.Size(477, 209);
             this.dataGridView1.TabIndex = 1;
             // 
             // button1
@@ -94,14 +94,14 @@
             // 
             this.txtFechaHasta.Location = new System.Drawing.Point(219, 118);
             this.txtFechaHasta.Name = "txtFechaHasta";
-            this.txtFechaHasta.Size = new System.Drawing.Size(200, 22);
+            this.txtFechaHasta.Size = new System.Drawing.Size(268, 22);
             this.txtFechaHasta.TabIndex = 8;
             // 
             // txtFechaDesde
             // 
             this.txtFechaDesde.Location = new System.Drawing.Point(219, 75);
             this.txtFechaDesde.Name = "txtFechaDesde";
-            this.txtFechaDesde.Size = new System.Drawing.Size(200, 22);
+            this.txtFechaDesde.Size = new System.Drawing.Size(268, 22);
             this.txtFechaDesde.TabIndex = 9;
             // 
             // Column1

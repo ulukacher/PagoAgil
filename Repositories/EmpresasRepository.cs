@@ -205,5 +205,18 @@ namespace PagoAgilFrba.Repositories
             command.ExecuteNonQuery();
             conn.Close();
         }
+
+        public static bool EmpresaEstaActiva(string cuit)
+        {
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
+            conn.Open();
+
+            var query = "SELECT empr_activa from LOS_MANTECOSOS.Empresas WHERE empr_cuit = @cuit";
+
+            SqlCommand command = new SqlCommand(query, conn);
+            command.Parameters.AddWithValue("@cuit", cuit);
+
+            return (bool)command.ExecuteScalar();
+        }
     }
 }

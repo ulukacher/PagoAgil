@@ -14,6 +14,7 @@ using System.Windows.Forms;
 using PagoAgilFrba.Rendiciones;
 using PagoAgilFrba.ListadoEstadistico;
 using PagoAgilFrba.RegistroPago;
+using PagoAgilFrba.Usuarios;
 
 namespace PagoAgilFrba
 {
@@ -71,6 +72,13 @@ namespace PagoAgilFrba
             var pagoForm = new PagoForm();
             this.Hide();
             pagoForm.Show();
+        }
+
+        private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var indexUsuariosForm = new IndexUsuariosForm();
+            this.Hide();
+            indexUsuariosForm.Show();
         }
     }
 }

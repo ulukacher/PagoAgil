@@ -23,5 +23,12 @@ namespace PagoAgilFrba.ListadoEstadistico
             this.Hide();
             listadoEmpresasMontoRendidoForm.Show();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var listadoClientesConMasPagos = new ListadoClientesConMasPagosForm();
+            this.Hide();
+            listadoClientesConMasPagos.Show();
+        }
     }
 }
