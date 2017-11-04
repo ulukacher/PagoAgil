@@ -30,6 +30,8 @@ namespace PagoAgilFrba.RegistroPago
 
         List<Factura> listaFacturas = new List<Factura>();
 
+        decimal importePago = 0;
+
         public PagoForm()
         {
             InitializeComponent();
@@ -38,6 +40,8 @@ namespace PagoAgilFrba.RegistroPago
             this.ActiveControl = txtNroFactura;
 
             txtFechaCobro.Enabled = false;
+
+            lblImporte.Text = "$" + importePago.ToString();
         }
 
         private void CargarCombo()
@@ -114,7 +118,7 @@ namespace PagoAgilFrba.RegistroPago
                     pago.FormaDePago = ((ComboboxItem)cboMedioDePago.SelectedItem).Value;
                     pago.ClienteDNI = ((ComboboxItem)cboClienteDNI.SelectedItem).Value;
                     pago.Fecha = txtFechaCobro.Value;
-                    pago.Importe = decimal.Parse(txtImporte.Text);
+                    pago.Importe = importePago;
 
                     foreach (Factura factura in listBox1.Items)
                     {
@@ -173,6 +177,8 @@ namespace PagoAgilFrba.RegistroPago
                 errores.Add("Ingrese al menos una factura");
 
             bool entro = false;
+            bool entro2 = false;
+            bool entro3 = false;
 
             foreach (Factura factura in listBox1.Items)
             {
@@ -183,17 +189,29 @@ namespace PagoAgilFrba.RegistroPago
                     entro = true;
                 }
 
-                if(FacturasRepository.FacturaEstaPagaORendida(factura.Nro) == true)
+                if(FacturasRepository.FacturaEstaPagaORendida(factura.Nro) == true && entro2 == false)
                 {
-                    errores.Add("Esa factura ya fue pagada o rendida");
+                    errores.Add("Una o mas facturas ya fueron pagadas o rendidas");
 
-                    entro = true;
+                    entro2 = true;
+                }
+
+                if (FacturasRepository.FacturaEsDeCliente(factura.Nro, ((ComboboxItem)cboClienteDNI.SelectedItem).Value) == false && entro3 == false)
+                {
+                    errores.Add("Una o mas facturas no pertenecen al cliente");
+
+                    entro3 = true;
                 }
             }
 
             if (EmpresasRepository.EmpresaEstaActiva(((ComboBoxItemStringValue)cboEmpresa.SelectedItem).Value) == false)
             {
                 errores.Add("La empresa seleccionada esta inactiva");
+            }
+
+            if (txtImporte.Text != "" && decimal.Parse(txtImporte.Text) < importePago)
+            {
+                errores.Add("El importe debe ser de al menos $" + importePago.ToString());
             }
 
             return errores;
@@ -207,20 +225,39 @@ namespace PagoAgilFrba.RegistroPago
             }
             else
             {
-                Factura factura = new Factura();
-
-                int a;
-
-                if (!int.TryParse(txtNroFactura.Text, out a))
+                if(this.facturaRepetida(decimal.Parse(txtNroFactura.Text)) == true)
                 {
-                    MessageBox.Show("La factura debe ser un numero");
+                    MessageBox.Show("La factura ya esta en la lista");
                 }
                 else
                 {
-                    factura.Nro = a;
+                    Factura factura = new Factura();
 
-                    listBox1.Items.Add(factura);
+                    int a;
+
+                    if (!int.TryParse(txtNroFactura.Text, out a))
+                    {
+                        MessageBox.Show("La factura debe ser un numero");
+                    }
+                    else
+                    {
+                        if (FacturasRepository.GetFacturaByNro(decimal.Parse(txtNroFactura.Text)).EmpresaCuit == null)
+                        {
+                            MessageBox.Show("No existe una factura con ese numero, debe crearla primero");
+                        }
+                        else
+                        {
+                            factura.Nro = a;
+
+                            importePago += FacturasRepository.ImporteFactura(decimal.Parse(txtNroFactura.Text));
+
+                            lblImporte.Text = "$" + importePago;
+
+                            listBox1.Items.Add(factura);
+                        }
+                    }
                 }
+                
             }
 
             txtNroFactura.Text = "";
@@ -228,12 +265,33 @@ namespace PagoAgilFrba.RegistroPago
             txtNroFactura.Focus();
         }
 
+        private bool facturaRepetida(decimal nroFactura)
+        {
+            foreach (Factura factura in listBox1.Items)
+            {
+                if (factura.Nro == nroFactura)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         private void button3_Click(object sender, EventArgs e)
         {
             if (listBox1.SelectedItems.Count > 0)
             {
+                Factura f = new Factura();
+
+                f = (Factura)listBox1.SelectedItems[0];
+
+                importePago -= FacturasRepository.ImporteFactura(f.Nro);
+
                 listBox1.Items.Remove(listBox1.SelectedItems[0]);
                 listBox1.Refresh();
+
+                lblImporte.Text = "$" + importePago;
 
                 txtNroFactura.Text = "";
             }

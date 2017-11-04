@@ -85,5 +85,10 @@ namespace PagoAgilFrba
             this.Hide();
             indexUsuariosForm.Show();
         }
+
+        private void IndexForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
