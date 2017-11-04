@@ -29,24 +29,46 @@ namespace PagoAgilFrba.AbmRol
         public static string ConnectionString { get { return ConfigurationManager.ConnectionStrings["GDD"].ConnectionString; } }
         SqlConnection conn = new SqlConnection(ConnectionString);
 
-        List<Funcionalidad> funcionalidades;
-
+        private string verbo;
+        List<Funcionalidad> FuncionalidadesDelRol;
+        List<Funcionalidad> Funcionalidades;
+        Rol Rol;
+        bool ParaModificar;
         public CrearRolForm()
         {
-            funcionalidades = new List<Funcionalidad>();
+            FuncionalidadesDelRol = new List<Funcionalidad>();
             InitializeComponent();
             CargarCombo();
+            label1.Text = "Crear Rol";
+            button1.Text = "Crear";
+            verbo = "agregado";
+            ParaModificar = false;
+        }
+
+        public CrearRolForm(Rol rol)
+        {
+            Rol = rol;
+            InitializeComponent();
+            CargarCombo();
+            rol.Funcionalidades = FuncionalidadesRepository.GetAllFuncFromRol(rol, Funcionalidades);
+            FuncionalidadesDelRol = new List<Funcionalidad>(rol.Funcionalidades);
+            label1.Text = "Modificar Rol";
+            button1.Text = "Modificar";
+            txtNombre.Text = rol.Nombre;
+            foreach (var item in FuncionalidadesDelRol)
+            {
+                listBoxFuncionalidades.Items.Add(item);
+            }
+            verbo = "modificado";
+            ParaModificar = true;
         }
 
         private void CargarCombo()
         {
-            var Funcionalidades = RolesRepository.GetAllFuncionalidades();
+            Funcionalidades = FuncionalidadesRepository.GetAllFuncionalidades();
             foreach (var item in Funcionalidades)
             {
-                ComboboxItem cbItem = new ComboboxItem();
-                cbItem.Text = item.Nombre;
-                cbItem.Value = item.Id;
-                cboFuncionalidades.Items.Add(cbItem);
+                cboFuncionalidades.Items.Add(item);
             }
             cboFuncionalidades.SelectedIndex = 0;
         }
@@ -60,11 +82,20 @@ namespace PagoAgilFrba.AbmRol
             {
                 try
                 {
-                    Rol rol = new Rol();
-                    rol.Nombre = txtNombre.Text;
-                    rol.Funcionalidades = funcionalidades;
-                    RolesRepository.AgregarRol(rol);
-                    MessageBox.Show("El Rol ha sido agregado correctamente");
+                    
+                    if (ParaModificar)
+                    {
+                        Rol.Nombre = txtNombre.Text;
+                        RolesRepository.EditarRol(Rol, FuncionalidadesDelRol);
+                    }
+                    else
+                    {
+                        Rol rol = new Rol();
+                        rol.Nombre = txtNombre.Text;
+                        rol.Funcionalidades = FuncionalidadesDelRol;
+                        RolesRepository.AgregarRol(rol);
+                    }
+                    MessageBox.Show("El Rol ha sido " + verbo + " correctamente.");
                     this.Hide();
                     var indexForm = new IndexRolesForm();
                     indexForm.Show();
@@ -93,24 +124,83 @@ namespace PagoAgilFrba.AbmRol
                 errores.Add("Ingrese un nombre valido");
             else
             {
-                int cantIguales = RolesRepository.GetCantidadRolesConEseNombre(txtNombre.Text);
-                if (cantIguales > 0)
-                    errores.Add("Ya existe un rol con ese nombre");
+                if (!(ParaModificar && txtNombre.Text == Rol.Nombre))
+                {
+                    int cantIguales = RolesRepository.GetCantidadRolesConEseNombre(txtNombre.Text);
+                    if (cantIguales > 0)
+                        errores.Add("Ya existe un rol con ese nombre");
+                }
+
             }
             return errores;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var funcionalidad = ((ComboboxItem)cboFuncionalidades.SelectedItem);
-            if (!funcionalidades.Any(func => func.Id == funcionalidad.Value))
+            var funcionalidad = ((Funcionalidad)cboFuncionalidades.SelectedItem);
+            if (!FuncionalidadesDelRol.Contains(funcionalidad))
             {
-                listBoxFuncionalidades.Items.Add(cboFuncionalidades.SelectedItem);
-                funcionalidades.Add(new Funcionalidad { Id = funcionalidad.Value, Nombre = funcionalidad.Text });
+                listBoxFuncionalidades.Items.Add(funcionalidad);
+                FuncionalidadesDelRol.Add(funcionalidad);
             }
             else
                 MessageBox.Show("Las funcionalidades no pueden estar repetidas en un rol.");
 
+        }
+
+        private void listBoxFuncionalidades_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnQuitar_Click(object sender, EventArgs e)
+        {
+            var item = ((Funcionalidad)listBoxFuncionalidades.SelectedItem);
+            if (item == null)
+            {
+                MessageBox.Show("Seleccione una Funcionalidad para agregar");
+            }
+            else
+            {
+                FuncionalidadesDelRol.Remove(item);
+                listBoxFuncionalidades.Items.Remove(item);
+            }
+
+        }
+
+        private void clientesToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            var indexClientes = new IndexClientesForm();
+            this.Hide();
+            indexClientes.Show();
+        }
+
+        private void sucursalesToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            var indexSucursales = new IndexSucursalesForm();
+            this.Hide();
+            indexSucursales.Show();
+        }
+
+        private void rolesToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            var index = new IndexRolesForm();
+            this.Hide();
+            index.Show();
+        }
+
+        private void empresasToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            var indexEmpresas = new IndexEmpresasForm();
+            this.Hide();
+            indexEmpresas.Show();
+        }
+
+        private void facturasToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            var indexFacturas = new IndexFacturasForm();
+            this.Hide();
+            indexFacturas.Show();
         }
 
     }

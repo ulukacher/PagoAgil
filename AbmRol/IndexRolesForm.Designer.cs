@@ -77,6 +77,7 @@
             // 
             // rolesToolStripMenuItem
             // 
+            this.rolesToolStripMenuItem.Enabled = false;
             this.rolesToolStripMenuItem.Name = "rolesToolStripMenuItem";
             this.rolesToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.rolesToolStripMenuItem.Text = "Roles";

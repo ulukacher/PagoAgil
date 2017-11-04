@@ -105,6 +105,12 @@
     <Compile Include="AbmRol\CrearRolForm.Designer.cs">
       <DependentUpon>CrearRolForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmRol\EditRolForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmRol\EditRolForm.Designer.cs">
+      <DependentUpon>EditRolForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AbmRol\IndexRolesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -202,6 +208,7 @@
     <Compile Include="Repositories\EstadisticasRepository.cs" />
     <Compile Include="Repositories\FacturasRepository.cs" />
     <Compile Include="Repositories\FormasDePagoRepository.cs" />
+    <Compile Include="Repositories\FuncionalidadesRepository.cs" />
     <Compile Include="Repositories\PagosRepository.cs" />
     <Compile Include="Repositories\RendicionesRepository.cs" />
     <Compile Include="Repositories\RolesRepository.cs" />
