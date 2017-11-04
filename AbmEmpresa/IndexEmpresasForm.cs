@@ -123,17 +123,22 @@ namespace PagoAgilFrba.AbmEmpresa
             if (e.ColumnIndex == 6)
             {
                 string cuitAInhabilitar = (string)dataGridView1.Rows[e.RowIndex].Cells[0].Value;
-                try
+                if (EmpresasRepository.PuedeDarDeBaja(cuitAInhabilitar))
                 {
-                    EmpresasRepository.DarDeBajaEmpresa(cuitAInhabilitar);
-                    MessageBox.Show("La empresa ha sido marcada como inactiva");
-                    LlenarGrillaEmpresas();
-                }
-                catch (Exception exc)
-                {
-                    MessageBox.Show("Hubo un error al dar de baja a la empresa");
+                    try
+                    {
+                        EmpresasRepository.DarDeBajaEmpresa(cuitAInhabilitar);
+                        MessageBox.Show("La empresa ha sido marcada como inactiva");
+                        LlenarGrillaEmpresas();
+                    }
+                    catch (Exception exc)
+                    {
+                        MessageBox.Show("Hubo un error al dar de baja a la empresa");
 
+                    }
                 }
+                else
+                    MessageBox.Show("La empresa no puede ser dada de baja debido a que no todas sus facturas fueron rendidas.");
             }
         }
 
