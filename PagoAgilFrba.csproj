@@ -147,6 +147,12 @@
     <Compile Include="Classes\Empresa.cs" />
     <Compile Include="Classes\Rubro.cs" />
     <Compile Include="Classes\Usuario.cs" />
+    <Compile Include="ElegirRolForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ElegirRolForm.Designer.cs">
+      <DependentUpon>ElegirRolForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -264,6 +270,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AbmSucursal\IndexSucursalesForm.resx">
       <DependentUpon>IndexSucursalesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ElegirRolForm.resx">
+      <DependentUpon>ElegirRolForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

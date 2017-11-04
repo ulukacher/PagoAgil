@@ -50,7 +50,7 @@ namespace PagoAgilFrba.AbmRol
             Rol = rol;
             InitializeComponent();
             CargarCombo();
-            rol.Funcionalidades = FuncionalidadesRepository.GetAllFuncFromRol(rol, Funcionalidades);
+            rol.Funcionalidades = FuncionalidadesRepository.GetAllFuncFromRol(rol);
             FuncionalidadesDelRol = new List<Funcionalidad>(rol.Funcionalidades);
             label1.Text = "Modificar Rol";
             button1.Text = "Modificar";
@@ -201,6 +201,13 @@ namespace PagoAgilFrba.AbmRol
             var indexFacturas = new IndexFacturasForm();
             this.Hide();
             indexFacturas.Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var index = new IndexRolesForm();
+            this.Hide();
+            index.Show();
         }
 
     }

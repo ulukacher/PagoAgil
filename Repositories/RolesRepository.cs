@@ -13,6 +13,34 @@ namespace PagoAgilFrba.Repositories
 {
     public class RolesRepository
     {
+        public static List<Rol> GetRolDeUsuario(string username)
+        {
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
+            conn.Open();
+            SqlCommand command = new SqlCommand();
+            string query = "SELECT  rol_id , rol_nombre, rol_activo FROM GD2C2017.LOS_MANTECOSOS.Roles " +
+                "INNER JOIN LOS_MANTECOSOS.RolesPorUsuario ON  rolusuario_IdRol = rol_id " +
+                "INNER JOIN LOS_MANTECOSOS.Usuarios ON  usuario_nombre = rolusuario_usuarioNombre " +
+                "WHERE usuario_nombre = @username";
+            command.Connection = conn;
+            command.CommandText = query;
+            command.Parameters.AddWithValue("@username", username);
+            var roles = new List<Rol>();
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Rol rol = new Rol();
+                    rol.Id = Convert.ToInt32(reader["rol_id"]);
+                    rol.Nombre = (string)reader["rol_nombre"];
+                    rol.Activo = (bool)reader["rol_activo"];
+                    roles.Add(rol);
+                }
+            }
+            conn.Close();
+            return roles;
+        }
+
         public static void HabilitarRol(int id)
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
@@ -29,7 +57,8 @@ namespace PagoAgilFrba.Repositories
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
             conn.Open();
-            var query = "update LOS_MANTECOSOS.Roles set rol_activo=0 where rol_id = @id_rol;";
+            var query = "update LOS_MANTECOSOS.Roles set rol_activo=0 where rol_id = @id_rol; "
+                + "delete from LOS_MANTECOSOS.RolesPorUsuario where rolusuario_IdRol = @id_rol";
 
             SqlCommand command = new SqlCommand(query, conn);
             command.Parameters.AddWithValue("@id_rol", id);

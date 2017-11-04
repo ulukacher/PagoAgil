@@ -52,5 +52,12 @@ namespace PagoAgilFrba.Usuarios
 
             }
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var index = new IndexForm();
+            this.Hide();
+            index.Show();
+        }
     }
 }

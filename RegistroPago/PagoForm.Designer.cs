@@ -28,12 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.facturasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.rolesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sucursalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.clientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.empresasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
@@ -57,53 +51,8 @@
             this.cboMedioDePago = new System.Windows.Forms.ComboBox();
             this.lblImporte = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.menuStrip1.SuspendLayout();
+            this.button4 = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // facturasToolStripMenuItem
-            // 
-            this.facturasToolStripMenuItem.Name = "facturasToolStripMenuItem";
-            this.facturasToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
-            this.facturasToolStripMenuItem.Text = "Facturas";
-            // 
-            // rolesToolStripMenuItem
-            // 
-            this.rolesToolStripMenuItem.Name = "rolesToolStripMenuItem";
-            this.rolesToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
-            this.rolesToolStripMenuItem.Text = "Roles";
-            // 
-            // sucursalesToolStripMenuItem
-            // 
-            this.sucursalesToolStripMenuItem.Name = "sucursalesToolStripMenuItem";
-            this.sucursalesToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
-            this.sucursalesToolStripMenuItem.Text = "Sucursales";
-            // 
-            // clientesToolStripMenuItem
-            // 
-            this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.clientesToolStripMenuItem.Text = "Clientes";
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.clientesToolStripMenuItem,
-            this.sucursalesToolStripMenuItem,
-            this.rolesToolStripMenuItem,
-            this.empresasToolStripMenuItem,
-            this.facturasToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(393, 24);
-            this.menuStrip1.TabIndex = 53;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // empresasToolStripMenuItem
-            // 
-            this.empresasToolStripMenuItem.Name = "empresasToolStripMenuItem";
-            this.empresasToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
-            this.empresasToolStripMenuItem.Text = "Empresas";
             // 
             // button3
             // 
@@ -326,17 +275,27 @@
             this.label10.TabIndex = 58;
             this.label10.Text = "Importe a Pagar";
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(13, 13);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 59;
+            this.button4.Text = "Volver";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // PagoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(393, 568);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.lblImporte);
             this.Controls.Add(this.cboMedioDePago);
             this.Controls.Add(this.cboSucursal);
             this.Controls.Add(this.cboClienteDNI);
-            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label9);
@@ -357,8 +316,6 @@
             this.Controls.Add(this.label1);
             this.Name = "PagoForm";
             this.Text = "PagoForm";
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -366,12 +323,6 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStripMenuItem facturasToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem rolesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem sucursalesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem clientesToolStripMenuItem;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem empresasToolStripMenuItem;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label9;
@@ -395,5 +346,6 @@
         private System.Windows.Forms.ComboBox cboMedioDePago;
         private System.Windows.Forms.Label lblImporte;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button button4;
     }
 }

@@ -224,5 +224,12 @@ namespace PagoAgilFrba.AbmFactura
             this.Hide();
             indexFacturas.Show();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var index = new IndexFacturasForm();
+            this.Hide();
+            index.Show();
+        }
     }
 }

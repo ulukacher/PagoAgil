@@ -14,6 +14,28 @@ namespace PagoAgilFrba.Repositories
     public class SucursalesRepository
     {
         const string regexSoloNumeros = @"^\d+$";
+
+        public static Sucursal GetSucursalByUsuario(string username)
+        {
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
+            conn.Open();
+            string query = "Select S.* from LOS_MANTECOSOS.Sucursales S "
+                + "INNER JOIN LOS_MANTECOSOS.Usuarios on sucu_codigoPostal = usuario_sucursalCodigoPostal where usuario_nombre=@username";
+            SqlCommand command = new SqlCommand(query, conn);
+            command.Parameters.AddWithValue("@username", username);
+            SqlDataReader reader = command.ExecuteReader();
+            Sucursal sucursal = new Sucursal();
+            if (reader.Read())
+            {
+                sucursal.Nombre = (string)reader["sucu_nombre"];
+                sucursal.Direccion = (string)reader["sucu_direccion"];
+                sucursal.CodigoPostal = Convert.ToInt32(reader["sucu_codigoPostal"]);
+                sucursal.Activa = (bool)reader["sucu_activa"];
+            }
+            conn.Close();
+            return sucursal;
+        }
+
         public static void DarDeBajaSucursal(int codPostal)
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);

@@ -107,12 +107,13 @@ namespace PagoAgilFrba.AbmRol
                             RolesRepository.DesHabilitarRol(id);
                             MessageBox.Show("El rol ha sido marcado como inactivo");
                             dataGridView1.Rows[e.RowIndex].Cells[2].Value = false;
-                            /*
-                             if(rolActual.Id == id)
-                              {
-                                logOut();
-                              }
-                            */
+
+                            if (Rol.RolActual.Id == id) //si deshabilito su propio rol, se cierra sesion
+                            {
+                                var indexForm = new Form1();
+                                this.Hide();
+                                indexForm.Show();
+                            }
                         }
                     }
                     else //habilitar
@@ -127,6 +128,13 @@ namespace PagoAgilFrba.AbmRol
             {
                 MessageBox.Show("Hubo un error. Detalles: " + exc.Message);
             }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var index = new IndexForm();
+            this.Hide();
+            index.Show();
         }
 
     }

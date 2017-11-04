@@ -46,15 +46,9 @@
             this.Activa = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Editar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.clientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sucursalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.rolesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.empresasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.facturasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button4 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -68,9 +62,9 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(503, 111);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(189, 212);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
@@ -79,7 +73,7 @@
             // txtFiltroCodPostal
             // 
             this.txtFiltroCodPostal.Location = new System.Drawing.Point(96, 128);
-            this.txtFiltroCodPostal.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtFiltroCodPostal.Margin = new System.Windows.Forms.Padding(2);
             this.txtFiltroCodPostal.Name = "txtFiltroCodPostal";
             this.txtFiltroCodPostal.Size = new System.Drawing.Size(76, 20);
             this.txtFiltroCodPostal.TabIndex = 9;
@@ -97,7 +91,7 @@
             // btnBuscar
             // 
             this.btnBuscar.Location = new System.Drawing.Point(108, 175);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(64, 23);
             this.btnBuscar.TabIndex = 7;
@@ -108,7 +102,7 @@
             // btnLimpiar
             // 
             this.btnLimpiar.Location = new System.Drawing.Point(16, 175);
-            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(2);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(64, 23);
             this.btnLimpiar.TabIndex = 6;
@@ -119,7 +113,7 @@
             // txtFiltroDireccion
             // 
             this.txtFiltroDireccion.Location = new System.Drawing.Point(96, 76);
-            this.txtFiltroDireccion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtFiltroDireccion.Margin = new System.Windows.Forms.Padding(2);
             this.txtFiltroDireccion.Name = "txtFiltroDireccion";
             this.txtFiltroDireccion.Size = new System.Drawing.Size(76, 20);
             this.txtFiltroDireccion.TabIndex = 4;
@@ -127,7 +121,7 @@
             // txtFiltroNombre
             // 
             this.txtFiltroNombre.Location = new System.Drawing.Point(96, 27);
-            this.txtFiltroNombre.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtFiltroNombre.Margin = new System.Windows.Forms.Padding(2);
             this.txtFiltroNombre.Name = "txtFiltroNombre";
             this.txtFiltroNombre.Size = new System.Drawing.Size(76, 20);
             this.txtFiltroNombre.TabIndex = 3;
@@ -155,7 +149,7 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(29, 65);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(72, 32);
             this.button1.TabIndex = 7;
@@ -187,7 +181,7 @@
             this.Editar,
             this.Eliminar});
             this.dataGridView1.Location = new System.Drawing.Point(9, 117);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 24;
@@ -233,74 +227,32 @@
             this.Eliminar.Name = "Eliminar";
             this.Eliminar.ReadOnly = true;
             // 
-            // menuStrip1
+            // button4
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.clientesToolStripMenuItem,
-            this.sucursalesToolStripMenuItem,
-            this.rolesToolStripMenuItem,
-            this.empresasToolStripMenuItem,
-            this.facturasToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(703, 24);
-            this.menuStrip1.TabIndex = 9;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // clientesToolStripMenuItem
-            // 
-            this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.clientesToolStripMenuItem.Text = "Clientes";
-            this.clientesToolStripMenuItem.Click += new System.EventHandler(this.clientesToolStripMenuItem_Click);
-            // 
-            // sucursalesToolStripMenuItem
-            // 
-            this.sucursalesToolStripMenuItem.Name = "sucursalesToolStripMenuItem";
-            this.sucursalesToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
-            this.sucursalesToolStripMenuItem.Text = "Sucursales";
-            this.sucursalesToolStripMenuItem.Click += new System.EventHandler(this.sucursalesToolStripMenuItem_Click);
-            // 
-            // rolesToolStripMenuItem
-            // 
-            this.rolesToolStripMenuItem.Name = "rolesToolStripMenuItem";
-            this.rolesToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
-            this.rolesToolStripMenuItem.Text = "Roles";
-            this.rolesToolStripMenuItem.Click += new System.EventHandler(this.rolesToolStripMenuItem_Click);
-            // 
-            // empresasToolStripMenuItem
-            // 
-            this.empresasToolStripMenuItem.Name = "empresasToolStripMenuItem";
-            this.empresasToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
-            this.empresasToolStripMenuItem.Text = "Empresas";
-            this.empresasToolStripMenuItem.Click += new System.EventHandler(this.empresasToolStripMenuItem_Click);
-            // 
-            // facturasToolStripMenuItem
-            // 
-            this.facturasToolStripMenuItem.Name = "facturasToolStripMenuItem";
-            this.facturasToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
-            this.facturasToolStripMenuItem.Text = "Facturas";
-            this.facturasToolStripMenuItem.Click += new System.EventHandler(this.facturasToolStripMenuItem_Click);
+            this.button4.Location = new System.Drawing.Point(12, 12);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 60;
+            this.button4.Text = "Volver";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // IndexSucursalesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(703, 343);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "IndexSucursalesForm";
             this.Text = "Form1";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -326,11 +278,6 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn Activa;
         private System.Windows.Forms.DataGridViewButtonColumn Editar;
         private System.Windows.Forms.DataGridViewButtonColumn Eliminar;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem clientesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem sucursalesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem rolesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem empresasToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem facturasToolStripMenuItem;
+        private System.Windows.Forms.Button button4;
     }
 }

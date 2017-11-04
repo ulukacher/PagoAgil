@@ -27,8 +27,6 @@ namespace PagoAgilFrba.AbmEmpresa
             InitializeComponent();
             this.LlenarGrillaEmpresas();
             CargarCombo();
-
-            empresasToolStripMenuItem.Enabled = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -185,6 +183,13 @@ namespace PagoAgilFrba.AbmEmpresa
             var indexFacturas = new IndexFacturasForm();
             this.Hide();
             indexFacturas.Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var index = new IndexForm();
+            this.Hide();
+            index.Show();
         }
     }
 }
