@@ -43,11 +43,10 @@ namespace PagoAgilFrba.Repositories
             List<ItemReporteClientesConMasPagos> lst = new List<ItemReporteClientesConMasPagos>();
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
             conn.Open();
-            string query = "select top 5 count(*) as cantidad,c.clie_nombre +' ' +c.clie_apellido as nombreCompleto,p.pago_fecha" +
-                            " from LOS_MANTECOSOS.pagos p" +
-                            " inner join LOS_MANTECOSOS.clientes c on c.clie_dni = p.pago_clienteDni" +
-                            " where p.pago_fecha >=@fechaDesde and p.pago_fecha < @fechaHasta"+
-                            " group by c.clie_nombre +' ' +c.clie_apellido,p.pago_fecha" +
+            string query = "select top 5 count(*) as cantidad,nombreCompleto" +
+                            " from LOS_MANTECOSOS.vClientesPagos" +
+                            " where fechaPago >=@fechaDesde and fechaPago < @fechaHasta" +
+                            " group by nombreCompleto" +
                             " order by 1 desc";
             SqlCommand command = new SqlCommand(query, conn);
             command.Parameters.AddWithValue("@fechaDesde", fechaDesde.Date);
@@ -59,6 +58,53 @@ namespace PagoAgilFrba.Repositories
                     ItemReporteClientesConMasPagos item = new ItemReporteClientesConMasPagos();
                     item.Cliente = (string)reader["nombreCompleto"];
                     item.CantidadPagos = (int)reader["cantidad"];
+                    lst.Add(item);
+                }
+
+            }
+            conn.Close();
+            return lst;
+        }
+
+        public static List<ItemReportePorcentajeFacturasCobradas> GetPorcentajesFacturasCobradasPorEmpresa(DateTime fechaDesde, DateTime fechaHasta)
+        {
+            List<ItemReportePorcentajeFacturasCobradas> lst = new List<ItemReportePorcentajeFacturasCobradas>();
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
+            conn.Open();
+            string query = "select * from LOS_MANTECOSOS.ObtenerPorcentajeFacturasCobradasPorEmpresas(@fechaDesde,@fechaHasta)";
+            SqlCommand command = new SqlCommand(query, conn);
+            command.Parameters.AddWithValue("@fechaDesde", fechaDesde.Date);
+            command.Parameters.AddWithValue("@fechaHasta", fechaHasta.AddDays(1).Date);
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    ItemReportePorcentajeFacturasCobradas item = new ItemReportePorcentajeFacturasCobradas();
+                    item.Empresa = (string)reader["nombre"];
+                    item.Porcentaje = (decimal)reader["porcentaje"];
+                    lst.Add(item);
+                }
+
+            }
+            conn.Close();
+            return lst;
+        }
+        public static List<ItemReporteClientesMasFieles> GetClientesMasFieles(DateTime fechaDesde, DateTime fechaHasta)
+        {
+            List<ItemReporteClientesMasFieles> lst = new List<ItemReporteClientesMasFieles>();
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
+            conn.Open();
+            string query = "select * from LOS_MANTECOSOS.ClientesMasFieles(@fechaDesde,@fechaHasta)";
+            SqlCommand command = new SqlCommand(query, conn);
+            command.Parameters.AddWithValue("@fechaDesde", fechaDesde.Date);
+            command.Parameters.AddWithValue("@fechaHasta", fechaHasta.AddDays(1).Date);
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    ItemReporteClientesMasFieles item = new ItemReporteClientesMasFieles();
+                    item.Cliente = (string)reader["nombreCompleto"];
+                    item.Porcentaje = (decimal)reader["porcentaje"];
                     lst.Add(item);
                 }
 
