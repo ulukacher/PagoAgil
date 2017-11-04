@@ -37,5 +37,12 @@ namespace PagoAgilFrba.ListadoEstadistico
             this.Hide();
             listadoPorcentajFacturasCobradasEmpresas.Show();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var clientesMasFielesForm = new ListadoClientesMasFieles();
+            this.Hide();
+            clientesMasFielesForm.Show();
+        }
     }
 }

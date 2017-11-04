@@ -105,12 +105,6 @@
     <Compile Include="AbmRol\CrearRolForm.Designer.cs">
       <DependentUpon>CrearRolForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmRol\EditRolForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmRol\EditRolForm.Designer.cs">
-      <DependentUpon>EditRolForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="AbmRol\IndexRolesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -139,6 +133,7 @@
     <Compile Include="Classes\ComboboxItem.cs" />
     <Compile Include="Classes\ComboBoxItemStringValue.cs" />
     <Compile Include="Classes\Estadisticas\ItemReporteClientesConMasPagos.cs" />
+    <Compile Include="Classes\Estadisticas\ItemReporteClientesMasFieles.cs" />
     <Compile Include="Classes\Estadisticas\ItemReporteMontosRendidosEmpresas.cs" />
     <Compile Include="Classes\Estadisticas\ItemReportePorcentajeFacturasCobradas.cs" />
     <Compile Include="Classes\Factura.cs" />
@@ -177,6 +172,12 @@
     </Compile>
     <Compile Include="ListadoEstadistico\ListadoClientesConMasPagosForm.Designer.cs">
       <DependentUpon>ListadoClientesConMasPagosForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListadoEstadistico\ListadoClientesMasFieles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListadoEstadistico\ListadoClientesMasFieles.Designer.cs">
+      <DependentUpon>ListadoClientesMasFieles.cs</DependentUpon>
     </Compile>
     <Compile Include="ListadoEstadistico\ListadoEmpresasMontoRendidoForm.cs">
       <SubType>Form</SubType>
@@ -275,6 +276,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ListadoEstadistico\ListadoClientesConMasPagosForm.resx">
       <DependentUpon>ListadoClientesConMasPagosForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListadoEstadistico\ListadoClientesMasFieles.resx">
+      <DependentUpon>ListadoClientesMasFieles.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListadoEstadistico\ListadoEmpresasMontoRendidoForm.resx">
       <DependentUpon>ListadoEmpresasMontoRendidoForm.cs</DependentUpon>
