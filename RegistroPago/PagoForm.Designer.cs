@@ -55,6 +55,8 @@
             this.cboClienteDNI = new System.Windows.Forms.ComboBox();
             this.cboSucursal = new System.Windows.Forms.ComboBox();
             this.cboMedioDePago = new System.Windows.Forms.ComboBox();
+            this.lblImporte = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -189,12 +191,12 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(152, 502);
+            this.button1.Location = new System.Drawing.Point(152, 527);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(83, 30);
             this.button1.TabIndex = 41;
-            this.button1.Text = "Crear";
+            this.button1.Text = "Pagar";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -305,11 +307,32 @@
             this.cboMedioDePago.Size = new System.Drawing.Size(92, 21);
             this.cboMedioDePago.TabIndex = 56;
             // 
+            // lblImporte
+            // 
+            this.lblImporte.AutoSize = true;
+            this.lblImporte.Location = new System.Drawing.Point(176, 488);
+            this.lblImporte.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblImporte.Name = "lblImporte";
+            this.lblImporte.Size = new System.Drawing.Size(0, 13);
+            this.lblImporte.TabIndex = 57;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(71, 488);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(82, 13);
+            this.label10.TabIndex = 58;
+            this.label10.Text = "Importe a Pagar";
+            // 
             // PagoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(393, 540);
+            this.ClientSize = new System.Drawing.Size(393, 568);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.lblImporte);
             this.Controls.Add(this.cboMedioDePago);
             this.Controls.Add(this.cboSucursal);
             this.Controls.Add(this.cboClienteDNI);
@@ -370,5 +393,7 @@
         private System.Windows.Forms.ComboBox cboClienteDNI;
         private System.Windows.Forms.ComboBox cboSucursal;
         private System.Windows.Forms.ComboBox cboMedioDePago;
+        private System.Windows.Forms.Label lblImporte;
+        private System.Windows.Forms.Label label10;
     }
 }

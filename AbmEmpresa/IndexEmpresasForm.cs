@@ -163,7 +163,9 @@ namespace PagoAgilFrba.AbmEmpresa
 
         private void rolesToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
-
+            var indexRoles = new IndexRolesForm();
+            this.Hide();
+            indexRoles.Show();
         }
 
         private void empresasToolStripMenuItem_Click(object sender, System.EventArgs e)

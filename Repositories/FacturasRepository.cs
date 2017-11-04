@@ -474,7 +474,7 @@ namespace PagoAgilFrba.Repositories
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
             conn.Open();
 
-            var query = "SELECT COUNT(*) from LOS_MANTECOSOS.Facturas WHERE factura_nro = @nroFactura AND (factura_estado = 1 OR factura_estado = 2)";
+            var query = "SELECT COUNT(*) FROM LOS_MANTECOSOS.Facturas WHERE factura_nro = @nroFactura AND (factura_estado = 1 OR factura_estado = 2)";
 
             SqlCommand command = new SqlCommand(query, conn);
             command.Parameters.AddWithValue("@nroFactura", nroFactura);
@@ -484,6 +484,41 @@ namespace PagoAgilFrba.Repositories
             conn.Close();
             
             return cant > 0;
+        }
+
+        public static bool FacturaEsDeCliente(decimal nroFactura, decimal clienteDNI)
+        {
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
+            conn.Open();
+
+            var query = "SELECT COUNT(*) FROM LOS_MANTECOSOS.Facturas WHERE factura_nro = @nroFactura AND factura_clienteDNI = @clienteDNI";
+
+            SqlCommand command = new SqlCommand(query, conn);
+            command.Parameters.AddWithValue("@nroFactura", nroFactura);
+            command.Parameters.AddWithValue("@clienteDNI", clienteDNI);
+
+            int cant = (int)command.ExecuteScalar();
+
+            conn.Close();
+
+            return cant > 0;
+        }
+
+        public static decimal ImporteFactura(decimal nroFactura)
+        {
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
+            conn.Open();
+
+            var query = "SELECT SUM(itemFac_monto) FROM LOS_MANTECOSOS.ItemsFacturas WHERE itemFac_facturaNro = @nroFactura";
+
+            SqlCommand command = new SqlCommand(query, conn);
+            command.Parameters.AddWithValue("@nroFactura", nroFactura);
+
+            decimal importe = (decimal)command.ExecuteScalar();
+
+            conn.Close();
+
+            return importe;
         }
     }
 }

@@ -99,11 +99,17 @@
     <Compile Include="AbmFactura\IndexFacturasForm.Designer.cs">
       <DependentUpon>IndexFacturasForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmRol\Form1.cs">
+    <Compile Include="AbmRol\CrearRolForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmRol\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="AbmRol\CrearRolForm.Designer.cs">
+      <DependentUpon>CrearRolForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmRol\IndexRolesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmRol\IndexRolesForm.Designer.cs">
+      <DependentUpon>IndexRolesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmSucursal\CreateSucursalForm.cs">
       <SubType>Form</SubType>
@@ -131,10 +137,12 @@
     <Compile Include="Classes\Estadisticas\ItemReporteMontosRendidosEmpresas.cs" />
     <Compile Include="Classes\Estadisticas\ItemReportePorcentajeFacturasCobradas.cs" />
     <Compile Include="Classes\Factura.cs" />
+    <Compile Include="Classes\Funcionalidad.cs" />
     <Compile Include="Classes\FormaDePago.cs" />
     <Compile Include="Classes\ItemFactura.cs" />
     <Compile Include="Classes\Pago.cs" />
     <Compile Include="Classes\Rendicion.cs" />
+    <Compile Include="Classes\Rol.cs" />
     <Compile Include="Classes\Sucursal.cs" />
     <Compile Include="Classes\Empresa.cs" />
     <Compile Include="Classes\Rubro.cs" />
@@ -203,6 +211,7 @@
     <Compile Include="Repositories\FormasDePagoRepository.cs" />
     <Compile Include="Repositories\PagosRepository.cs" />
     <Compile Include="Repositories\RendicionesRepository.cs" />
+    <Compile Include="Repositories\RolesRepository.cs" />
     <Compile Include="Repositories\SucursalesRepository.cs" />
     <Compile Include="Repositories\EmpresasRepository.cs" />
     <Compile Include="Repositories\RubrosRepository.cs" />
@@ -240,8 +249,11 @@
     <EmbeddedResource Include="AbmFactura\IndexFacturasForm.resx">
       <DependentUpon>IndexFacturasForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AbmRol\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="AbmRol\CrearRolForm.resx">
+      <DependentUpon>CrearRolForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmRol\IndexRolesForm.resx">
+      <DependentUpon>IndexRolesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmSucursal\CreateSucursalForm.resx">
       <DependentUpon>CreateSucursalForm.cs</DependentUpon>
