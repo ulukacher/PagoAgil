@@ -64,11 +64,25 @@ namespace PagoAgilFrba.AbmEmpresa
                     empresaAEditar.RubroId = ((ComboboxItem)cboRubro.SelectedItem).Value;
                     empresaAEditar.Activa = chkActiva.Checked;
 
-                    EmpresasRepository.EditarEmpresa(empresaAEditar, empresa.Cuit);
-                    MessageBox.Show("La empresa ha sido modificada correctamente");
-                    this.Hide();
-                    var indexForm = new IndexEmpresasForm();
-                    indexForm.Show();
+                    if (empresaAEditar.Activa)
+                    {
+                        EmpresasRepository.EditarEmpresa(empresaAEditar, empresa.Cuit);
+                        MessageBox.Show("La empresa ha sido modificada correctamente");
+                        this.Hide();
+                        var indexForm = new IndexEmpresasForm();
+                        indexForm.Show();
+                    }
+                    else if (EmpresasRepository.PuedeDarDeBaja(empresa.Cuit)) {
+                        EmpresasRepository.EditarEmpresa(empresaAEditar, empresa.Cuit);
+                        MessageBox.Show("La empresa ha sido modificada correctamente");
+                        this.Hide();
+                        var indexForm = new IndexEmpresasForm();
+                        indexForm.Show();
+                    }
+                    else
+                        MessageBox.Show("La empresa no puede tener estado inactivo debido a que no todas sus facturas fueron rendidas.");
+
+                    
                 }
                 catch (SqlException exc)
                 {
