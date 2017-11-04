@@ -83,6 +83,7 @@ namespace PagoAgilFrba.AbmRol
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            /*
             //Editar
             if (e.ColumnIndex == 3)
             {
@@ -108,6 +109,7 @@ namespace PagoAgilFrba.AbmRol
 
                 }
             }
+            */
         }
 
     }
