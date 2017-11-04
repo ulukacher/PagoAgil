@@ -31,7 +31,6 @@ namespace PagoAgilFrba.AbmRol
                 {
                     int index = dataGridView1.Rows.Add(item.Id, item.Nombre, item.Activo);
                     dataGridView1.Rows[index].Cells[3].Value = "Editar";
-                    dataGridView1.Rows[index].Cells[4].Value = "Eliminar";
                 }
             }
             catch (Exception exc)
@@ -84,33 +83,50 @@ namespace PagoAgilFrba.AbmRol
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
-            //Editar
-            if (e.ColumnIndex == 3)
+            var id = (int)dataGridView1.Rows[e.RowIndex].Cells[0].Value;
+            try
             {
-                int id = (int)dataGridView1.Rows[e.RowIndex].Cells[0].Value;
-                var rol = Roles.Find(r => r.Id == id);
-                var editForm = new CrearRolForm(rol);
-                this.Hide();
-                editForm.Show();
-            }
-            /* 
-           //Eliminar
-           if (e.ColumnIndex == 4)
-           {
-               decimal dniAInhabilitar = (decimal)dataGridView1.Rows[e.RowIndex].Cells[2].Value;
-               try
-               {
-                   ClientesRepository.DarDeBajaCliente(dniAInhabilitar);
-                   MessageBox.Show("El cliente ha sido marcado como inactivo");
-               }
-               catch (Exception exc)
-               {
-                   MessageBox.Show("Hubo un error al dar de baja al cliente");
+                //Editar
+                if (e.ColumnIndex == 3)
+                {
+                    var rol = Roles.Find(r => r.Id == id);
+                    var editForm = new CrearRolForm(rol);
+                    this.Hide();
+                    editForm.Show();
+                }
 
-               }
-           }
-           */
+                if (e.ColumnIndex == 2)
+                {
+
+                    var activo = (bool)dataGridView1.Rows[e.RowIndex].Cells[2].Value;
+                    if (activo) //deshabilitar
+                    {
+                        var res = MessageBox.Show("¿Esta seguro de que desea deshabilitar este rol?", "", MessageBoxButtons.OKCancel);
+                        if (res == System.Windows.Forms.DialogResult.OK)
+                        {
+                            RolesRepository.DesHabilitarRol(id);
+                            MessageBox.Show("El rol ha sido marcado como inactivo");
+                            dataGridView1.Rows[e.RowIndex].Cells[2].Value = false;
+                            /*
+                             if(rolActual.Id == id)
+                              {
+                                logOut();
+                              }
+                            */
+                        }
+                    }
+                    else //habilitar
+                    {
+                        RolesRepository.HabilitarRol(id);
+                        MessageBox.Show("El rol ha sido marcado como activo");
+                        dataGridView1.Rows[e.RowIndex].Cells[2].Value = true;
+                    }
+                }
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show("Hubo un error. Detalles: " + exc.Message);
+            }
         }
 
     }

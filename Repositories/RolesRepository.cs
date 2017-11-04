@@ -13,6 +13,29 @@ namespace PagoAgilFrba.Repositories
 {
     public class RolesRepository
     {
+        public static void HabilitarRol(int id)
+        {
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
+            conn.Open();
+            var query = "update LOS_MANTECOSOS.Roles set rol_activo=1 where rol_id = @id_rol;";
+
+            SqlCommand command = new SqlCommand(query, conn);
+            command.Parameters.AddWithValue("@id_rol", id);
+            command.ExecuteNonQuery();
+            conn.Close();
+        }
+
+        public static void DesHabilitarRol(int id)
+        {
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
+            conn.Open();
+            var query = "update LOS_MANTECOSOS.Roles set rol_activo=0 where rol_id = @id_rol;";
+
+            SqlCommand command = new SqlCommand(query, conn);
+            command.Parameters.AddWithValue("@id_rol", id);
+            command.ExecuteNonQuery();
+            conn.Close();
+        }
 
         public static void EditarRol(Rol rol, List<Funcionalidad> nuevasFunc)
         {
