@@ -42,6 +42,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.listBoxFuncionalidades = new System.Windows.Forms.ListBox();
+            this.btnQuitar = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,7 +57,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(366, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(362, 24);
             this.menuStrip1.TabIndex = 21;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -65,34 +66,39 @@
             this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
             this.clientesToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.clientesToolStripMenuItem.Text = "Clientes";
+            this.clientesToolStripMenuItem.Click += new System.EventHandler(this.clientesToolStripMenuItem_Click);
             // 
             // sucursalesToolStripMenuItem
             // 
             this.sucursalesToolStripMenuItem.Name = "sucursalesToolStripMenuItem";
             this.sucursalesToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
             this.sucursalesToolStripMenuItem.Text = "Sucursales";
+            this.sucursalesToolStripMenuItem.Click += new System.EventHandler(this.sucursalesToolStripMenuItem_Click);
             // 
             // rolesToolStripMenuItem
             // 
             this.rolesToolStripMenuItem.Name = "rolesToolStripMenuItem";
             this.rolesToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.rolesToolStripMenuItem.Text = "Roles";
+            this.rolesToolStripMenuItem.Click += new System.EventHandler(this.rolesToolStripMenuItem_Click);
             // 
             // empresasToolStripMenuItem
             // 
             this.empresasToolStripMenuItem.Name = "empresasToolStripMenuItem";
             this.empresasToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.empresasToolStripMenuItem.Text = "Empresas";
+            this.empresasToolStripMenuItem.Click += new System.EventHandler(this.empresasToolStripMenuItem_Click);
             // 
             // facturasToolStripMenuItem
             // 
             this.facturasToolStripMenuItem.Name = "facturasToolStripMenuItem";
             this.facturasToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
             this.facturasToolStripMenuItem.Text = "Facturas";
+            this.facturasToolStripMenuItem.Click += new System.EventHandler(this.facturasToolStripMenuItem_Click);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(145, 320);
+            this.button1.Location = new System.Drawing.Point(145, 321);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(83, 30);
@@ -105,10 +111,10 @@
             // 
             this.cboFuncionalidades.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboFuncionalidades.FormattingEnabled = true;
-            this.cboFuncionalidades.Location = new System.Drawing.Point(145, 131);
+            this.cboFuncionalidades.Location = new System.Drawing.Point(145, 128);
             this.cboFuncionalidades.Margin = new System.Windows.Forms.Padding(2);
             this.cboFuncionalidades.Name = "cboFuncionalidades";
-            this.cboFuncionalidades.Size = new System.Drawing.Size(92, 21);
+            this.cboFuncionalidades.Size = new System.Drawing.Size(103, 21);
             this.cboFuncionalidades.TabIndex = 19;
             // 
             // txtNombre
@@ -116,7 +122,7 @@
             this.txtNombre.Location = new System.Drawing.Point(145, 90);
             this.txtNombre.Margin = new System.Windows.Forms.Padding(2);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(92, 20);
+            this.txtNombre.Size = new System.Drawing.Size(103, 20);
             this.txtNombre.TabIndex = 16;
             // 
             // label5
@@ -143,12 +149,12 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(113, 38);
+            this.label1.Location = new System.Drawing.Point(139, 39);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(135, 24);
+            this.label1.Size = new System.Drawing.Size(89, 24);
             this.label1.TabIndex = 11;
-            this.label1.Text = "Crear empresa";
+            this.label1.Text = "Crear Rol";
             // 
             // button2
             // 
@@ -165,14 +171,26 @@
             this.listBoxFuncionalidades.FormattingEnabled = true;
             this.listBoxFuncionalidades.Location = new System.Drawing.Point(30, 173);
             this.listBoxFuncionalidades.Name = "listBoxFuncionalidades";
-            this.listBoxFuncionalidades.Size = new System.Drawing.Size(314, 134);
+            this.listBoxFuncionalidades.Size = new System.Drawing.Size(218, 134);
             this.listBoxFuncionalidades.TabIndex = 23;
+            this.listBoxFuncionalidades.SelectedIndexChanged += new System.EventHandler(this.listBoxFuncionalidades_SelectedIndexChanged);
+            // 
+            // btnQuitar
+            // 
+            this.btnQuitar.Location = new System.Drawing.Point(257, 211);
+            this.btnQuitar.Name = "btnQuitar";
+            this.btnQuitar.Size = new System.Drawing.Size(87, 62);
+            this.btnQuitar.TabIndex = 24;
+            this.btnQuitar.Text = "Quitar Funcionalidad Seleccionada";
+            this.btnQuitar.UseVisualStyleBackColor = true;
+            this.btnQuitar.Click += new System.EventHandler(this.btnQuitar_Click);
             // 
             // CrearRolForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(366, 372);
+            this.ClientSize = new System.Drawing.Size(362, 372);
+            this.Controls.Add(this.btnQuitar);
             this.Controls.Add(this.listBoxFuncionalidades);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.menuStrip1);
@@ -207,5 +225,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ListBox listBoxFuncionalidades;
+        private System.Windows.Forms.Button btnQuitar;
     }
 }

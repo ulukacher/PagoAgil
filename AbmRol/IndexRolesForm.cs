@@ -18,6 +18,7 @@ namespace PagoAgilFrba.AbmRol
 {
     public partial class IndexRolesForm : Form
     {
+        public List<Rol> Roles;
         public IndexRolesForm()
         {
             InitializeComponent();
@@ -25,10 +26,10 @@ namespace PagoAgilFrba.AbmRol
             {
                 dataGridView1.Rows.Clear();
                 dataGridView1.Refresh();
-                var roles = RolesRepository.GetAllRoles();
-                foreach (var item in roles)
+                Roles = RolesRepository.GetAllRoles();
+                foreach (var item in Roles)
                 {
-                    int index = dataGridView1.Rows.Add(item.Nombre, item.Activo);
+                    int index = dataGridView1.Rows.Add(item.Id, item.Nombre, item.Activo);
                     dataGridView1.Rows[index].Cells[3].Value = "Editar";
                     dataGridView1.Rows[index].Cells[4].Value = "Eliminar";
                 }
@@ -57,7 +58,7 @@ namespace PagoAgilFrba.AbmRol
 
         private void rolesToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
-            
+
         }
 
         private void empresasToolStripMenuItem_Click(object sender, System.EventArgs e)
@@ -83,33 +84,33 @@ namespace PagoAgilFrba.AbmRol
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            /*
+
             //Editar
             if (e.ColumnIndex == 3)
             {
-                decimal idAEditar = (decimal)dataGridView1.Rows[e.RowIndex].Cells[2].Value;
-
-                var editForm = new Rol() {  };
+                int id = (int)dataGridView1.Rows[e.RowIndex].Cells[0].Value;
+                var rol = Roles.Find(r => r.Id == id);
+                var editForm = new CrearRolForm(rol);
                 this.Hide();
                 editForm.Show();
-
             }
-            //Eliminar
-            if (e.ColumnIndex == 4)
-            {
-                decimal dniAInhabilitar = (decimal)dataGridView1.Rows[e.RowIndex].Cells[2].Value;
-                try
-                {
-                    ClientesRepository.DarDeBajaCliente(dniAInhabilitar);
-                    MessageBox.Show("El cliente ha sido marcado como inactivo");
-                }
-                catch (Exception exc)
-                {
-                    MessageBox.Show("Hubo un error al dar de baja al cliente");
+            /* 
+           //Eliminar
+           if (e.ColumnIndex == 4)
+           {
+               decimal dniAInhabilitar = (decimal)dataGridView1.Rows[e.RowIndex].Cells[2].Value;
+               try
+               {
+                   ClientesRepository.DarDeBajaCliente(dniAInhabilitar);
+                   MessageBox.Show("El cliente ha sido marcado como inactivo");
+               }
+               catch (Exception exc)
+               {
+                   MessageBox.Show("Hubo un error al dar de baja al cliente");
 
-                }
-            }
-            */
+               }
+           }
+           */
         }
 
     }

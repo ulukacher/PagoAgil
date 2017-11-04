@@ -209,6 +209,7 @@
     <Compile Include="Repositories\EstadisticasRepository.cs" />
     <Compile Include="Repositories\FacturasRepository.cs" />
     <Compile Include="Repositories\FormasDePagoRepository.cs" />
+    <Compile Include="Repositories\FuncionalidadesRepository.cs" />
     <Compile Include="Repositories\PagosRepository.cs" />
     <Compile Include="Repositories\RendicionesRepository.cs" />
     <Compile Include="Repositories\RolesRepository.cs" />

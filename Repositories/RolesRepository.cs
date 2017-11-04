@@ -14,6 +14,37 @@ namespace PagoAgilFrba.Repositories
     public class RolesRepository
     {
 
+        public static void EditarRol(Rol rol, List<Funcionalidad> nuevasFunc)
+        {
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
+            conn.Open();
+            var query = "update LOS_MANTECOSOS.Roles set rol_nombre=@nombre where rol_id = @id_rol;";
+            foreach (var funcNueva in nuevasFunc)
+            {
+                if (!rol.Funcionalidades.Contains(funcNueva))
+                {
+                    //agregar funcNueva
+                    query += "insert into LOS_MANTECOSOS.FuncionalidadesPorRoles values (@id_rol,"
+                    + funcNueva.Id.ToString() + ");";
+                }
+            }
+            foreach (var funcVieja in rol.Funcionalidades)
+            {
+                if (!nuevasFunc.Contains(funcVieja))
+                {
+                    //borrar funcVieja
+                    query += "delete from LOS_MANTECOSOS.FuncionalidadesPorRoles where funcrol_IdRol = @id_rol and funcrol_FuncionalidadId = "
+                    + funcVieja.Id.ToString() + ";";
+                }
+            }
+
+            SqlCommand command = new SqlCommand(query, conn);
+            command.Parameters.AddWithValue("@nombre", rol.Nombre);
+            command.Parameters.AddWithValue("@id_rol", rol.Id);
+            command.ExecuteNonQuery();
+            conn.Close();
+        }
+
         public static void AgregarRol(Rol rol)
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
@@ -55,29 +86,6 @@ namespace PagoAgilFrba.Repositories
             }
             conn.Close();
             return cant;
-        }
-
-        public static List<Funcionalidad> GetAllFuncionalidades()
-        {
-            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
-            conn.Open();
-            SqlCommand command = new SqlCommand();
-            string query = "SELECT  func_id , func_nombre FROM GD2C2017.LOS_MANTECOSOS.Funcionalidades";
-            command.Connection = conn;
-            command.CommandText = query;
-            List<Funcionalidad> funcs = new List<Funcionalidad>();
-            using (SqlDataReader reader = command.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                    Funcionalidad func = new Funcionalidad();
-                    func.Id = Convert.ToInt32(reader["func_id"]);
-                    func.Nombre = (string)reader["func_nombre"];
-                    funcs.Add(func);
-                }
-            }
-            conn.Close();
-            return funcs;
         }
 
         public static List<Rol> GetAllRoles()
