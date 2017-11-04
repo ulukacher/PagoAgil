@@ -89,5 +89,28 @@ namespace PagoAgilFrba.Repositories
             conn.Close();
             return lst;
         }
+        public static List<ItemReporteClientesMasFieles> GetClientesMasFieles(DateTime fechaDesde, DateTime fechaHasta)
+        {
+            List<ItemReporteClientesMasFieles> lst = new List<ItemReporteClientesMasFieles>();
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
+            conn.Open();
+            string query = "select * from LOS_MANTECOSOS.ClientesMasFieles(@fechaDesde,@fechaHasta)";
+            SqlCommand command = new SqlCommand(query, conn);
+            command.Parameters.AddWithValue("@fechaDesde", fechaDesde.Date);
+            command.Parameters.AddWithValue("@fechaHasta", fechaHasta.AddDays(1).Date);
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    ItemReporteClientesMasFieles item = new ItemReporteClientesMasFieles();
+                    item.Cliente = (string)reader["nombreCompleto"];
+                    item.Porcentaje = (decimal)reader["porcentaje"];
+                    lst.Add(item);
+                }
+
+            }
+            conn.Close();
+            return lst;
+        }
     }
 }
