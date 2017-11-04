@@ -103,7 +103,7 @@ namespace PagoAgilFrba.AbmRol
         private void button2_Click(object sender, EventArgs e)
         {
             var funcionalidad = ((ComboboxItem)cboFuncionalidades.SelectedItem);
-            if (funcionalidades.Any(func => func.Id == funcionalidad.Value))
+            if (!funcionalidades.Any(func => func.Id == funcionalidad.Value))
             {
                 listBoxFuncionalidades.Items.Add(cboFuncionalidades.SelectedItem);
                 funcionalidades.Add(new Funcionalidad { Id = funcionalidad.Value, Nombre = funcionalidad.Text });

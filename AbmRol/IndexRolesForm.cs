@@ -81,5 +81,34 @@ namespace PagoAgilFrba.AbmRol
             _CrearRolForm.Show();
         }
 
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //Editar
+            if (e.ColumnIndex == 3)
+            {
+                decimal idAEditar = (decimal)dataGridView1.Rows[e.RowIndex].Cells[2].Value;
+
+                var editForm = new Rol() {  };
+                this.Hide();
+                editForm.Show();
+
+            }
+            //Eliminar
+            if (e.ColumnIndex == 4)
+            {
+                decimal dniAInhabilitar = (decimal)dataGridView1.Rows[e.RowIndex].Cells[2].Value;
+                try
+                {
+                    ClientesRepository.DarDeBajaCliente(dniAInhabilitar);
+                    MessageBox.Show("El cliente ha sido marcado como inactivo");
+                }
+                catch (Exception exc)
+                {
+                    MessageBox.Show("Hubo un error al dar de baja al cliente");
+
+                }
+            }
+        }
+
     }
 }
