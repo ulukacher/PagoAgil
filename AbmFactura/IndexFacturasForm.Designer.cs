@@ -31,7 +31,6 @@
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.txtFiltroNumero = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cboFiltroEstado = new System.Windows.Forms.ComboBox();
@@ -39,9 +38,6 @@
             this.txtFiltroCliente = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.cboFiltroEmpresa = new System.Windows.Forms.ComboBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.txtFecha = new System.Windows.Forms.DateTimePicker();
-            this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -67,8 +63,8 @@
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(764, 93);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnBuscar.Location = new System.Drawing.Point(385, 89);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(64, 23);
             this.btnBuscar.TabIndex = 7;
@@ -78,8 +74,8 @@
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(677, 93);
-            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnLimpiar.Location = new System.Drawing.Point(298, 89);
+            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(2);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(64, 23);
             this.btnLimpiar.TabIndex = 6;
@@ -90,20 +86,10 @@
             // txtFiltroNumero
             // 
             this.txtFiltroNumero.Location = new System.Drawing.Point(118, 17);
-            this.txtFiltroNumero.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtFiltroNumero.Margin = new System.Windows.Forms.Padding(2);
             this.txtFiltroNumero.Name = "txtFiltroNumero";
             this.txtFiltroNumero.Size = new System.Drawing.Size(92, 20);
             this.txtFiltroNumero.TabIndex = 3;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(275, 20);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(76, 13);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Fecha Factura";
             // 
             // label2
             // 
@@ -122,20 +108,16 @@
             this.groupBox1.Controls.Add(this.txtFiltroCliente);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.cboFiltroEmpresa);
-            this.groupBox1.Controls.Add(this.dateTimePicker1);
-            this.groupBox1.Controls.Add(this.txtFecha);
-            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.btnBuscar);
             this.groupBox1.Controls.Add(this.btnLimpiar);
             this.groupBox1.Controls.Add(this.txtFiltroNumero);
-            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(37, 122);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Location = new System.Drawing.Point(233, 115);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox1.Size = new System.Drawing.Size(840, 127);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Size = new System.Drawing.Size(466, 127);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtros";
@@ -145,7 +127,7 @@
             // 
             this.cboFiltroEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboFiltroEstado.FormattingEnabled = true;
-            this.cboFiltroEstado.Location = new System.Drawing.Point(734, 53);
+            this.cboFiltroEstado.Location = new System.Drawing.Point(355, 50);
             this.cboFiltroEstado.Margin = new System.Windows.Forms.Padding(2);
             this.cboFiltroEstado.Name = "cboFiltroEstado";
             this.cboFiltroEstado.Size = new System.Drawing.Size(94, 21);
@@ -155,7 +137,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label7.Location = new System.Drawing.Point(651, 56);
+            this.label7.Location = new System.Drawing.Point(272, 53);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(40, 13);
@@ -184,42 +166,16 @@
             // 
             this.cboFiltroEmpresa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboFiltroEmpresa.FormattingEnabled = true;
-            this.cboFiltroEmpresa.Location = new System.Drawing.Point(734, 20);
+            this.cboFiltroEmpresa.Location = new System.Drawing.Point(355, 17);
             this.cboFiltroEmpresa.Margin = new System.Windows.Forms.Padding(2);
             this.cboFiltroEmpresa.Name = "cboFiltroEmpresa";
             this.cboFiltroEmpresa.Size = new System.Drawing.Size(94, 21);
             this.cboFiltroEmpresa.TabIndex = 23;
             // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(393, 47);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(176, 20);
-            this.dateTimePicker1.TabIndex = 22;
-            // 
-            // txtFecha
-            // 
-            this.txtFecha.Location = new System.Drawing.Point(393, 17);
-            this.txtFecha.Margin = new System.Windows.Forms.Padding(2);
-            this.txtFecha.Name = "txtFecha";
-            this.txtFecha.Size = new System.Drawing.Size(176, 20);
-            this.txtFecha.TabIndex = 21;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(275, 50);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(98, 13);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Fecha Vencimiento";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(651, 23);
+            this.label3.Location = new System.Drawing.Point(272, 20);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(48, 13);
@@ -229,7 +185,7 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(37, 63);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(74, 28);
             this.button1.TabIndex = 6;
@@ -252,7 +208,7 @@
             this.Editar,
             this.btnEliminar});
             this.dataGridView1.Location = new System.Drawing.Point(37, 266);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 24;
@@ -399,16 +355,12 @@
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.TextBox txtFiltroNumero;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.DateTimePicker txtFecha;
         private System.Windows.Forms.ComboBox cboFiltroEmpresa;
         private System.Windows.Forms.TextBox txtFiltroCliente;
         private System.Windows.Forms.Label label6;

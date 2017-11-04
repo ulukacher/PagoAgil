@@ -48,7 +48,7 @@ namespace PagoAgilFrba.Repositories
                     //Agrego los items de rendicion
 
                     string queryItems = "insert into LOS_MANTECOSOS.ItemsRendiciones (itemRend_rendicionNro,itemRend_facturaNro,itemRend_montoRendido)"
-                        +"select @nroRendicion,factura_nro,(select sum(itemFac_monto) from LOS_MANTECOSOS.ItemsFacturas where itemFac_facturaNro = factura_nro) "+
+                        + "select @nroRendicion,factura_nro,(select sum(itemFac_monto * itemFac_cantidad) from LOS_MANTECOSOS.ItemsFacturas where itemFac_facturaNro = factura_nro) " +
                         "from LOS_MANTECOSOS.facturas"+
                         " where factura_empresaCuit = @cuit and factura_estado = @estado and year(factura_fecha) = @anio and month(factura_fecha) = @mes";
                     SqlCommand commandItems = new SqlCommand(queryItems, conn,tx);

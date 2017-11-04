@@ -115,6 +115,8 @@ namespace PagoAgilFrba.AbmFactura
                         FacturasRepository.EliminarFactura(nroFacturaAEliminar);
 
                         MessageBox.Show("La factura fue eliminada");
+
+                        dataGridView1.Refresh();
                     }
                     catch (Exception exc)
                     {
