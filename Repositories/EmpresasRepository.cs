@@ -116,6 +116,44 @@ namespace PagoAgilFrba.Repositories
 
             return empresas;
         }
+        public static List<Empresa> GetEmpresasActivas() 
+        {
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
+
+            conn.Open();
+
+            string query = "Select E.empr_nombre, " +
+                                "E.empr_cuit, " +
+                                "E.empr_direccion, " +
+                                "E.empr_activa, " +
+                                "R.rubr_descripcion empr_rubro " +
+                                "from LOS_MANTECOSOS.Empresas E " +
+                                "inner join LOS_MANTECOSOS.Rubros R " +
+                                "on E.empr_rubro_id = R.rubr_id"
+                                + " where E.empr_activa = 1";
+
+            SqlCommand command = new SqlCommand(query, conn);
+
+            List<Empresa> empresas = new List<Empresa>();
+
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Empresa empresa = new Empresa();
+                    empresa.Nombre = (string)reader["empr_nombre"];
+                    empresa.Direccion = (string)reader["empr_direccion"];
+                    empresa.Cuit = (string)reader["empr_cuit"];
+                    empresa.Rubro = (string)reader["empr_rubro"];
+                    empresa.Activa = (bool)reader["empr_activa"];
+                    empresas.Add(empresa);
+                }
+            }
+
+            conn.Close();
+
+            return empresas;
+        }
 
         public static List<Empresa> GetEmpresasByNombreCuitRubro(string _nombre, string _cuit, int _rubroId)
         {
