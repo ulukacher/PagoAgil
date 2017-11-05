@@ -406,6 +406,23 @@ namespace PagoAgilFrba.Repositories
             return cant > 0;
         }
 
+        public static bool FacturaEstaPaga(decimal nroFactura)
+        {
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
+            conn.Open();
+
+            var query = "SELECT COUNT(*) FROM LOS_MANTECOSOS.Facturas WHERE factura_nro = @nroFactura AND factura_estado = 1";
+
+            SqlCommand command = new SqlCommand(query, conn);
+            command.Parameters.AddWithValue("@nroFactura", nroFactura);
+
+            int cant = (int)command.ExecuteScalar();
+
+            conn.Close();
+
+            return cant > 0;
+        }
+
         public static bool FacturaEsDeCliente(decimal nroFactura, decimal clienteDNI)
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
@@ -439,6 +456,23 @@ namespace PagoAgilFrba.Repositories
             conn.Close();
 
             return importe;
+        }
+
+        public static DateTime FechaDeVencimientoFactura(decimal nroFactura)
+        {
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
+            conn.Open();
+
+            var query = "SELECT factura_fechaVencimiento FROM LOS_MANTECOSOS.Facturas WHERE factura_nro = @nroFactura";
+
+            SqlCommand command = new SqlCommand(query, conn);
+            command.Parameters.AddWithValue("@nroFactura", nroFactura);
+
+            DateTime fechaVencimiento = (DateTime)command.ExecuteScalar();
+
+            conn.Close();
+
+            return fechaVencimiento;
         }
     }
 }

@@ -46,20 +46,6 @@ namespace PagoAgilFrba.RegistroPago
 
         private void CargarCombo()
         {
-            var empresas = EmpresasRepository.GetAllEmpresas();
-
-            foreach (var item in empresas)
-            {
-                ComboBoxItemStringValue cbItem = new ComboBoxItemStringValue();
-
-                cbItem.Text = item.Nombre;
-                cbItem.Value = item.Cuit;
-
-                cboEmpresa.Items.Add(cbItem);
-            }
-
-            cboEmpresa.SelectedIndex = 0;
-
             var clientes = ClientesRepository.GetAllClientes();
 
             foreach (var item in clientes)
@@ -170,9 +156,6 @@ namespace PagoAgilFrba.RegistroPago
             if (txtImporte.Text == "" || !Regex.IsMatch(txtImporte.Text, regexSoloNumeros))
                 errores.Add("Ingrese un importe valido");
 
-            if (txtFechaVencimiento.Text == "" || txtFechaVencimiento.Value > DateTime.Now)
-                errores.Add("Ingrese una fecha de vencimiento válida");
-
             if (listBox1.Items.Count == 0)
                 errores.Add("Ingrese al menos una factura");
 
@@ -182,6 +165,9 @@ namespace PagoAgilFrba.RegistroPago
 
             foreach (Factura factura in listBox1.Items)
             {
+                if (factura.FechaVencimiento < DateTime.Now)
+                    errores.Add("Una o mas facturas ya vencieron");
+
                 if (FacturasRepository.GetFacturaByNro(factura.Nro).EmpresaCuit == null && entro == false)
                 {
                     errores.Add("No existe una factura con ese numero, debe crearla primero");
@@ -202,11 +188,11 @@ namespace PagoAgilFrba.RegistroPago
 
                     entro3 = true;
                 }
-            }
 
-            if (EmpresasRepository.EmpresaEstaActiva(((ComboBoxItemStringValue)cboEmpresa.SelectedItem).Value) == false)
-            {
-                errores.Add("La empresa seleccionada esta inactiva");
+                if (EmpresasRepository.EmpresaEstaActiva(FacturasRepository.GetFacturaByNro(factura.Nro).EmpresaCuit) == false)
+                {
+                    errores.Add("Una o mas facturas pertenecen a una empresa que esta inactiva");
+                }
             }
 
             if (txtImporte.Text != "" && decimal.Parse(txtImporte.Text) < importePago)
@@ -247,7 +233,7 @@ namespace PagoAgilFrba.RegistroPago
                         }
                         else
                         {
-                            factura.Nro = a;
+                            factura = FacturasRepository.GetFacturaByNro(a);
 
                             importePago += FacturasRepository.ImporteFactura(decimal.Parse(txtNroFactura.Text));
 

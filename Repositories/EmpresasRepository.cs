@@ -218,5 +218,28 @@ namespace PagoAgilFrba.Repositories
 
             return (bool)command.ExecuteScalar();
         }
+
+        public static bool PuedeDarDeBaja(string cuit)
+        {
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
+            conn.Open();
+
+            var query = "SELECT count(1) from LOS_MANTECOSOS.facturas WHERE factura_empresaCuit = @cuit";
+
+            SqlCommand command = new SqlCommand(query, conn);
+            command.Parameters.AddWithValue("@cuit", cuit);
+
+            int todas = (int)command.ExecuteScalar();
+            
+            query += " and factura_estado = 2";
+
+            command = new SqlCommand(query, conn);
+            command.Parameters.AddWithValue("@cuit", cuit);
+
+            int rendidas = (int)command.ExecuteScalar();
+
+
+            return rendidas == todas;
+        }
     }
 }

@@ -122,10 +122,10 @@ namespace PagoAgilFrba.AbmFactura
                 errores.Add("Ingrese un numero de factura valido");
 
             if (txtFecha.Text == "" || txtFecha.Value >= DateTime.Now)
-                errores.Add("Ingrese una fecha válida");
+                errores.Add("La fecha de la factura debe ser anterior al dia de hoy");
 
             if (txtFechaVencimiento.Text == "" || txtFechaVencimiento.Value < txtFecha.Value)
-                errores.Add("Ingrese una fecha válida");
+                errores.Add("La fecha de vencimiento debe ser mayor a la fecha de la factura");
 
             if (listBox1.Items.Count == 0)
                 errores.Add("Ingrese al menos un item");
