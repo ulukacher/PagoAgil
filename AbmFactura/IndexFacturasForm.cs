@@ -26,8 +26,6 @@ namespace PagoAgilFrba.AbmFactura
         {
             InitializeComponent();
             CargarCombo();
-
-            facturasToolStripMenuItem.Enabled = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -247,6 +245,13 @@ namespace PagoAgilFrba.AbmFactura
         private void groupBox1_Enter(object sender, System.EventArgs e)
         {
 
+        }
+
+        private void button4_Click(object sender, System.EventArgs e)
+        {
+            var index = new IndexForm();
+            this.Hide();
+            index.Show();
         }
     }
 }

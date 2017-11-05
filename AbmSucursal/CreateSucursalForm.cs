@@ -112,5 +112,12 @@ namespace PagoAgilFrba.AbmSucursal
             this.Hide();
             indexFacturas.Show();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var index = new IndexSucursalesForm();
+            this.Hide();
+            index.Show();
+        }
     }
 }

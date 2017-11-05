@@ -13,12 +13,14 @@ namespace PagoAgilFrba.Repositories
 {
     public class FuncionalidadesRepository
     {
-        public static List<Funcionalidad> GetAllFuncFromRol(Rol rol, List<Funcionalidad> funcionalidades)
+        public static List<Funcionalidad> GetAllFuncFromRol(Rol rol)
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
             conn.Open();
             SqlCommand command = new SqlCommand();
-            string query = "SELECT funcrol_FuncionalidadId FROM GD2C2017.LOS_MANTECOSOS.FuncionalidadesPorRoles Where funcrol_IdRol = @id_rol";
+            string query = "SELECT F.* FROM GD2C2017.LOS_MANTECOSOS.Funcionalidades F "
+                + "INNER JOIN LOS_MANTECOSOS.FuncionalidadesPorRoles ON funcrol_FuncionalidadId = func_id "
+                + "Where funcrol_IdRol = @id_rol";
             command.Connection = conn;
             command.CommandText = query;
             command.Parameters.AddWithValue("@id_rol", rol.Id);
@@ -27,8 +29,9 @@ namespace PagoAgilFrba.Repositories
             {
                 while (reader.Read())
                 {
-                    var id = Convert.ToInt32(reader["funcrol_FuncionalidadId"]);
-                    var func = funcionalidades.Find(f => f.Id == id);
+                    Funcionalidad func = new Funcionalidad();
+                    func.Id = Convert.ToInt32(reader["func_id"]);
+                    func.Nombre = (string)reader["func_nombre"];
                     funcs.Add(func);
                 }
             }

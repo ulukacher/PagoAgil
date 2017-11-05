@@ -24,7 +24,7 @@ namespace PagoAgilFrba.Rendiciones
 
         private void CargarCombos()
         {
-            var empresas = EmpresasRepository.GetAllEmpresas();
+            var empresas = EmpresasRepository.GetEmpresasActivas();
             foreach (var item in empresas)
             {
                 ComboBoxItemStringValue cbItem = new ComboBoxItemStringValue();
@@ -73,36 +73,51 @@ namespace PagoAgilFrba.Rendiciones
             //Valido si ya hubo una rendicion en este periodo para esta empresa
             string empresaCuit = ((ComboBoxItemStringValue)comboEmpresas.SelectedItem).Value;
             decimal porcentajeComision;
-            if (decimal.TryParse(txtPorcentaje.Text, out porcentajeComision) && porcentajeComision >=0 && porcentajeComision<=100)
+            if (this.facturas.Count > 0)
             {
-                bool yaHuboRendicion = RendicionesRepository.ExisteRendicionParaEmpresaYPeriodo(empresaCuit, fechaRendicion);
-                if (!yaHuboRendicion)
+                if (decimal.TryParse(txtPorcentaje.Text, out porcentajeComision) && porcentajeComision >= 0 && porcentajeComision <= 100)
                 {
-                    Rendicion rend = new Rendicion(empresaCuit, facturas, fechaRendicion, porcentajeComision);
-                    try
+                    bool yaHuboRendicion = RendicionesRepository.ExisteRendicionParaEmpresaYPeriodo(empresaCuit, fechaRendicion);
+                    if (!yaHuboRendicion)
                     {
-                        RendicionesRepository.AgregarRendicion(rend);
-                        MessageBox.Show("Se ha realizado la rendición correctamente");
-                        this.Hide();
-                        var indexFacturasForm = new IndexFacturasForm();
-                        indexFacturasForm.Show();
+                        Rendicion rend = new Rendicion(empresaCuit, facturas, fechaRendicion, porcentajeComision);
+                        try
+                        {
+                            RendicionesRepository.AgregarRendicion(rend);
+                            MessageBox.Show("Se ha realizado la rendición correctamente");
+                            this.Hide();
+                            var indexFacturasForm = new IndexFacturasForm();
+                            indexFacturasForm.Show();
+                        }
+                        catch (Exception exce)
+                        {
+                            MessageBox.Show("Hubo un error al realizar la rendicion. Intente nuevamente");
+                        }
                     }
-                    catch (Exception exce)
+                    else
                     {
-                        MessageBox.Show("Hubo un error al realizar la rendicion. Intente nuevamente");
+                        MessageBox.Show("Ya se realizó una rendición para esta empresa en este periodo");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Ya se realizó una rendición para esta empresa en este periodo");
+                    MessageBox.Show("Ingrese un valor valido para el porcentaje");
                 }
+
             }
             else
             {
-                MessageBox.Show("Ingrese un valor valido para el porcentaje");
+                MessageBox.Show("No se puede realizar una rendicion sin facturas asociadas");
             }
-
+            
          
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var index = new IndexForm();
+            this.Hide();
+            index.Show();
         }
     }
 }

@@ -191,5 +191,12 @@ namespace PagoAgilFrba.AbmCliente
             this.Hide();
             indexFacturas.Show();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var index = new IndexClientesForm();
+            this.Hide();
+            index.Show();
+        }
     }
 }

@@ -153,6 +153,12 @@
     <Compile Include="Devoluciones\DevolucionForm.Designer.cs">
       <DependentUpon>DevolucionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ElegirRolForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ElegirRolForm.Designer.cs">
+      <DependentUpon>ElegirRolForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -274,6 +280,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Devoluciones\DevolucionForm.resx">
       <DependentUpon>DevolucionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ElegirRolForm.resx">
+      <DependentUpon>ElegirRolForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
