@@ -25,17 +25,19 @@ namespace PagoAgilFrba.Repositories
                     string queryMontoTotal;
                     SqlCommand commandMontoTotal;
 
-                    int montoTotal = 0;
+                    decimal montoTotal = 0;
 
                     List<decimal> listaNumerosFactura = new List<decimal>();
 
                     foreach (Factura factura in facturasADevolver)
                     {
-                        queryMontoTotal = "SELECT SUM(itemFac_monto * itemFac_cantidad) FROM LOS_MANTECOSOS.ItemsFacturas WHERE itemFac_facturaNro = factura_nro";
+                        queryMontoTotal = "SELECT SUM(itemFac_monto * itemFac_cantidad) FROM LOS_MANTECOSOS.ItemsFacturas WHERE itemFac_facturaNro = @nroFactura";
 
                         commandMontoTotal = new SqlCommand(queryMontoTotal, conn, tx);
 
-                        montoTotal += (int)commandMontoTotal.ExecuteScalar();
+                        commandMontoTotal.Parameters.AddWithValue("@nroFactura", factura.Nro);
+
+                        montoTotal += (decimal)commandMontoTotal.ExecuteScalar();
 
                         listaNumerosFactura.Add(factura.Nro);
                     }
@@ -53,18 +55,28 @@ namespace PagoAgilFrba.Repositories
 
                     string queryDevolucionMax = "SELECT MAX(devo_id) FROM LOS_MANTECOSOS.Devoluciones";
 
-                    SqlCommand command2 = new SqlCommand(queryDevolucionMax, conn, tx);
+                    SqlCommand commandDevolucionMax = new SqlCommand(queryDevolucionMax, conn, tx);
 
-                    int devolucion = (int)command2.ExecuteScalar();
+                    decimal devolucion = (decimal)commandDevolucionMax.ExecuteScalar();
 
                     var inList = "(" + string.Join(", ", listaNumerosFactura) + ")";
 
-                    string queryItems = "INSERT INTO LOS_MANTECOSOS.ItemsDevoluciones SELECT @nroDevolucion, factura_nro, (select sum(itemFac_monto * itemFac_cantidad) from LOS_MANTECOSOS.ItemsFacturas where itemFac_facturaNro = factura_nro) FROM Facturas WHERE factura_nro IN @listaNumeros";
+                    string queryItems = "INSERT INTO LOS_MANTECOSOS.ItemsDevoluciones SELECT @nroDevolucion, factura_nro, (SELECT SUM(itemFac_monto * itemFac_cantidad) FROM LOS_MANTECOSOS.ItemsFacturas WHERE itemFac_facturaNro = factura_nro) FROM LOS_MANTECOSOS.Facturas WHERE factura_nro IN @listaNumeros";
 
                     SqlCommand commandItems = new SqlCommand(queryItems, conn, tx);
 
-                    command.Parameters.AddWithValue("@nroDevolucion", devolucion);
-                    command.Parameters.AddWithValue("@listaNumeros", inList);
+                    commandItems.Parameters.AddWithValue("@nroDevolucion", devolucion);
+                    commandItems.Parameters.AddWithValue("@listaNumeros", inList);
+
+                    commandItems.ExecuteNonQuery();
+
+                    string queryUpdateFactura = "UPDATE LOS_MANTECOSOS.Facturas SET factura_estado = 0 WHERE factura_nro IN @listaNumeros";
+
+                    SqlCommand commandUpdate = new SqlCommand(queryUpdateFactura, conn, tx);
+
+                    commandUpdate.Parameters.AddWithValue("@listaNumeros", inList);
+
+                    commandUpdate.ExecuteNonQuery();
 
                     /*foreach (Factura factura in listaFacturas)
                     {

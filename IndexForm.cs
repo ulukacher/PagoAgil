@@ -16,6 +16,7 @@ using PagoAgilFrba.ListadoEstadistico;
 using PagoAgilFrba.AbmRol;
 using PagoAgilFrba.RegistroPago;
 using PagoAgilFrba.Usuarios;
+using PagoAgilFrba.Devoluciones;
 using PagoAgilFrba.Classes;
 using System.Linq;
 
@@ -107,12 +108,15 @@ namespace PagoAgilFrba
 
         private void devolucionesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            var devolucion = new DevolucionForm();
+            this.Hide();
+            devolucion.Show();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             Sucursal.SucursalActual = null;
+
             var login = new Form1();
             this.Hide();
             login.Show();

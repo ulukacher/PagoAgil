@@ -33,6 +33,25 @@ namespace PagoAgilFrba.Devoluciones
         public DevolucionForm()
         {
             InitializeComponent();
+
+            CargarCombo();
+        }
+
+        private void CargarCombo()
+        {
+            var clientes = ClientesRepository.GetAllClientes();
+
+            foreach (var item in clientes)
+            {
+                ComboboxItem cbItem = new ComboboxItem();
+
+                cbItem.Text = item.DNI.ToString();
+                cbItem.Value = Convert.ToInt32(item.DNI); ;
+
+                cboClienteDNI.Items.Add(cbItem);
+            }
+
+            cboClienteDNI.SelectedIndex = 0;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -99,7 +118,7 @@ namespace PagoAgilFrba.Devoluciones
                 }
             }
 
-            if (txtMotivo.Text != "")
+            if (txtMotivo.Text == "")
             {
                 errores.Add("Ingrese el motivo de la devolucion");
             }
@@ -120,14 +139,14 @@ namespace PagoAgilFrba.Devoluciones
                     entro = true;
                 }
 
-                if (factura.Estado == (int)EstadoFactura.Pagada && entro2 == false)
+                if (factura.Estado != (int)EstadoFactura.Pagada && entro2 == false)
                 {
                     errores.Add("Una o mas facturas estan pendiente de pago o rendidas");
 
                     entro2 = true;
                 }
 
-                if (factura.ClienteDNI == ((ComboboxItem)cboClienteDNI.SelectedItem).Value && entro3 == false)
+                if (factura.ClienteDNI != ((ComboboxItem)cboClienteDNI.SelectedItem).Value && entro3 == false)
                 {
                     errores.Add("Una o mas facturas no pertenecen al cliente");
 
@@ -209,6 +228,13 @@ namespace PagoAgilFrba.Devoluciones
 
                 txtNroFactura.Text = "";
             }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var index = new IndexFacturasForm();
+            this.Hide();
+            index.Show();
         }
     }
 }
