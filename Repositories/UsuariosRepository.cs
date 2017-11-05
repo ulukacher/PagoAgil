@@ -49,7 +49,7 @@ namespace PagoAgilFrba.Repositories
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
             conn.Open();
-            string query = "select count(*) from LOS_MANTECOSOS.usuarios where usuario_nombre = @username";
+            string query = "select count(*) from LOS_MANTECOSOS.usuarios where usuario_nombre = @username and usuario_activo = 1";
             SqlCommand command = new SqlCommand(query, conn);
             command.Parameters.AddWithValue("@username", username);
             int cantUsuarios = (int)command.ExecuteScalar();           
@@ -74,7 +74,7 @@ namespace PagoAgilFrba.Repositories
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
             conn.Open();
-            string query = "select count(*) from LOS_MANTECOSOS.usuarios where usuario_nombre = @username and usuario_password = @password";
+            string query = "select count(*) from LOS_MANTECOSOS.usuarios where usuario_nombre = @username and usuario_password = @password and usuario_activo = 1";
             SqlCommand command = new SqlCommand(query, conn);
             command.Parameters.AddWithValue("@username", username);
             byte[] passwordHasheada = EncryptHelper.SHA256Encrypt(password);

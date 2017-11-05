@@ -34,14 +34,14 @@ namespace PagoAgilFrba.ListadoEstadistico
 
         private void button4_Click(object sender, EventArgs e)
         {
-
+            var index = new EstadisticasForm();
+            this.Hide();
+            index.Show();
         }
 
         private void ListadoClientesConMasPagosForm_Load(object sender, EventArgs e)
         {
-            var index = new EstadisticasForm();
-            this.Hide();
-            index.Show();
+            
         }
     }
 }

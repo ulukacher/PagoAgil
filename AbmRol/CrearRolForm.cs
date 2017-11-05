@@ -87,6 +87,14 @@ namespace PagoAgilFrba.AbmRol
                     {
                         Rol.Nombre = txtNombre.Text;
                         RolesRepository.EditarRol(Rol, FuncionalidadesDelRol);
+
+                        MessageBox.Show("El Rol ha sido " + verbo + " correctamente.");
+
+                        Sucursal.SucursalActual = null;
+
+                        var login = new Form1();
+                        this.Hide();
+                        login.Show();
                     }
                     else
                     {
@@ -94,11 +102,12 @@ namespace PagoAgilFrba.AbmRol
                         rol.Nombre = txtNombre.Text;
                         rol.Funcionalidades = FuncionalidadesDelRol;
                         RolesRepository.AgregarRol(rol);
+
+                        MessageBox.Show("El Rol ha sido " + verbo + " correctamente.");
+                        this.Hide();
+                        var indexForm = new IndexRolesForm();
+                        indexForm.Show();
                     }
-                    MessageBox.Show("El Rol ha sido " + verbo + " correctamente.");
-                    this.Hide();
-                    var indexForm = new IndexRolesForm();
-                    indexForm.Show();
                 }
                 catch (SqlException sqlexc)
                 {

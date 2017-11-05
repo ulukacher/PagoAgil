@@ -120,7 +120,6 @@ namespace PagoAgilFrba
             var login = new Form1();
             this.Hide();
             login.Show();
-
         }
     }
 }

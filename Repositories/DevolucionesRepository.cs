@@ -69,7 +69,7 @@ namespace PagoAgilFrba.Repositories
                     
                     commandItems.ExecuteNonQuery();
 
-                    string queryUpdateFactura = "UPDATE LOS_MANTECOSOS.Facturas SET factura_estado = 0 WHERE factura_nro IN "+inList;
+                    string queryUpdateFactura = "UPDATE LOS_MANTECOSOS.Facturas SET factura_estado = 0 WHERE factura_nro IN " + inList;
 
                     SqlCommand commandUpdate = new SqlCommand(queryUpdateFactura, conn, tx);
 

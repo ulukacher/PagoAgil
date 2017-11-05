@@ -226,7 +226,7 @@ namespace PagoAgilFrba.Devoluciones
 
         private void button4_Click(object sender, EventArgs e)
         {
-            var index = new IndexFacturasForm();
+            var index = new IndexForm();
             this.Hide();
             index.Show();
         }

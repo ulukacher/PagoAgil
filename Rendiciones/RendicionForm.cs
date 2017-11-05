@@ -55,11 +55,21 @@ namespace PagoAgilFrba.Rendiciones
             dataGridView1.Rows.Clear();
             dataGridView1.Refresh();
             facturas = FacturasRepository.GetFacturasPendientesDeRendicionByEmpresa(((ComboBoxItemStringValue)comboEmpresas.SelectedItem).Value);
-            foreach (var item in facturas)
+
+            if (facturas.Count > 0)
             {
-                dataGridView1.Rows.Add(item.Nro, item.ClienteDNI, item.EmpresaCuit, item.Fecha, item.FechaVencimiento,item.Monto);
+                foreach (var item in facturas)
+                {
+                    dataGridView1.Rows.Add(item.Nro, item.ClienteDNI, item.EmpresaCuit, item.Fecha, item.FechaVencimiento, item.Monto);
+                }
+
+                lblTotalEnFacturas.Text = "$" + facturas.Sum(x => x.Monto);
             }
-            lblTotalEnFacturas.Text = "$" + facturas.Sum(x => x.Monto);
+            else
+            {
+                MessageBox.Show("Puede ser que esta empresa ya haya sido rendida este mes o que no haya facturas de esta empresa en este mes para rendir");
+            }
+            
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -86,7 +96,7 @@ namespace PagoAgilFrba.Rendiciones
                             RendicionesRepository.AgregarRendicion(rend);
                             MessageBox.Show("Se ha realizado la rendición correctamente");
                             this.Hide();
-                            var indexFacturasForm = new IndexFacturasForm();
+                            var indexFacturasForm = new IndexForm();
                             indexFacturasForm.Show();
                         }
                         catch (Exception exce)

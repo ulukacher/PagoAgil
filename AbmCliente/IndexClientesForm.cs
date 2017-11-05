@@ -171,7 +171,7 @@ namespace PagoAgilFrba.AbmCliente
 
         private void button4_Click(object sender, System.EventArgs e)
         {
-            var index = new Form1();
+            var index = new IndexForm();
             this.Hide();
             index.Show();
         }

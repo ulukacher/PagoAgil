@@ -82,7 +82,7 @@ namespace PagoAgilFrba
             }
             else
             {
-                MessageBox.Show("No existe un usuario con ese username");
+                MessageBox.Show("No existe un usuario con ese username activo");
                 txtContrasena.Clear();
                 txtUsuario.Clear();
                 txtUsuario.Focus();

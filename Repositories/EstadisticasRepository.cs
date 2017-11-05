@@ -43,10 +43,10 @@ namespace PagoAgilFrba.Repositories
             List<ItemReporteClientesConMasPagos> lst = new List<ItemReporteClientesConMasPagos>();
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
             conn.Open();
-            string query = "select top 5 count(*) as cantidad,nombreCompleto" +
+            string query = "select top 5 count(*) as cantidad,(select c1.clie_nombre + ' ' + c1.clie_apellido from LOS_MANTECOSOS.Clientes c1 where c1.clie_dni = dni) as nombreCompleto" +
                             " from LOS_MANTECOSOS.vClientesPagos" +
                             " where fechaPago >=@fechaDesde and fechaPago < @fechaHasta" +
-                            " group by nombreCompleto" +
+                            " group by dni" +
                             " order by 1 desc";
             SqlCommand command = new SqlCommand(query, conn);
             command.Parameters.AddWithValue("@fechaDesde", fechaDesde.Date);

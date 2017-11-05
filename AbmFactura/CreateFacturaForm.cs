@@ -100,10 +100,11 @@ namespace PagoAgilFrba.AbmFactura
 
                     if (sqlexc.Number == 547)
                         MessageBox.Show("No hay ningun cliente registrado con ese DNI");
-
-                    conn.Close();
                 }
-
+                catch (Exception exc)
+                {
+                    MessageBox.Show("Hubo un error en el ingreso de datos, intente nuevamente");
+                }
             }
             else
             {
@@ -126,6 +127,9 @@ namespace PagoAgilFrba.AbmFactura
 
             if (txtFechaVencimiento.Text == "" || txtFechaVencimiento.Value < txtFecha.Value)
                 errores.Add("La fecha de vencimiento debe ser mayor a la fecha de la factura");
+
+            if (txtDNI.Text == "" || !Regex.IsMatch(txtDNI.Text, regexSoloNumeros))
+                errores.Add("Ingrese un numero de DNI valido");
 
             if (listBox1.Items.Count == 0)
                 errores.Add("Ingrese al menos un item");
