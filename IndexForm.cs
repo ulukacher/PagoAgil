@@ -16,6 +16,9 @@ using PagoAgilFrba.ListadoEstadistico;
 using PagoAgilFrba.AbmRol;
 using PagoAgilFrba.RegistroPago;
 using PagoAgilFrba.Usuarios;
+using PagoAgilFrba.Devoluciones;
+using PagoAgilFrba.Classes;
+using System.Linq;
 
 namespace PagoAgilFrba
 {
@@ -24,6 +27,18 @@ namespace PagoAgilFrba
         public IndexForm()
         {
             InitializeComponent();
+            var funcs = Rol.RolActual.Funcionalidades;
+            if (!funcs.Exists(f => f.Nombre == "ABM CLIENTES")) clientesToolStripMenuItem.Enabled = false;
+            if (!funcs.Exists(f => f.Nombre == "ABM EMPRESAS")) empresasToolStripMenuItem.Enabled = false;
+            if (!funcs.Exists(f => f.Nombre == "ABM SUCURSALES")) sucursalesToolStripMenuItem.Enabled = false;
+            if (!funcs.Exists(f => f.Nombre == "ABM ROLES")) rolesToolStripMenuItem.Enabled = false;
+            if (!funcs.Exists(f => f.Nombre == "ABM FACTURAS")) facturasToolStripMenuItem.Enabled = false;
+            if (!funcs.Exists(f => f.Nombre == "PAGOS")) registroDePagosToolStripMenuItem.Enabled = false;
+            if (!funcs.Exists(f => f.Nombre == "RENDICIONES")) rendicionToolStripMenuItem.Enabled = false;
+            if (!funcs.Exists(f => f.Nombre == "DEVOLUCIONES")) devolucionesToolStripMenuItem.Enabled = false;
+            if (!funcs.Exists(f => f.Nombre == "ESTADISTICAS")) estadisticasToolStripMenuItem.Enabled = false;
+            if (!funcs.Exists(f => f.Nombre == "HISTORICO DE USUARIOS")) usuariosToolStripMenuItem.Enabled = false;
+
         }
 
         private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -88,6 +103,23 @@ namespace PagoAgilFrba
 
         private void IndexForm_Load(object sender, EventArgs e)
         {
+
+        }
+
+        private void devolucionesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var devolucion = new DevolucionForm();
+            this.Hide();
+            devolucion.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Sucursal.SucursalActual = null;
+
+            var login = new Form1();
+            this.Hide();
+            login.Show();
 
         }
     }

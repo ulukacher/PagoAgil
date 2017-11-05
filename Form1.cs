@@ -1,5 +1,6 @@
 ﻿using PagoAgilFrba.AbmCliente;
 using PagoAgilFrba.Repositories;
+using PagoAgilFrba.Classes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -51,9 +52,25 @@ namespace PagoAgilFrba
                 //MessageBox.Show("Existe un usuario con ese username");
                 if (successLogin)
                 {
-                    var indexForm = new IndexForm();
-                    this.Hide();
-                    indexForm.Show();
+                    var roles = RolesRepository.GetRolDeUsuario(userName);
+                    
+                    if (roles.Count > 1)
+                    {
+                        var indexForm = new ElegirRolForm(roles, userName);
+                        this.Hide();
+                        indexForm.Show();
+                    }
+                    else if (roles.Count == 1)
+                    {
+                        Rol.SetRolActual(roles.First(), userName);
+                        var indexForm = new IndexForm();
+                        this.Hide();
+                        indexForm.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error, su usuario no tiene ningun rol asignado");
+                    }
                 }
                 else 
                 {
@@ -62,7 +79,6 @@ namespace PagoAgilFrba
                     txtUsuario.Clear();
                     txtUsuario.Focus();
                 }
-                
             }
             else
             {

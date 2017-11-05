@@ -60,6 +60,12 @@ namespace PagoAgilFrba.Repositories
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
             conn.Open();
 
+            string queryItems = "DELETE FROM LOS_MANTECOSOS.ItemsFacturas WHERE itemFac_facturaNro = @numeroFactura";
+            SqlCommand commandItems = new SqlCommand(queryItems, conn);
+
+            commandItems.Parameters.AddWithValue("@numeroFactura", numeroFactura);
+            commandItems.ExecuteNonQuery();
+
             string query = "DELETE FROM LOS_MANTECOSOS.Facturas WHERE factura_nro = @numeroFactura";
             SqlCommand command = new SqlCommand(query, conn);
 
@@ -252,15 +258,6 @@ namespace PagoAgilFrba.Repositories
                     command.Parameters.Add(cliente);
                 }
 
-                /*if (_fecha != "")
-                {
-                    query += " AND factura_fecha = @fecha";
-
-                    SqlParameter fecha = new SqlParameter("@fecha", DbType.DateTime);
-                    fecha.Value = _fecha;
-                    command.Parameters.Add(fecha);
-                }*/
-
                 if (_estado != -1)
                 {
                     query += " AND factura_estado = " + _estado.ToString();
@@ -269,15 +266,6 @@ namespace PagoAgilFrba.Repositories
                     estado.Value = _estado;
                     command.Parameters.Add(estado);
                 }
-
-                /*if (_fechaVencimiento != "")
-                {
-                    query += " AND factura_fechaVencimiento = @fechaVencimiento";
-
-                    SqlParameter fechaVencimiento = new SqlParameter("@fechaVencimiento", DbType.DateTime);
-                    fechaVencimiento.Value = _fechaVencimiento;
-                    command.Parameters.Add(fechaVencimiento);
-                }*/
             }
             else if (_numero == "" && _empresaCuit != "")
             {
@@ -296,15 +284,6 @@ namespace PagoAgilFrba.Repositories
                     command.Parameters.Add(cliente);
                 }
 
-                /*if (_fecha != "")
-                {
-                    query += " AND factura_fecha = @fecha";
-
-                    SqlParameter fecha = new SqlParameter("@fecha", DbType.DateTime);
-                    fecha.Value = _fecha;
-                    command.Parameters.Add(fecha);
-                }*/
-
                 if (_estado != -1)
                 {
                     query += " AND factura_estado = " + _estado.ToString();
@@ -313,15 +292,6 @@ namespace PagoAgilFrba.Repositories
                     estado.Value = _estado;
                     command.Parameters.Add(estado);
                 }
-
-                /*if (_fechaVencimiento != "")
-                {
-                    query += " AND factura_fechaVencimiento = @fechaVencimiento";
-
-                    SqlParameter fechaVencimiento = new SqlParameter("@fechaVencimiento", DbType.DateTime);
-                    fechaVencimiento.Value = _fechaVencimiento;
-                    command.Parameters.Add(fechaVencimiento);
-                }*/
             }
             else if (_numero == "" && _empresaCuit == "" && _cliente != "")
             {
@@ -331,15 +301,6 @@ namespace PagoAgilFrba.Repositories
                 cliente.Value = _cliente;
                 command.Parameters.Add(cliente);
 
-                /*if (_fecha != "")
-                {
-                    query += " AND factura_fecha = @fecha";
-
-                    SqlParameter fecha = new SqlParameter("@fecha", DbType.DateTime);
-                    fecha.Value = _fecha;
-                    command.Parameters.Add(fecha);
-                }*/
-
                 if (_estado != -1)
                 {
                     query += " AND factura_estado = " + _estado.ToString();
@@ -348,24 +309,9 @@ namespace PagoAgilFrba.Repositories
                     estado.Value = _estado;
                     command.Parameters.Add(estado);
                 }
-
-                /*if (_fechaVencimiento != "")
-                {
-                    query += " AND factura_fechaVencimiento = @fechaVencimiento";
-
-                    SqlParameter fechaVencimiento = new SqlParameter("@fechaVencimiento", DbType.DateTime);
-                    fechaVencimiento.Value = _fechaVencimiento;
-                    command.Parameters.Add(fechaVencimiento);
-                }*/
             }
-            else if (_numero == "" && _empresaCuit == "" && _cliente == "" /*&& _fecha != ""*/)
+            else if (_numero == "" && _empresaCuit == "" && _cliente == "")
             {
-                /*query += " WHERE factura_fecha = @fecha";
-
-                SqlParameter fecha = new SqlParameter("@fecha", DbType.DateTime);
-                fecha.Value = _fecha;
-                command.Parameters.Add(fecha);*/
-
                 if (_estado != -1)
                 {
                     query += " AND factura_estado = " + _estado.ToString();
@@ -374,41 +320,15 @@ namespace PagoAgilFrba.Repositories
                     estado.Value = _estado;
                     command.Parameters.Add(estado);
                 }
-
-                /*if (_fechaVencimiento != "")
-                {
-                    query += " AND factura_fechaVencimiento = @fechaVencimiento";
-
-                    SqlParameter fechaVencimiento = new SqlParameter("@fechaVencimiento", DbType.DateTime);
-                    fechaVencimiento.Value = _fechaVencimiento;
-                    command.Parameters.Add(fechaVencimiento);
-                }*/
             }
-            else if (_numero == "" && _empresaCuit == "" && _cliente == "" /*&& _fecha == ""*/ && _estado != -1)
+            else if (_numero == "" && _empresaCuit == "" && _cliente == "" && _estado != -1)
             {
                 query += " AND factura_estado = " + _estado.ToString();
 
                 SqlParameter estado = new SqlParameter("@estado", DbType.Int32);
                 estado.Value = _estado;
                 command.Parameters.Add(estado);
-
-                /*if (_fechaVencimiento != "")
-                {
-                    query += " AND factura_fechaVencimiento = @fechaVencimiento";
-
-                    SqlParameter fechaVencimiento = new SqlParameter("@fechaVencimiento", DbType.DateTime);
-                    fechaVencimiento.Value = _fechaVencimiento;
-                    command.Parameters.Add(fechaVencimiento);
-                }*/
             }
-            /*else if (_numero == "" && _empresaNombre == "" && _cliente == "" && _fecha == "" && _estado == "" && _fechaVencimiento != "")
-            {
-                query += " WHERE factura_fechaVencimiento = @fechaVencimiento";
-
-                SqlParameter fechaVencimiento = new SqlParameter("@fechaVencimiento", DbType.DateTime);
-                fechaVencimiento.Value = _fechaVencimiento;
-                command.Parameters.Add(fechaVencimiento);
-            }*/
 
             command.Connection = conn;
             command.CommandText = query;
@@ -486,6 +406,23 @@ namespace PagoAgilFrba.Repositories
             return cant > 0;
         }
 
+        public static bool FacturaEstaPaga(decimal nroFactura)
+        {
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
+            conn.Open();
+
+            var query = "SELECT COUNT(*) FROM LOS_MANTECOSOS.Facturas WHERE factura_nro = @nroFactura AND factura_estado = 1";
+
+            SqlCommand command = new SqlCommand(query, conn);
+            command.Parameters.AddWithValue("@nroFactura", nroFactura);
+
+            int cant = (int)command.ExecuteScalar();
+
+            conn.Close();
+
+            return cant > 0;
+        }
+
         public static bool FacturaEsDeCliente(decimal nroFactura, decimal clienteDNI)
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
@@ -509,7 +446,7 @@ namespace PagoAgilFrba.Repositories
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
             conn.Open();
 
-            var query = "SELECT SUM(itemFac_monto) FROM LOS_MANTECOSOS.ItemsFacturas WHERE itemFac_facturaNro = @nroFactura";
+            var query = "SELECT SUM(itemFac_monto * itemFac_cantidad) FROM LOS_MANTECOSOS.ItemsFacturas WHERE itemFac_facturaNro = @nroFactura";
 
             SqlCommand command = new SqlCommand(query, conn);
             command.Parameters.AddWithValue("@nroFactura", nroFactura);
@@ -519,6 +456,23 @@ namespace PagoAgilFrba.Repositories
             conn.Close();
 
             return importe;
+        }
+
+        public static DateTime FechaDeVencimientoFactura(decimal nroFactura)
+        {
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
+            conn.Open();
+
+            var query = "SELECT factura_fechaVencimiento FROM LOS_MANTECOSOS.Facturas WHERE factura_nro = @nroFactura";
+
+            SqlCommand command = new SqlCommand(query, conn);
+            command.Parameters.AddWithValue("@nroFactura", nroFactura);
+
+            DateTime fechaVencimiento = (DateTime)command.ExecuteScalar();
+
+            conn.Close();
+
+            return fechaVencimiento;
         }
     }
 }

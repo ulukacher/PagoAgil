@@ -18,9 +18,9 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PagoAgilFrba.RegistroPago
+namespace PagoAgilFrba.Devoluciones
 {
-    public partial class PagoForm : Form
+    public partial class DevolucionForm : Form
     {
         const string regexSoloLetras = "^[a-zA-Z]+$";
         const string regexSoloNumeros = @"^\d+$";
@@ -30,18 +30,11 @@ namespace PagoAgilFrba.RegistroPago
 
         List<Factura> listaFacturas = new List<Factura>();
 
-        decimal importePago = 0;
-
-        public PagoForm()
+        public DevolucionForm()
         {
             InitializeComponent();
+
             CargarCombo();
-
-            this.ActiveControl = txtNroFactura;
-
-            txtFechaCobro.Enabled = false;
-
-            lblImporte.Text = "$" + importePago.ToString();
         }
 
         private void CargarCombo()
@@ -59,34 +52,6 @@ namespace PagoAgilFrba.RegistroPago
             }
 
             cboClienteDNI.SelectedIndex = 0;
-
-            var sucursales = SucursalesRepository.GetAllSucursales();
-
-            foreach (var item in sucursales)
-            {
-                ComboboxItem cbItem = new ComboboxItem();
-
-                cbItem.Text = item.Nombre;
-                cbItem.Value = item.CodigoPostal;
-
-                cboSucursal.Items.Add(cbItem);
-            }
-
-            cboSucursal.SelectedIndex = 0;
-
-            var formasDePago = FormasDePagoRepository.GetAllFormasDePago();
-
-            foreach (var item in formasDePago)
-            {
-                ComboboxItem cbItem = new ComboboxItem();
-
-                cbItem.Text = item.Descripcion;
-                cbItem.Value = item.Id;
-
-                cboMedioDePago.Items.Add(cbItem);
-            }
-
-            cboMedioDePago.SelectedIndex = 0;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -97,25 +62,16 @@ namespace PagoAgilFrba.RegistroPago
             {
                 try
                 {
-                    Pago pago = new Pago();
-
-                    pago.Nro = PagosRepository.GetNumeroPagoMaximo() + 1;
-                    pago.Sucursal = ((ComboboxItem)cboSucursal.SelectedItem).Value;
-                    pago.FormaDePago = ((ComboboxItem)cboMedioDePago.SelectedItem).Value;
-                    pago.ClienteDNI = ((ComboboxItem)cboClienteDNI.SelectedItem).Value;
-                    pago.Fecha = txtFechaCobro.Value;
-                    pago.Importe = importePago;
-
                     foreach (Factura factura in listBox1.Items)
                     {
                         listaFacturas.Add(factura);
                     }
 
-                    PagosRepository.AgregarPago(pago, listaFacturas);
+                    DevolucionesRepository.DevolverFactura(listaFacturas, txtMotivo.Text);
 
-                    MessageBox.Show("El pago fue registrado correctamente");
+                    MessageBox.Show("La devolución fue registrada correctamente");
 
-                    var index = new PagoForm();
+                    var index = new DevolucionForm();
                     this.Hide();
                     index.Show();
                 }
@@ -128,7 +84,10 @@ namespace PagoAgilFrba.RegistroPago
                     if (sqlexc.Number == 547)
                         MessageBox.Show("No hay ningun cliente registrado con ese DNI");
 
-                    conn.Close();
+                }
+                catch (Exception exc)
+                {
+                    MessageBox.Show("Hubo un error al realizar la devolución");
                 }
 
             }
@@ -153,8 +112,10 @@ namespace PagoAgilFrba.RegistroPago
                 }
             }
 
-            if (txtImporte.Text == "" || !Regex.IsMatch(txtImporte.Text, regexSoloNumeros))
-                errores.Add("Ingrese un importe valido");
+            if (txtMotivo.Text == "")
+            {
+                errores.Add("Ingrese el motivo de la devolucion");
+            }
 
             if (listBox1.Items.Count == 0)
                 errores.Add("Ingrese al menos una factura");
@@ -165,9 +126,6 @@ namespace PagoAgilFrba.RegistroPago
 
             foreach (Factura factura in listBox1.Items)
             {
-                if (factura.FechaVencimiento < DateTime.Now)
-                    errores.Add("Una o mas facturas ya vencieron");
-
                 if (FacturasRepository.GetFacturaByNro(factura.Nro).EmpresaCuit == null && entro == false)
                 {
                     errores.Add("No existe una factura con ese numero, debe crearla primero");
@@ -175,29 +133,24 @@ namespace PagoAgilFrba.RegistroPago
                     entro = true;
                 }
 
-                if(FacturasRepository.FacturaEstaPagaORendida(factura.Nro) == true && entro2 == false)
+                if (factura.Estado != (int)EstadoFactura.Pagada && entro2 == false)
                 {
-                    errores.Add("Una o mas facturas ya fueron pagadas o rendidas");
+                    errores.Add("Una o mas facturas estan pendiente de pago o rendidas");
 
                     entro2 = true;
                 }
 
-                if (FacturasRepository.FacturaEsDeCliente(factura.Nro, ((ComboboxItem)cboClienteDNI.SelectedItem).Value) == false && entro3 == false)
+                if (factura.ClienteDNI != ((ComboboxItem)cboClienteDNI.SelectedItem).Value && entro3 == false)
                 {
                     errores.Add("Una o mas facturas no pertenecen al cliente");
 
                     entro3 = true;
                 }
 
-                if (EmpresasRepository.EmpresaEstaActiva(FacturasRepository.GetFacturaByNro(factura.Nro).EmpresaCuit) == false)
+                if (EmpresasRepository.EmpresaEstaActiva(factura.EmpresaCuit) == false)
                 {
                     errores.Add("Una o mas facturas pertenecen a una empresa que esta inactiva");
                 }
-            }
-
-            if (txtImporte.Text != "" && decimal.Parse(txtImporte.Text) < importePago)
-            {
-                errores.Add("El importe debe ser de al menos $" + importePago.ToString());
             }
 
             return errores;
@@ -211,7 +164,7 @@ namespace PagoAgilFrba.RegistroPago
             }
             else
             {
-                if(this.facturaRepetida(decimal.Parse(txtNroFactura.Text)) == true)
+                if (this.facturaRepetida(decimal.Parse(txtNroFactura.Text)) == true)
                 {
                     MessageBox.Show("La factura ya esta en la lista");
                 }
@@ -235,15 +188,11 @@ namespace PagoAgilFrba.RegistroPago
                         {
                             factura = FacturasRepository.GetFacturaByNro(a);
 
-                            importePago += FacturasRepository.ImporteFactura(decimal.Parse(txtNroFactura.Text));
-
-                            lblImporte.Text = "$" + importePago;
-
                             listBox1.Items.Add(factura);
                         }
                     }
                 }
-                
+
             }
 
             txtNroFactura.Text = "";
@@ -268,16 +217,8 @@ namespace PagoAgilFrba.RegistroPago
         {
             if (listBox1.SelectedItems.Count > 0)
             {
-                Factura f = new Factura();
-
-                f = (Factura)listBox1.SelectedItems[0];
-
-                importePago -= FacturasRepository.ImporteFactura(f.Nro);
-
                 listBox1.Items.Remove(listBox1.SelectedItems[0]);
                 listBox1.Refresh();
-
-                lblImporte.Text = "$" + importePago;
 
                 txtNroFactura.Text = "";
             }
@@ -285,9 +226,14 @@ namespace PagoAgilFrba.RegistroPago
 
         private void button4_Click(object sender, EventArgs e)
         {
-            var index = new IndexForm();
+            var index = new IndexFacturasForm();
             this.Hide();
             index.Show();
+        }
+
+        private void DevolucionForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

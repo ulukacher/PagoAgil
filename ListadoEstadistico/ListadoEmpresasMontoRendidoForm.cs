@@ -37,5 +37,12 @@ namespace PagoAgilFrba.ListadoEstadistico
                 dataGridView1.Rows.Add(item.EmpresaNombre, item.TotalEnRendiciones);
             }
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var index = new EstadisticasForm();
+            this.Hide();
+            index.Show();
+        }
     }
 }

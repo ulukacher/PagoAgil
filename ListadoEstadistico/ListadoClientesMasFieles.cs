@@ -31,5 +31,12 @@ namespace PagoAgilFrba.ListadoEstadistico
                 dataGridView1.Rows.Add(item.Cliente, Math.Round(item.Porcentaje, 2) + "%");
             }
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var index = new EstadisticasForm();
+            this.Hide();
+            index.Show();
+        }
     }
 }

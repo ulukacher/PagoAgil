@@ -31,5 +31,17 @@ namespace PagoAgilFrba.ListadoEstadistico
                 dataGridView1.Rows.Add(item.Cliente, item.CantidadPagos);
             }
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ListadoClientesConMasPagosForm_Load(object sender, EventArgs e)
+        {
+            var index = new EstadisticasForm();
+            this.Hide();
+            index.Show();
+        }
     }
 }
