@@ -123,6 +123,9 @@ namespace PagoAgilFrba.Devoluciones
             bool entro = false;
             bool entro2 = false;
             bool entro3 = false;
+            bool entro4 = false;
+            bool entro5 = false;
+            bool entro6 = false;
 
             foreach (Factura factura in listBox1.Items)
             {
@@ -133,23 +136,39 @@ namespace PagoAgilFrba.Devoluciones
                     entro = true;
                 }
 
-                if (factura.Estado != (int)EstadoFactura.Pagada && entro2 == false)
+                if (factura.Estado == (int)EstadoFactura.PendienteDePago && entro2 == false)
                 {
-                    errores.Add("Una o mas facturas estan pendiente de pago o rendidas");
+                    errores.Add("Una o mas facturas estan pendiente de pago");
 
                     entro2 = true;
                 }
 
-                if (factura.ClienteDNI != ((ComboboxItem)cboClienteDNI.SelectedItem).Value && entro3 == false)
+                if (factura.Estado == (int)EstadoFactura.Rendida && entro3 == false)
                 {
-                    errores.Add("Una o mas facturas no pertenecen al cliente");
+                    errores.Add("Una o mas facturas estan rendidas");
 
                     entro3 = true;
                 }
 
-                if (EmpresasRepository.EmpresaEstaActiva(factura.EmpresaCuit) == false)
+                if (factura.ClienteDNI != ((ComboboxItem)cboClienteDNI.SelectedItem).Value && entro4 == false)
+                {
+                    errores.Add("Una o mas facturas no pertenecen al cliente");
+
+                    entro4 = true;
+                }
+
+                if (factura.FechaVencimiento < DateTime.Now && entro5 == false)
+                {
+                    errores.Add("Una o mas facturas ya vencieron");
+
+                    entro5 = true;
+                }
+
+                if (EmpresasRepository.EmpresaEstaActiva(factura.EmpresaCuit) == false && entro6 == false)
                 {
                     errores.Add("Una o mas facturas pertenecen a una empresa que esta inactiva");
+
+                    entro6 = true;
                 }
             }
 
