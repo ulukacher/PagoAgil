@@ -41,7 +41,7 @@ namespace PagoAgilFrba.RegistroPago
 
             txtFechaCobro.Enabled = false;
 
-            lblImporte.Text = "$" + importePago.ToString();
+            lblImporte.Text = "$" + importePago;
         }
 
         private void CargarCombo()
@@ -153,11 +153,11 @@ namespace PagoAgilFrba.RegistroPago
                 }
             }
 
-            if (txtImporte.Text == "" || !Regex.IsMatch(txtImporte.Text, regexSoloNumeros))
-                errores.Add("Ingrese un importe valido");
-
             if (listBox1.Items.Count == 0)
                 errores.Add("Ingrese al menos una factura");
+
+            if(Sucursal.SucursalActual != null && Sucursal.SucursalActual.CodigoPostal != ((ComboboxItem)cboSucursal.SelectedItem).Value)
+                errores.Add("El usuario no pertenece a la sucursal seleccionada");
 
             bool entro = false;
             bool entro2 = false;
@@ -193,11 +193,6 @@ namespace PagoAgilFrba.RegistroPago
                 {
                     errores.Add("Una o mas facturas pertenecen a una empresa que esta inactiva");
                 }
-            }
-
-            if (txtImporte.Text != "" && decimal.Parse(txtImporte.Text) < importePago)
-            {
-                errores.Add("El importe debe ser de al menos $" + importePago.ToString());
             }
 
             return errores;

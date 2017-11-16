@@ -68,12 +68,39 @@ namespace PagoAgilFrba.AbmEmpresa
         private void validarCamposNoUnicos(List<string> errores)
         {
             //Valido el CUIT
-            if (txtCuit.Text == "" || !Regex.IsMatch(txtCuit.Text, regexCuit))
+            if (validarCuit())
                 errores.Add("Ingrese un CUIT válido");
             if (txtNombre.Text == "" || !Regex.IsMatch(txtNombre.Text, regexLetrasEspaciosONumeros))
                 errores.Add("Ingrese un nombre válido");
             if (txtDireccion.Text == "")
                 errores.Add("Ingrese una direccion válida");
+        }
+
+        private bool validarCuit()
+        {
+            int[] mult = new[] { 5, 4, 3, 2, 7, 6, 5, 4, 3, 2 };
+            int total = 0;
+            if (txtCuit.Text == "" || !Regex.IsMatch(txtCuit.Text, regexCuit))
+            {
+                return true;
+            }
+            else
+            {
+                char[] nums = txtCuit.Text.Replace("-", "").ToCharArray();
+
+                for (int i = 0; i < mult.Length; i++)
+                {
+                    total += int.Parse(nums[i].ToString()) * mult[i];
+                }
+                int resto = total % 11;
+                int digito = int.Parse(nums[nums.Length - 1].ToString());
+                if (resto == 0)
+                    return !(digito == 0);
+                else if (resto == 1)
+                    return !(digito == 9);
+                else
+                    return !(digito == (11 - resto));
+            }
         }
 
         private List<string> validarCamposCreateOrEdit()

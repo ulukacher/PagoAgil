@@ -30,10 +30,14 @@ namespace PagoAgilFrba.AbmFactura
 
         List<ItemFactura> listaItems = new List<ItemFactura>();
 
+        decimal importePago = 0;
+
         public CreateFacturaForm()
         {
             InitializeComponent();
             CargarCombo();
+
+            lblImporte.Text = "$" + importePago;
 
             this.ActiveControl = txtNroFactura;
         }
@@ -128,6 +132,9 @@ namespace PagoAgilFrba.AbmFactura
             if (txtFechaVencimiento.Text == "" || txtFechaVencimiento.Value < txtFecha.Value)
                 errores.Add("La fecha de vencimiento debe ser mayor a la fecha de la factura");
 
+            if (txtFechaVencimiento.Text == "" || txtFechaVencimiento.Value <= DateTime.Now)
+                errores.Add("La fecha de vencimiento de la factura debe ser posterior al dia de hoy");
+
             if (txtDNI.Text == "" || !Regex.IsMatch(txtDNI.Text, regexSoloNumeros))
                 errores.Add("Ingrese un numero de DNI valido");
 
@@ -154,6 +161,7 @@ namespace PagoAgilFrba.AbmFactura
                 item.Detalle = txtNombreItem.Text;
 
                 int a;
+                int b;
 
                 if (!int.TryParse(txtCantidadItems.Text, out a))
                 {
@@ -163,13 +171,17 @@ namespace PagoAgilFrba.AbmFactura
                 {
                     item.Cantidad = a;
 
-                    if (!int.TryParse(txtMontoItem.Text, out a))
+                    if (!int.TryParse(txtMontoItem.Text, out b))
                     {
                         MessageBox.Show("El monto del item debe ser un numero");
                     }
                     else
                     {
-                        item.Monto = a;
+                        item.Monto = b;
+
+                        importePago += a * b;
+
+                        lblImporte.Text = "$" + importePago;
 
                         listBox1.Items.Add(item);
                     }
@@ -187,8 +199,16 @@ namespace PagoAgilFrba.AbmFactura
         {
             if (listBox1.SelectedItems.Count > 0)
             {
+                ItemFactura i = new ItemFactura();
+
+                i = (ItemFactura)listBox1.SelectedItems[0];
+
+                importePago -= i.Cantidad * i.Monto;
+
                 listBox1.Items.Remove(listBox1.SelectedItems[0]);
                 listBox1.Refresh();
+
+                lblImporte.Text = "$" + importePago;
 
                 txtNombreItem.Text = "";
                 txtCantidadItems.Text = "";

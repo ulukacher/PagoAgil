@@ -50,11 +50,13 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.lblImporte = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(152, 510);
+            this.button1.Location = new System.Drawing.Point(147, 552);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(83, 30);
@@ -230,7 +232,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(83, 442);
+            this.button2.Location = new System.Drawing.Point(83, 444);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(79, 30);
             this.button2.TabIndex = 29;
@@ -240,7 +242,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(221, 442);
+            this.button3.Location = new System.Drawing.Point(221, 444);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(81, 32);
             this.button3.TabIndex = 30;
@@ -258,11 +260,32 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(118, 510);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(42, 13);
+            this.label10.TabIndex = 62;
+            this.label10.Text = "Importe";
+            // 
+            // lblImporte
+            // 
+            this.lblImporte.AutoSize = true;
+            this.lblImporte.Location = new System.Drawing.Point(171, 510);
+            this.lblImporte.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblImporte.Name = "lblImporte";
+            this.lblImporte.Size = new System.Drawing.Size(0, 13);
+            this.lblImporte.TabIndex = 61;
+            // 
             // CreateFacturaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(391, 564);
+            this.ClientSize = new System.Drawing.Size(391, 606);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.lblImporte);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -316,5 +339,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lblImporte;
     }
 }
