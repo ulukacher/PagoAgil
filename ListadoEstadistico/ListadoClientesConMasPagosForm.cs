@@ -1,4 +1,5 @@
 ﻿using PagoAgilFrba.Classes.Estadisticas;
+using PagoAgilFrba.Classes;
 using PagoAgilFrba.Repositories;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,10 @@ namespace PagoAgilFrba.ListadoEstadistico
         public ListadoClientesConMasPagosForm()
         {
             InitializeComponent();
+
+            txtFechaDesde.Value = ConfiguracionFecha.FechaSistema;
+
+            txtFechaHasta.Value = ConfiguracionFecha.FechaSistema;
         }
 
         private void button1_Click(object sender, EventArgs e)

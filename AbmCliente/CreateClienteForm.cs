@@ -31,12 +31,8 @@ namespace PagoAgilFrba.AbmCliente
         public CreateClienteForm()
         {
             InitializeComponent();
-            //DateTimePicker datePicker = new DateTimePicker();
-            //datePicker.ShowUpDown = true;
-            //datePicker.CustomFormat = "dd/MM/yyyy hh:mm";
-            //datePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            //textBox8.Controls.Add(datePicker);
-            
+
+            txtFecha.Value = ConfiguracionFecha.FechaSistema;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -123,7 +119,7 @@ namespace PagoAgilFrba.AbmCliente
                 errores.Add("Ingrese un teléfono valido");
             if (txtCodigoPostal.Text == "" || !Regex.IsMatch(txtCodigoPostal.Text, regexSoloNumeros))
                 errores.Add("Ingrese un codigo postal valido");
-            if (txtFecha.Text == "" || txtFecha.Value >= DateTime.Now)
+            if (txtFecha.Text == "" || txtFecha.Value >= ConfiguracionFecha.FechaSistema)
                 errores.Add("Ingrese una fecha de nacimiento válida");
         }
         private bool ValidarMail(string mail) {

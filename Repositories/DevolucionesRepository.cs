@@ -48,7 +48,7 @@ namespace PagoAgilFrba.Repositories
 
                     command.Parameters.AddWithValue("@clienteDNI", facturasADevolver[0].ClienteDNI);
                     command.Parameters.AddWithValue("@motivo", motivo);
-                    command.Parameters.AddWithValue("@fecha", DateTime.Today);
+                    command.Parameters.AddWithValue("@fecha", ConfiguracionFecha.FechaSistema);
                     command.Parameters.AddWithValue("@montoTotal", montoTotal);
 
                     command.ExecuteNonQuery();

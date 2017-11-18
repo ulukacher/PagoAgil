@@ -40,6 +40,10 @@ namespace PagoAgilFrba.AbmFactura
             lblImporte.Text = "$" + importePago;
 
             this.ActiveControl = txtNroFactura;
+
+            txtFecha.Value = ConfiguracionFecha.FechaSistema;
+
+            txtFechaVencimiento.Value = ConfiguracionFecha.FechaSistema;
         }
 
         private void CargarCombo()
@@ -126,14 +130,14 @@ namespace PagoAgilFrba.AbmFactura
             if (txtNroFactura.Text == "" || !Regex.IsMatch(txtNroFactura.Text, regexSoloNumeros))
                 errores.Add("Ingrese un numero de factura valido");
 
-            if (txtFecha.Text == "" || txtFecha.Value >= DateTime.Now)
-                errores.Add("La fecha de la factura debe ser anterior al dia de hoy");
+            if (txtFecha.Text == "" || txtFecha.Value >= ConfiguracionFecha.FechaSistema)
+                errores.Add("La fecha de la factura debe ser anterior a la fecha del sistema (" + ConfiguracionFecha.FechaSistema + ")");
 
             if (txtFechaVencimiento.Text == "" || txtFechaVencimiento.Value < txtFecha.Value)
                 errores.Add("La fecha de vencimiento debe ser mayor a la fecha de la factura");
 
-            if (txtFechaVencimiento.Text == "" || txtFechaVencimiento.Value <= DateTime.Now)
-                errores.Add("La fecha de vencimiento de la factura debe ser posterior al dia de hoy");
+            if (txtFechaVencimiento.Text == "" || txtFechaVencimiento.Value <= ConfiguracionFecha.FechaSistema)
+                errores.Add("La fecha de vencimiento de la factura debe ser posterior a la fecha del sistema (" + ConfiguracionFecha.FechaSistema + ")");
 
             if (txtDNI.Text == "" || !Regex.IsMatch(txtDNI.Text, regexSoloNumeros))
                 errores.Add("Ingrese un numero de DNI valido");

@@ -32,6 +32,8 @@ namespace PagoAgilFrba.AbmFactura
 
         decimal nroFacturaOriginal;
 
+        decimal importePago = 0;
+
         public EditFacturaForm(Factura factura)
         {
             InitializeComponent();
@@ -49,7 +51,11 @@ namespace PagoAgilFrba.AbmFactura
             foreach (ItemFactura item in items)
             {
                 listBox1.Items.Add(item);
+
+                importePago += item.Cantidad * item.Monto;
             }
+
+            lblImporte.Text = "$" + importePago;
         }
 
         private void CargarCombo(string empresaCuit)
@@ -146,11 +152,17 @@ namespace PagoAgilFrba.AbmFactura
             if (txtNroFactura.Text == "" || !Regex.IsMatch(txtNroFactura.Text, regexSoloNumeros))
                 errores.Add("Ingrese un numero de factura valido");
 
-            if (txtFecha.Text == "" || txtFecha.Value >= DateTime.Now)
-                errores.Add("Ingrese una fecha válida");
+            if (txtFecha.Text == "" || txtFecha.Value >= ConfiguracionFecha.FechaSistema)
+                errores.Add("La fecha de la factura debe ser anterior a la fecha del sistema (" + ConfiguracionFecha.FechaSistema + ")");
 
             if (txtFechaVencimiento.Text == "" || txtFechaVencimiento.Value < txtFecha.Value)
-                errores.Add("Ingrese una fecha válida");
+                errores.Add("La fecha de vencimiento debe ser mayor a la fecha de la factura");
+
+            if (txtFechaVencimiento.Text == "" || txtFechaVencimiento.Value <= ConfiguracionFecha.FechaSistema)
+                errores.Add("La fecha de vencimiento de la factura debe ser posterior a la fecha del sistema (" + ConfiguracionFecha.FechaSistema + ")");
+
+            if (txtDNI.Text == "" || !Regex.IsMatch(txtDNI.Text, regexSoloNumeros))
+                errores.Add("Ingrese un numero de DNI valido");
 
             if (listBox1.Items.Count == 0)
                 errores.Add("Ingrese al menos un item");
@@ -175,6 +187,7 @@ namespace PagoAgilFrba.AbmFactura
                 item.Detalle = txtNombreItem.Text;
 
                 int a;
+                int b;
 
                 if (!int.TryParse(txtCantidadItems.Text, out a))
                 {
@@ -184,13 +197,17 @@ namespace PagoAgilFrba.AbmFactura
                 {
                     item.Cantidad = a;
 
-                    if (!int.TryParse(txtMontoItem.Text, out a))
+                    if (!int.TryParse(txtMontoItem.Text, out b))
                     {
                         MessageBox.Show("El monto del item debe ser un numero");
                     }
                     else
                     {
-                        item.Monto = a;
+                        item.Monto = b;
+
+                        importePago += a * b;
+
+                        lblImporte.Text = "$" + importePago;
 
                         listBox1.Items.Add(item);
                     }
@@ -208,8 +225,16 @@ namespace PagoAgilFrba.AbmFactura
         {
             if (listBox1.SelectedItems.Count > 0)
             {
+                ItemFactura i = new ItemFactura();
+
+                i = (ItemFactura)listBox1.SelectedItems[0];
+
+                importePago -= i.Cantidad * i.Monto;
+
                 listBox1.Items.Remove(listBox1.SelectedItems[0]);
                 listBox1.Refresh();
+
+                lblImporte.Text = "$" + importePago;
 
                 txtNombreItem.Text = "";
                 txtCantidadItems.Text = "";

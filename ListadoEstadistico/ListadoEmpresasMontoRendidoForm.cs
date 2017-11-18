@@ -1,4 +1,5 @@
 ﻿using PagoAgilFrba.Classes.Estadisticas;
+using PagoAgilFrba.Classes;
 using PagoAgilFrba.Helpers;
 using PagoAgilFrba.Repositories;
 using System;
@@ -18,6 +19,10 @@ namespace PagoAgilFrba.ListadoEstadistico
         public ListadoEmpresasMontoRendidoForm()
         {
             InitializeComponent();
+
+            txtFechaDesde.Value = ConfiguracionFecha.FechaSistema;
+
+            txtFechaHasta.Value = ConfiguracionFecha.FechaSistema;
         }
 
         private void ListadoEmpresasMontoRendidoForm_Load(object sender, EventArgs e)

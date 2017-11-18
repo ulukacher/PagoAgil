@@ -42,6 +42,8 @@ namespace PagoAgilFrba.RegistroPago
             txtFechaCobro.Enabled = false;
 
             lblImporte.Text = "$" + importePago;
+
+            txtFechaCobro.Value = ConfiguracionFecha.FechaSistema;
         }
 
         private void CargarCombo()
@@ -165,8 +167,11 @@ namespace PagoAgilFrba.RegistroPago
 
             foreach (Factura factura in listBox1.Items)
             {
-                if (factura.FechaVencimiento < DateTime.Now)
+                if (factura.FechaVencimiento <= ConfiguracionFecha.FechaSistema)
                     errores.Add("Una o mas facturas ya vencieron");
+
+                if (factura.Monto <= 0)
+                    errores.Add("Una o mas facturas tienen monto menor o igual a cero");
 
                 if (FacturasRepository.GetFacturaByNro(factura.Nro).EmpresaCuit == null && entro == false)
                 {

@@ -1,4 +1,5 @@
 ﻿using PagoAgilFrba.Classes.Estadisticas;
+using PagoAgilFrba.Classes;
 using PagoAgilFrba.Repositories;
 using System;
 using System.Collections.Generic;
@@ -17,15 +18,22 @@ namespace PagoAgilFrba.ListadoEstadistico
         public ListaPorcentajeFacturasCobradasPorEmpresaForm()
         {
             InitializeComponent();
+
+            txtFechaDesde.Value = ConfiguracionFecha.FechaSistema;
+
+            txtFechaHasta.Value = ConfiguracionFecha.FechaSistema;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             dataGridView1.Rows.Clear();
             dataGridView1.Refresh();
+
             DateTime fechaDesde = txtFechaDesde.Value;
             DateTime fechaHasta = txtFechaHasta.Value;
+
             List<ItemReportePorcentajeFacturasCobradas> itemsReporte = EstadisticasRepository.GetPorcentajesFacturasCobradasPorEmpresa(fechaDesde,fechaHasta);
+            
             foreach (var item in itemsReporte)
             {
                 dataGridView1.Rows.Add(item.Empresa, Math.Round( item.Porcentaje,2)+ "%");

@@ -79,7 +79,7 @@ namespace PagoAgilFrba.Rendiciones
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DateTime fechaRendicion = DateTime.Now;
+            DateTime fechaRendicion = ConfiguracionFecha.FechaSistema;
             //Valido si ya hubo una rendicion en este periodo para esta empresa
             string empresaCuit = ((ComboBoxItemStringValue)comboEmpresas.SelectedItem).Value;
             decimal porcentajeComision;

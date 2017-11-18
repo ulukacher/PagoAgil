@@ -157,7 +157,7 @@ namespace PagoAgilFrba.Devoluciones
                     entro4 = true;
                 }
 
-                if (factura.FechaVencimiento < DateTime.Now && entro5 == false)
+                if (factura.FechaVencimiento <= ConfiguracionFecha.FechaSistema && entro5 == false)
                 {
                     errores.Add("Una o mas facturas ya vencieron");
 

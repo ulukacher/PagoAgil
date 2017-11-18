@@ -18,8 +18,8 @@ namespace PagoAgilFrba.Repositories
                 " and month(rend_fecha)=@mes";
             SqlCommand command = new SqlCommand(query, conn);
             command.Parameters.AddWithValue("@cuitEmpresa", cuitEmpresa);
-            command.Parameters.AddWithValue("@anio", DateTime.Now.Year);
-            command.Parameters.AddWithValue("@mes", DateTime.Now.Month);
+            command.Parameters.AddWithValue("@anio", ConfiguracionFecha.FechaSistema.Year);
+            command.Parameters.AddWithValue("@mes", ConfiguracionFecha.FechaSistema.Month);
             int cantRendiciones = (int)command.ExecuteScalar();
             conn.Close();
             return cantRendiciones > 0;
@@ -55,8 +55,8 @@ namespace PagoAgilFrba.Repositories
                     commandItems.Parameters.AddWithValue("@nroRendicion", ultimoNroRendicion);
                     commandItems.Parameters.AddWithValue("@cuit", rendicion.EmpresaCuit);
                     commandItems.Parameters.AddWithValue("@estado", EstadoFactura.Pagada);
-                    commandItems.Parameters.AddWithValue("@anio", DateTime.Now.Year);
-                    commandItems.Parameters.AddWithValue("@mes", DateTime.Now.Month);
+                    commandItems.Parameters.AddWithValue("@anio", ConfiguracionFecha.FechaSistema.Year);
+                    commandItems.Parameters.AddWithValue("@mes", ConfiguracionFecha.FechaSistema.Month);
                     commandItems.ExecuteNonQuery();
 
 

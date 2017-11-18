@@ -29,8 +29,8 @@ namespace PagoAgilFrba.Repositories
 
             command.Parameters.AddWithValue("@cuit", cuitEmpresa);
             command.Parameters.AddWithValue("@estado", EstadoFactura.Pagada);
-            command.Parameters.AddWithValue("@anio", DateTime.Now.Year);
-            command.Parameters.AddWithValue("@mes", DateTime.Now.Month);
+            command.Parameters.AddWithValue("@anio", ConfiguracionFecha.FechaSistema.Year);
+            command.Parameters.AddWithValue("@mes", ConfiguracionFecha.FechaSistema.Month);
 
             using (SqlDataReader reader = command.ExecuteReader())
             {

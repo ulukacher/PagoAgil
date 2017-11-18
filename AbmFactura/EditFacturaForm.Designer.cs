@@ -50,6 +50,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.lblImporte = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button3
@@ -105,7 +107,7 @@
             // txtMontoItem
             // 
             this.txtMontoItem.Location = new System.Drawing.Point(137, 401);
-            this.txtMontoItem.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtMontoItem.Margin = new System.Windows.Forms.Padding(2);
             this.txtMontoItem.Name = "txtMontoItem";
             this.txtMontoItem.Size = new System.Drawing.Size(92, 20);
             this.txtMontoItem.TabIndex = 46;
@@ -113,7 +115,7 @@
             // txtCantidadItems
             // 
             this.txtCantidadItems.Location = new System.Drawing.Point(137, 358);
-            this.txtCantidadItems.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtCantidadItems.Margin = new System.Windows.Forms.Padding(2);
             this.txtCantidadItems.Name = "txtCantidadItems";
             this.txtCantidadItems.Size = new System.Drawing.Size(92, 20);
             this.txtCantidadItems.TabIndex = 45;
@@ -129,7 +131,7 @@
             // txtFechaVencimiento
             // 
             this.txtFechaVencimiento.Location = new System.Drawing.Point(137, 266);
-            this.txtFechaVencimiento.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtFechaVencimiento.Margin = new System.Windows.Forms.Padding(2);
             this.txtFechaVencimiento.Name = "txtFechaVencimiento";
             this.txtFechaVencimiento.Size = new System.Drawing.Size(233, 20);
             this.txtFechaVencimiento.TabIndex = 43;
@@ -147,15 +149,15 @@
             // txtFecha
             // 
             this.txtFecha.Location = new System.Drawing.Point(137, 224);
-            this.txtFecha.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtFecha.Margin = new System.Windows.Forms.Padding(2);
             this.txtFecha.Name = "txtFecha";
             this.txtFecha.Size = new System.Drawing.Size(233, 20);
             this.txtFecha.TabIndex = 41;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(152, 511);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Location = new System.Drawing.Point(153, 546);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(83, 30);
             this.button1.TabIndex = 40;
@@ -168,7 +170,7 @@
             this.cboEmpresa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboEmpresa.FormattingEnabled = true;
             this.cboEmpresa.Location = new System.Drawing.Point(137, 144);
-            this.cboEmpresa.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboEmpresa.Margin = new System.Windows.Forms.Padding(2);
             this.cboEmpresa.Name = "cboEmpresa";
             this.cboEmpresa.Size = new System.Drawing.Size(92, 21);
             this.cboEmpresa.TabIndex = 39;
@@ -176,7 +178,7 @@
             // txtDNI
             // 
             this.txtDNI.Location = new System.Drawing.Point(137, 187);
-            this.txtDNI.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtDNI.Margin = new System.Windows.Forms.Padding(2);
             this.txtDNI.Name = "txtDNI";
             this.txtDNI.Size = new System.Drawing.Size(92, 20);
             this.txtDNI.TabIndex = 38;
@@ -184,7 +186,7 @@
             // txtNombreItem
             // 
             this.txtNombreItem.Location = new System.Drawing.Point(137, 313);
-            this.txtNombreItem.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtNombreItem.Margin = new System.Windows.Forms.Padding(2);
             this.txtNombreItem.Name = "txtNombreItem";
             this.txtNombreItem.Size = new System.Drawing.Size(92, 20);
             this.txtNombreItem.TabIndex = 37;
@@ -193,7 +195,7 @@
             // 
             this.txtNroFactura.Enabled = false;
             this.txtNroFactura.Location = new System.Drawing.Point(137, 107);
-            this.txtNroFactura.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtNroFactura.Margin = new System.Windows.Forms.Padding(2);
             this.txtNroFactura.Name = "txtNroFactura";
             this.txtNroFactura.Size = new System.Drawing.Size(92, 20);
             this.txtNroFactura.TabIndex = 36;
@@ -259,11 +261,32 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(124, 512);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(42, 13);
+            this.label10.TabIndex = 64;
+            this.label10.Text = "Importe";
+            // 
+            // lblImporte
+            // 
+            this.lblImporte.AutoSize = true;
+            this.lblImporte.Location = new System.Drawing.Point(177, 512);
+            this.lblImporte.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblImporte.Name = "lblImporte";
+            this.lblImporte.Size = new System.Drawing.Size(0, 13);
+            this.lblImporte.TabIndex = 63;
+            // 
             // EditFacturaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(391, 559);
+            this.ClientSize = new System.Drawing.Size(391, 593);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.lblImporte);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -317,5 +340,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lblImporte;
     }
 }
