@@ -167,6 +167,9 @@ namespace PagoAgilFrba.AbmFactura
             if (listBox1.Items.Count == 0)
                 errores.Add("Ingrese al menos un item");
 
+            if (importePago <= 0)
+                errores.Add("El monto de la factura debe ser mayor a 0");
+
             return errores;
         }
 
@@ -195,21 +198,35 @@ namespace PagoAgilFrba.AbmFactura
                 }
                 else
                 {
-                    item.Cantidad = a;
-
-                    if (!int.TryParse(txtMontoItem.Text, out b))
+                    if (a <= 0)
                     {
-                        MessageBox.Show("El monto del item debe ser un numero");
+                        MessageBox.Show("La cantidad de items debe ser un numero mayor a 0");
                     }
                     else
                     {
-                        item.Monto = b;
+                        item.Cantidad = a;
 
-                        importePago += a * b;
+                        if (!int.TryParse(txtMontoItem.Text, out b))
+                        {
+                            MessageBox.Show("El monto del item debe ser un numero");
+                        }
+                        else
+                        {
+                            if (b <= 0)
+                            {
+                                MessageBox.Show("El monto del item debe ser un numero mayor a 0");
+                            }
+                            else
+                            {
+                                item.Monto = b;
 
-                        lblImporte.Text = "$" + importePago;
+                                importePago += a * b;
 
-                        listBox1.Items.Add(item);
+                                lblImporte.Text = "$" + importePago;
+
+                                listBox1.Items.Add(item);
+                            }
+                        }
                     }
                 }
             }
