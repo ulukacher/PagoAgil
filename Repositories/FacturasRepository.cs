@@ -21,7 +21,7 @@ namespace PagoAgilFrba.Repositories
             List<Factura> facturas = new List<Factura>();
 
             string query = "select distinct factura_nro,factura_empresaCuit,factura_clienteDNI,factura_fecha,factura_estado,factura_fechaVencimiento," +
-                "(select sum(itemFac_monto) from LOS_MANTECOSOS.ItemsFacturas where itemFac_facturaNro = factura_nro) as monto" +
+                "(select sum(itemFac_monto*itemFac_cantidad) from LOS_MANTECOSOS.ItemsFacturas where itemFac_facturaNro = factura_nro) as monto" +
                 " from LOS_MANTECOSOS.facturas INNER JOIN LOS_MANTECOSOS.ItemsPagos ON factura_nro = itemPago_facturaNro INNER JOIN LOS_MANTECOSOS.Pagos ON itemPago_pagoNro = pago_nro" +
                 " where factura_empresaCuit = @cuit and factura_estado = @estado and year(pago_fecha) = @anio and month(pago_fecha) = @mes";
 
@@ -187,6 +187,14 @@ namespace PagoAgilFrba.Repositories
                     tx.Commit();
 
                     conn.Close();
+                }
+                catch (SqlException sqlExc)
+                {
+                    tx.Rollback();
+
+                    conn.Close();
+
+                    throw sqlExc;
                 }
                 catch (Exception exc)
                 {
