@@ -164,6 +164,7 @@ namespace PagoAgilFrba.RegistroPago
             bool entro = false;
             bool entro2 = false;
             bool entro3 = false;
+            bool entro4 = false;
 
             foreach (Factura factura in listBox1.Items)
             {
@@ -180,18 +181,25 @@ namespace PagoAgilFrba.RegistroPago
                     entro = true;
                 }
 
-                if(FacturasRepository.FacturaEstaPagaORendida(factura.Nro) == true && entro2 == false)
+                if(FacturasRepository.FacturaEstaPaga(factura.Nro) == true && entro2 == false)
                 {
-                    errores.Add("Una o mas facturas ya fueron pagadas o rendidas");
+                    errores.Add("Una o mas facturas ya fueron pagadas");
 
                     entro2 = true;
                 }
 
-                if (FacturasRepository.FacturaEsDeCliente(factura.Nro, ((ComboboxItem)cboClienteDNI.SelectedItem).Value) == false && entro3 == false)
+                if (FacturasRepository.FacturaEstaRendida(factura.Nro) == true && entro3 == false)
+                {
+                    errores.Add("Una o mas facturas ya fueron rendidas");
+
+                    entro3 = true;
+                }
+
+                if (FacturasRepository.FacturaEsDeCliente(factura.Nro, ((ComboboxItem)cboClienteDNI.SelectedItem).Value) == false && entro4 == false)
                 {
                     errores.Add("Una o mas facturas no pertenecen al cliente");
 
-                    entro3 = true;
+                    entro4 = true;
                 }
 
                 if (EmpresasRepository.EmpresaEstaActiva(FacturasRepository.GetFacturaByNro(factura.Nro).EmpresaCuit) == false)
@@ -235,7 +243,9 @@ namespace PagoAgilFrba.RegistroPago
                         {
                             factura = FacturasRepository.GetFacturaByNro(a);
 
-                            importePago += FacturasRepository.ImporteFactura(decimal.Parse(txtNroFactura.Text));
+                            factura.Monto = FacturasRepository.ImporteFactura(factura.Nro);
+
+                            importePago += factura.Monto;
 
                             lblImporte.Text = "$" + importePago;
 

@@ -397,29 +397,29 @@ namespace PagoAgilFrba.Repositories
             return itemsFactura;
         }
 
-        public static bool FacturaEstaPagaORendida(decimal nroFactura)
-        {
-            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
-            conn.Open();
-
-            var query = "SELECT COUNT(*) FROM LOS_MANTECOSOS.Facturas WHERE factura_nro = @nroFactura AND (factura_estado = 1 OR factura_estado = 2)";
-
-            SqlCommand command = new SqlCommand(query, conn);
-            command.Parameters.AddWithValue("@nroFactura", nroFactura);
-            
-            int cant = (int)command.ExecuteScalar();
-            
-            conn.Close();
-            
-            return cant > 0;
-        }
-
         public static bool FacturaEstaPaga(decimal nroFactura)
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
             conn.Open();
 
             var query = "SELECT COUNT(*) FROM LOS_MANTECOSOS.Facturas WHERE factura_nro = @nroFactura AND factura_estado = 1";
+
+            SqlCommand command = new SqlCommand(query, conn);
+            command.Parameters.AddWithValue("@nroFactura", nroFactura);
+
+            int cant = (int)command.ExecuteScalar();
+
+            conn.Close();
+
+            return cant > 0;
+        }
+
+        public static bool FacturaEstaRendida(decimal nroFactura)
+        {
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["GDD"].ConnectionString);
+            conn.Open();
+
+            var query = "SELECT COUNT(*) FROM LOS_MANTECOSOS.Facturas WHERE factura_nro = @nroFactura AND factura_estado = 2";
 
             SqlCommand command = new SqlCommand(query, conn);
             command.Parameters.AddWithValue("@nroFactura", nroFactura);
