@@ -163,6 +163,8 @@ namespace PagoAgilFrba.AbmFactura
 
             if (txtDNI.Text == "" || !Regex.IsMatch(txtDNI.Text, regexSoloNumeros))
                 errores.Add("Ingrese un numero de DNI valido");
+            //if (txtNombreItem.Text == "")
+            //    errores.Add("El renglon de la factura debe tener una descripción del nombre");
 
             if (listBox1.Items.Count == 0)
                 errores.Add("Ingrese al menos un item");
@@ -185,50 +187,58 @@ namespace PagoAgilFrba.AbmFactura
             }
             else
             {
-                ItemFactura item = new ItemFactura();
-
-                item.Detalle = txtNombreItem.Text;
-
-                int a;
-                int b;
-
-                if (!int.TryParse(txtCantidadItems.Text, out a))
+                if (txtNombreItem.Text == "")
                 {
-                    MessageBox.Show("La cantidad de items debe ser un numero");
+                    MessageBox.Show("El renglon de la factura debe tener una descripción del nombre");
                 }
-                else
+                else 
                 {
-                    if (a <= 0)
+                    ItemFactura item = new ItemFactura();
+
+                    item.Detalle = txtNombreItem.Text;
+
+                    int a;
+                    int b;
+
+                    if (!int.TryParse(txtCantidadItems.Text, out a))
                     {
-                        MessageBox.Show("La cantidad de items debe ser un numero mayor a 0");
+                        MessageBox.Show("La cantidad de items debe ser un numero");
                     }
                     else
                     {
-                        item.Cantidad = a;
-
-                        if (!int.TryParse(txtMontoItem.Text, out b))
+                        if (a <= 0)
                         {
-                            MessageBox.Show("El monto del item debe ser un numero");
+                            MessageBox.Show("La cantidad de items debe ser un numero mayor a 0");
                         }
                         else
                         {
-                            if (b <= 0)
+                            item.Cantidad = a;
+
+                            if (!int.TryParse(txtMontoItem.Text, out b))
                             {
-                                MessageBox.Show("El monto del item debe ser un numero mayor a 0");
+                                MessageBox.Show("El monto del item debe ser un numero");
                             }
                             else
                             {
-                                item.Monto = b;
+                                if (b <= 0)
+                                {
+                                    MessageBox.Show("El monto del item debe ser un numero mayor a 0");
+                                }
+                                else
+                                {
+                                    item.Monto = b;
 
-                                importePago += a * b;
+                                    importePago += a * b;
 
-                                lblImporte.Text = "$" + importePago;
+                                    lblImporte.Text = "$" + importePago;
 
-                                listBox1.Items.Add(item);
+                                    listBox1.Items.Add(item);
+                                }
                             }
                         }
                     }
                 }
+               
             }
 
             txtNombreItem.Text = "";
