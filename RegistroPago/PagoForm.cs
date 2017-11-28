@@ -161,6 +161,12 @@ namespace PagoAgilFrba.RegistroPago
             if(Sucursal.SucursalActual != null && Sucursal.SucursalActual.CodigoPostal != ((ComboboxItem)cboSucursal.SelectedItem).Value)
                 errores.Add("El usuario no pertenece a la sucursal seleccionada");
 
+            if (Sucursal.SucursalActual != null && Sucursal.SucursalActual.Activa == false)
+                errores.Add("La sucursal esta inactiva");
+
+            if (ClientesRepository.GetClienteByDNI(((ComboboxItem)cboClienteDNI.SelectedItem).Value).Activo == false)
+                errores.Add("El cliente esta inactivo");
+
             bool entro = false;
             bool entro2 = false;
             bool entro3 = false;
@@ -298,6 +304,11 @@ namespace PagoAgilFrba.RegistroPago
             var index = new IndexForm();
             this.Hide();
             index.Show();
+        }
+
+        private void PagoForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

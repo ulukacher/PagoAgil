@@ -248,6 +248,7 @@
             this.Controls.Add(this.label1);
             this.Name = "PagoForm";
             this.Text = "PagoForm";
+            this.Load += new System.EventHandler(this.PagoForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
